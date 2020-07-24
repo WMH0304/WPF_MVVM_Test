@@ -1,0 +1,895 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EasternStar_WPF_MVVMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AG_AgreementClass">
+          <Key>
+            <PropertyRef Name="ID_AgreementClass" />
+          </Key>
+          <Property Name="ID_AgreementClass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_AgreementClass" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="MC_AgreementClass" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AG_AgreementStagePrice">
+          <Key>
+            <PropertyRef Name="ID_AgreementStagePrice" />
+          </Key>
+          <Property Name="ID_AgreementStagePrice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_AgreementClass" Type="int" Nullable="false" />
+          <Property Name="ID_Class" Type="int" Nullable="false" />
+          <Property Name="Price_Agreement" Type="money" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AG_AgreementUser">
+          <Key>
+            <PropertyRef Name="ID_AgreementUser" />
+          </Key>
+          <Property Name="ID_AgreementUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_AgreementClass" Type="int" Nullable="false" />
+          <Property Name="MC_AgreementUser" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Linkman_AgreementUser" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="Phone_AgreementUser" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="Price_Balance" Type="money" Nullable="false" />
+          <Property Name="Prcie_Overdraft" Type="money" Nullable="false" />
+          <Property Name="Date_Credit" Type="date" />
+        </EntityType>
+        <EntityType Name="CW_Bill">
+          <Key>
+            <PropertyRef Name="ID_Bill" />
+          </Key>
+          <Property Name="ID_Bill" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuOp_ID" Type="int" Nullable="false" />
+          <Property Name="Time_PayBill" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="money" />
+          <Property Name="State_Bill" Type="nchar" MaxLength="30" />
+          <Property Name="Number_Bill" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CW_Consumption">
+          <Key>
+            <PropertyRef Name="ID_Consumption" />
+          </Key>
+          <Property Name="ID_Consumption" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ProjectDetail" Type="int" Nullable="false" />
+          <Property Name="ID_RoomStage" Type="int" Nullable="false" />
+          <Property Name="ID_Bill" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Prict" Type="money" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Time_Consumption" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CW_Finance">
+          <Key>
+            <PropertyRef Name="ID_Finance" />
+          </Key>
+          <Property Name="ID_Finance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="Use_ID_User" Type="int" Nullable="false" />
+          <Property Name="Alipay" Type="money" Nullable="false" />
+          <Property Name="WeChat" Type="money" Nullable="false" />
+          <Property Name="RMB" Type="money" Nullable="false" />
+          <Property Name="Curtain" Type="money" Nullable="false" />
+          <Property Name="CreditCard" Type="money" Nullable="false" />
+          <Property Name="Checks" Type="money" Nullable="false" />
+          <Property Name="Surplus" Type="money" Nullable="false" />
+          <Property Name="Income" Type="money" Nullable="false" />
+          <Property Name="CashPledge" Type="money" Nullable="false" />
+          <Property Name="Handin" Type="money" Nullable="false" />
+          <Property Name="Issue" Type="money" Nullable="false" />
+          <Property Name="Connect" Type="money" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CW_PayRecord">
+          <Key>
+            <PropertyRef Name="ID_PayRecord" />
+          </Key>
+          <Property Name="ID_PayRecord" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Bill" Type="int" />
+          <Property Name="ID_Guest" Type="int" />
+          <Property Name="Price_Pay" Type="money" />
+          <Property Name="Time_Pay" Type="money" />
+          <Property Name="PoP" Type="nchar" MaxLength="10" />
+          <Property Name="State" Type="bit" />
+        </EntityType>
+        <EntityType Name="LostAndFound">
+          <Key>
+            <PropertyRef Name="ID_LostAndFound" />
+          </Key>
+          <Property Name="ID_LostAndFound" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_RoomStage" Type="int" Nullable="false" />
+          <Property Name="[Content" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="People_Up" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Time_Up" Type="datetime" Nullable="false" />
+          <Property Name="Pepple_Claim" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="Time_Claim" Type="datetime" Nullable="false" />
+          <Property Name="State" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_Project">
+          <Key>
+            <PropertyRef Name="ID_Project" />
+          </Key>
+          <Property Name="ID_Project" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_ProjectClass" Type="int" Nullable="false" />
+          <Property Name="MC_Project" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Jc_Project" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Unit" Type="nchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_ProjectClass">
+          <Key>
+            <PropertyRef Name="ID_ProjectClass" />
+          </Key>
+          <Property Name="ID_ProjectClass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MC_ProjectClass" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="State_ProjectClass" Type="nchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_ProjectDetail">
+          <Key>
+            <PropertyRef Name="ID_ProjectDetail" />
+          </Key>
+          <Property Name="ID_ProjectDetail" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Class" Type="int" Nullable="false" />
+          <Property Name="ID_Project" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="ID_Consumption" Type="int" />
+        </EntityType>
+        <EntityType Name="SYS_Class">
+          <Key>
+            <PropertyRef Name="ID_Class" />
+          </Key>
+          <Property Name="ID_Class" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code_Class" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="MC_Class" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Jc_Class" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="Price_Plate" Type="money" Nullable="false" />
+          <Property Name="Price_Actual" Type="money" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State_Class" Type="nchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_Guest">
+          <Key>
+            <PropertyRef Name="ID_Guest" />
+          </Key>
+          <Property Name="ID_Guest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MC_Guest" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="gender" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="证件类型" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="证件号码" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="13" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_RoomStage">
+          <Key>
+            <PropertyRef Name="ID_RoomStage" />
+          </Key>
+          <Property Name="ID_RoomStage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Class" Type="int" Nullable="false" />
+          <Property Name="Number_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="MC_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="State_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="JionSign" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_System">
+          <Key>
+            <PropertyRef Name="SystemID" />
+          </Key>
+          <Property Name="SystemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SystemMC" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Value" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Jurisdiction">
+          <Key>
+            <PropertyRef Name="ID_Jurisdiction" />
+          </Key>
+          <Property Name="ID_Jurisdiction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MC_Jurisdiction" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_OperationLog">
+          <Key>
+            <PropertyRef Name="ID_OperationLog" />
+          </Key>
+          <Property Name="ID_OperationLog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="Time_Operation" Type="datetime" Nullable="false" />
+          <Property Name="Content_Abstract" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Content_Operation" Type="nchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number_Job" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="MC_User" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="State_User" Type="bit" Nullable="false" />
+          <Property Name="Jrisdiction" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIP_Grade">
+          <Key>
+            <PropertyRef Name="ID_Grade" />
+          </Key>
+          <Property Name="ID_Grade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MC_Grade" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIP_Table">
+          <Key>
+            <PropertyRef Name="ID_VIP" />
+          </Key>
+          <Property Name="ID_VIP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Guest" Type="int" Nullable="false" />
+          <Property Name="ID_Grade" Type="int" Nullable="false" />
+          <Property Name="Integra_VIPl" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price_Balance" Type="money" Nullable="false" />
+          <Property Name="Prcie_Overdraft" Type="money" Nullable="false" />
+          <Property Name="Date_Credit" Type="date" Nullable="false" />
+          <Property Name="Accounts" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="YW_OpenStage">
+          <Key>
+            <PropertyRef Name="ID_OpenStage" />
+          </Key>
+          <Property Name="ID_OpenStage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_AgreementUser" Type="int" Nullable="false" />
+          <Property Name="ID_VIP" Type="int" Nullable="false" />
+          <Property Name="Number_People" Type="int" Nullable="false" />
+          <Property Name="Time_Predict" Type="datetime" Nullable="false" />
+          <Property Name="Time_Leave" Type="datetime" Nullable="false" />
+          <Property Name="Money_Pledge" Type="money" Nullable="false" />
+          <Property Name="Type_CheckIn" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="State_Secrecy" Type="bit" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State_Message" Type="bit" Nullable="false" />
+          <Property Name="Content_Message" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HouseStageID" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="GuestID" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YW_Subscribe">
+          <Key>
+            <PropertyRef Name="ID_Subscribe" />
+          </Key>
+          <Property Name="ID_Subscribe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_VIP" Type="int" Nullable="false" />
+          <Property Name="ID_AgreementUser" Type="int" Nullable="false" />
+          <Property Name="ID_Guest" Type="int" Nullable="false" />
+          <Property Name="Number_Subscribe" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="HouseStageID" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="Time_Predict" Type="datetime" />
+          <Property Name="Time_Leave" Type="datetime" />
+          <Property Name="Number_People" Type="int" Nullable="false" />
+          <Property Name="Money_Pledge" Type="money" Nullable="false" />
+          <Property Name="State_Secrecy" Type="bit" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Type_CheckIn" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EasternStar_WPF_MVVMModelStoreContainer">
+          <EntitySet Name="AG_AgreementClass" EntityType="Self.AG_AgreementClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AG_AgreementStagePrice" EntityType="Self.AG_AgreementStagePrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AG_AgreementUser" EntityType="Self.AG_AgreementUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CW_Bill" EntityType="Self.CW_Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CW_Consumption" EntityType="Self.CW_Consumption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CW_Finance" EntityType="Self.CW_Finance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CW_PayRecord" EntityType="Self.CW_PayRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LostAndFound" EntityType="Self.LostAndFound" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PJ_Project" EntityType="Self.PJ_Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PJ_ProjectClass" EntityType="Self.PJ_ProjectClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PJ_ProjectDetail" EntityType="Self.PJ_ProjectDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Class" EntityType="Self.SYS_Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Guest" EntityType="Self.SYS_Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_RoomStage" EntityType="Self.SYS_RoomStage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_System" EntityType="Self.SYS_System" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Jurisdiction" EntityType="Self.User_Jurisdiction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_OperationLog" EntityType="Self.User_OperationLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIP_Grade" EntityType="Self.VIP_Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIP_Table" EntityType="Self.VIP_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YW_OpenStage" EntityType="Self.YW_OpenStage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="YW_Subscribe" EntityType="Self.YW_Subscribe" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EasternStar_WPF_MVVMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AG_AgreementClass">
+          <Key>
+            <PropertyRef Name="ID_AgreementClass" />
+          </Key>
+          <Property Name="ID_AgreementClass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_AgreementClass" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MC_AgreementClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AG_AgreementStagePrice">
+          <Key>
+            <PropertyRef Name="ID_AgreementStagePrice" />
+          </Key>
+          <Property Name="ID_AgreementStagePrice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_AgreementClass" Type="Int32" Nullable="false" />
+          <Property Name="ID_Class" Type="Int32" Nullable="false" />
+          <Property Name="Price_Agreement" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AG_AgreementUser">
+          <Key>
+            <PropertyRef Name="ID_AgreementUser" />
+          </Key>
+          <Property Name="ID_AgreementUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_AgreementClass" Type="Int32" Nullable="false" />
+          <Property Name="MC_AgreementUser" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Linkman_AgreementUser" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Phone_AgreementUser" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Price_Balance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Prcie_Overdraft" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Date_Credit" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="CW_Bill">
+          <Key>
+            <PropertyRef Name="ID_Bill" />
+          </Key>
+          <Property Name="ID_Bill" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuOp_ID" Type="Int32" Nullable="false" />
+          <Property Name="Time_PayBill" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="State_Bill" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Number_Bill" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CW_Consumption">
+          <Key>
+            <PropertyRef Name="ID_Consumption" />
+          </Key>
+          <Property Name="ID_Consumption" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ProjectDetail" Type="Int32" Nullable="false" />
+          <Property Name="ID_RoomStage" Type="Int32" Nullable="false" />
+          <Property Name="ID_Bill" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Prict" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="Time_Consumption" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CW_Finance">
+          <Key>
+            <PropertyRef Name="ID_Finance" />
+          </Key>
+          <Property Name="ID_Finance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Use_ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Alipay" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="WeChat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="RMB" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Curtain" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CreditCard" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Checks" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Surplus" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Income" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="CashPledge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Handin" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Issue" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Connect" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CW_PayRecord">
+          <Key>
+            <PropertyRef Name="ID_PayRecord" />
+          </Key>
+          <Property Name="ID_PayRecord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Bill" Type="Int32" />
+          <Property Name="ID_Guest" Type="Int32" />
+          <Property Name="Price_Pay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Time_Pay" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PoP" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="State" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LostAndFound">
+          <Key>
+            <PropertyRef Name="ID_LostAndFound" />
+          </Key>
+          <Property Name="ID_LostAndFound" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_RoomStage" Type="Int32" Nullable="false" />
+          <Property Name="C_Content" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="People_Up" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Time_Up" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Pepple_Claim" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Time_Claim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="State" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_Project">
+          <Key>
+            <PropertyRef Name="ID_Project" />
+          </Key>
+          <Property Name="ID_Project" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_ProjectClass" Type="Int32" Nullable="false" />
+          <Property Name="MC_Project" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Jc_Project" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_ProjectClass">
+          <Key>
+            <PropertyRef Name="ID_ProjectClass" />
+          </Key>
+          <Property Name="ID_ProjectClass" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MC_ProjectClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="State_ProjectClass" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PJ_ProjectDetail">
+          <Key>
+            <PropertyRef Name="ID_ProjectDetail" />
+          </Key>
+          <Property Name="ID_ProjectDetail" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Class" Type="Int32" Nullable="false" />
+          <Property Name="ID_Project" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ID_Consumption" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SYS_Class">
+          <Key>
+            <PropertyRef Name="ID_Class" />
+          </Key>
+          <Property Name="ID_Class" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Class" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MC_Class" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Jc_Class" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Price_Plate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Price_Actual" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State_Class" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_Guest">
+          <Key>
+            <PropertyRef Name="ID_Guest" />
+          </Key>
+          <Property Name="ID_Guest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MC_Guest" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="证件类型" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="证件号码" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_RoomStage">
+          <Key>
+            <PropertyRef Name="ID_RoomStage" />
+          </Key>
+          <Property Name="ID_RoomStage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Class" Type="Int32" Nullable="false" />
+          <Property Name="Number_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="MC_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="State_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="JionSign" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_System">
+          <Key>
+            <PropertyRef Name="SystemID" />
+          </Key>
+          <Property Name="SystemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SystemMC" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Jurisdiction">
+          <Key>
+            <PropertyRef Name="ID_Jurisdiction" />
+          </Key>
+          <Property Name="ID_Jurisdiction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MC_Jurisdiction" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_OperationLog">
+          <Key>
+            <PropertyRef Name="ID_OperationLog" />
+          </Key>
+          <Property Name="ID_OperationLog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="Time_Operation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content_Abstract" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Content_Operation" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Table">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number_Job" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MC_User" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="State_User" Type="Boolean" Nullable="false" />
+          <Property Name="Jrisdiction" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIP_Grade">
+          <Key>
+            <PropertyRef Name="ID_Grade" />
+          </Key>
+          <Property Name="ID_Grade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MC_Grade" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIP_Table">
+          <Key>
+            <PropertyRef Name="ID_VIP" />
+          </Key>
+          <Property Name="ID_VIP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Guest" Type="Int32" Nullable="false" />
+          <Property Name="ID_Grade" Type="Int32" Nullable="false" />
+          <Property Name="Integra_VIPl" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price_Balance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Prcie_Overdraft" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Date_Credit" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Accounts" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="YW_OpenStage">
+          <Key>
+            <PropertyRef Name="ID_OpenStage" />
+          </Key>
+          <Property Name="ID_OpenStage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_AgreementUser" Type="Int32" Nullable="false" />
+          <Property Name="ID_VIP" Type="Int32" Nullable="false" />
+          <Property Name="Number_People" Type="Int32" Nullable="false" />
+          <Property Name="Time_Predict" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Time_Leave" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Money_Pledge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Type_CheckIn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="State_Secrecy" Type="Boolean" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State_Message" Type="Boolean" Nullable="false" />
+          <Property Name="Content_Message" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HouseStageID" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GuestID" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YW_Subscribe">
+          <Key>
+            <PropertyRef Name="ID_Subscribe" />
+          </Key>
+          <Property Name="ID_Subscribe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_VIP" Type="Int32" Nullable="false" />
+          <Property Name="ID_AgreementUser" Type="Int32" Nullable="false" />
+          <Property Name="ID_Guest" Type="Int32" Nullable="false" />
+          <Property Name="Number_Subscribe" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HouseStageID" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Time_Predict" Type="DateTime" Precision="3" />
+          <Property Name="Time_Leave" Type="DateTime" Precision="3" />
+          <Property Name="Number_People" Type="Int32" Nullable="false" />
+          <Property Name="Money_Pledge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="State_Secrecy" Type="Boolean" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type_CheckIn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EasternStar_WPF_MVVMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AG_AgreementClass" EntityType="Self.AG_AgreementClass" />
+          <EntitySet Name="AG_AgreementStagePrice" EntityType="Self.AG_AgreementStagePrice" />
+          <EntitySet Name="AG_AgreementUser" EntityType="Self.AG_AgreementUser" />
+          <EntitySet Name="CW_Bill" EntityType="Self.CW_Bill" />
+          <EntitySet Name="CW_Consumption" EntityType="Self.CW_Consumption" />
+          <EntitySet Name="CW_Finance" EntityType="Self.CW_Finance" />
+          <EntitySet Name="CW_PayRecord" EntityType="Self.CW_PayRecord" />
+          <EntitySet Name="LostAndFound" EntityType="Self.LostAndFound" />
+          <EntitySet Name="PJ_Project" EntityType="Self.PJ_Project" />
+          <EntitySet Name="PJ_ProjectClass" EntityType="Self.PJ_ProjectClass" />
+          <EntitySet Name="PJ_ProjectDetail" EntityType="Self.PJ_ProjectDetail" />
+          <EntitySet Name="SYS_Class" EntityType="Self.SYS_Class" />
+          <EntitySet Name="SYS_Guest" EntityType="Self.SYS_Guest" />
+          <EntitySet Name="SYS_RoomStage" EntityType="Self.SYS_RoomStage" />
+          <EntitySet Name="SYS_System" EntityType="Self.SYS_System" />
+          <EntitySet Name="User_Jurisdiction" EntityType="Self.User_Jurisdiction" />
+          <EntitySet Name="User_OperationLog" EntityType="Self.User_OperationLog" />
+          <EntitySet Name="User_Table" EntityType="Self.User_Table" />
+          <EntitySet Name="VIP_Grade" EntityType="Self.VIP_Grade" />
+          <EntitySet Name="VIP_Table" EntityType="Self.VIP_Table" />
+          <EntitySet Name="YW_OpenStage" EntityType="Self.YW_OpenStage" />
+          <EntitySet Name="YW_Subscribe" EntityType="Self.YW_Subscribe" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EasternStar_WPF_MVVMModelStoreContainer" CdmEntityContainer="EasternStar_WPF_MVVMEntities">
+          <EntitySetMapping Name="AG_AgreementClass">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.AG_AgreementClass">
+              <MappingFragment StoreEntitySet="AG_AgreementClass">
+                <ScalarProperty Name="ID_AgreementClass" ColumnName="ID_AgreementClass" />
+                <ScalarProperty Name="Code_AgreementClass" ColumnName="Code_AgreementClass" />
+                <ScalarProperty Name="MC_AgreementClass" ColumnName="MC_AgreementClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AG_AgreementStagePrice">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.AG_AgreementStagePrice">
+              <MappingFragment StoreEntitySet="AG_AgreementStagePrice">
+                <ScalarProperty Name="ID_AgreementStagePrice" ColumnName="ID_AgreementStagePrice" />
+                <ScalarProperty Name="ID_AgreementClass" ColumnName="ID_AgreementClass" />
+                <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
+                <ScalarProperty Name="Price_Agreement" ColumnName="Price_Agreement" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AG_AgreementUser">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.AG_AgreementUser">
+              <MappingFragment StoreEntitySet="AG_AgreementUser">
+                <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />
+                <ScalarProperty Name="ID_AgreementClass" ColumnName="ID_AgreementClass" />
+                <ScalarProperty Name="MC_AgreementUser" ColumnName="MC_AgreementUser" />
+                <ScalarProperty Name="Linkman_AgreementUser" ColumnName="Linkman_AgreementUser" />
+                <ScalarProperty Name="Phone_AgreementUser" ColumnName="Phone_AgreementUser" />
+                <ScalarProperty Name="Price_Balance" ColumnName="Price_Balance" />
+                <ScalarProperty Name="Prcie_Overdraft" ColumnName="Prcie_Overdraft" />
+                <ScalarProperty Name="Date_Credit" ColumnName="Date_Credit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CW_Bill">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_Bill">
+              <MappingFragment StoreEntitySet="CW_Bill">
+                <ScalarProperty Name="ID_Bill" ColumnName="ID_Bill" />
+                <ScalarProperty Name="SuOp_ID" ColumnName="SuOp_ID" />
+                <ScalarProperty Name="Time_PayBill" ColumnName="Time_PayBill" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="State_Bill" ColumnName="State_Bill" />
+                <ScalarProperty Name="Number_Bill" ColumnName="Number_Bill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CW_Consumption">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_Consumption">
+              <MappingFragment StoreEntitySet="CW_Consumption">
+                <ScalarProperty Name="ID_Consumption" ColumnName="ID_Consumption" />
+                <ScalarProperty Name="ID_ProjectDetail" ColumnName="ID_ProjectDetail" />
+                <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
+                <ScalarProperty Name="ID_Bill" ColumnName="ID_Bill" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Prict" ColumnName="Prict" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Time_Consumption" ColumnName="Time_Consumption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CW_Finance">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_Finance">
+              <MappingFragment StoreEntitySet="CW_Finance">
+                <ScalarProperty Name="ID_Finance" ColumnName="ID_Finance" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Use_ID_User" ColumnName="Use_ID_User" />
+                <ScalarProperty Name="Alipay" ColumnName="Alipay" />
+                <ScalarProperty Name="WeChat" ColumnName="WeChat" />
+                <ScalarProperty Name="RMB" ColumnName="RMB" />
+                <ScalarProperty Name="Curtain" ColumnName="Curtain" />
+                <ScalarProperty Name="CreditCard" ColumnName="CreditCard" />
+                <ScalarProperty Name="Checks" ColumnName="Checks" />
+                <ScalarProperty Name="Surplus" ColumnName="Surplus" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="CashPledge" ColumnName="CashPledge" />
+                <ScalarProperty Name="Handin" ColumnName="Handin" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Connect" ColumnName="Connect" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CW_PayRecord">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_PayRecord">
+              <MappingFragment StoreEntitySet="CW_PayRecord">
+                <ScalarProperty Name="ID_PayRecord" ColumnName="ID_PayRecord" />
+                <ScalarProperty Name="ID_Bill" ColumnName="ID_Bill" />
+                <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
+                <ScalarProperty Name="Price_Pay" ColumnName="Price_Pay" />
+                <ScalarProperty Name="Time_Pay" ColumnName="Time_Pay" />
+                <ScalarProperty Name="PoP" ColumnName="PoP" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LostAndFound">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.LostAndFound">
+              <MappingFragment StoreEntitySet="LostAndFound">
+                <ScalarProperty Name="ID_LostAndFound" ColumnName="ID_LostAndFound" />
+                <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
+                <ScalarProperty Name="C_Content" ColumnName="[Content" />
+                <ScalarProperty Name="People_Up" ColumnName="People_Up" />
+                <ScalarProperty Name="Time_Up" ColumnName="Time_Up" />
+                <ScalarProperty Name="Pepple_Claim" ColumnName="Pepple_Claim" />
+                <ScalarProperty Name="Time_Claim" ColumnName="Time_Claim" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PJ_Project">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.PJ_Project">
+              <MappingFragment StoreEntitySet="PJ_Project">
+                <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
+                <ScalarProperty Name="ID_ProjectClass" ColumnName="ID_ProjectClass" />
+                <ScalarProperty Name="MC_Project" ColumnName="MC_Project" />
+                <ScalarProperty Name="Jc_Project" ColumnName="Jc_Project" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PJ_ProjectClass">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.PJ_ProjectClass">
+              <MappingFragment StoreEntitySet="PJ_ProjectClass">
+                <ScalarProperty Name="ID_ProjectClass" ColumnName="ID_ProjectClass" />
+                <ScalarProperty Name="MC_ProjectClass" ColumnName="MC_ProjectClass" />
+                <ScalarProperty Name="State_ProjectClass" ColumnName="State_ProjectClass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PJ_ProjectDetail">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.PJ_ProjectDetail">
+              <MappingFragment StoreEntitySet="PJ_ProjectDetail">
+                <ScalarProperty Name="ID_ProjectDetail" ColumnName="ID_ProjectDetail" />
+                <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
+                <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID_Consumption" ColumnName="ID_Consumption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Class">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_Class">
+              <MappingFragment StoreEntitySet="SYS_Class">
+                <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
+                <ScalarProperty Name="Code_Class" ColumnName="Code_Class" />
+                <ScalarProperty Name="MC_Class" ColumnName="MC_Class" />
+                <ScalarProperty Name="Jc_Class" ColumnName="Jc_Class" />
+                <ScalarProperty Name="Price_Plate" ColumnName="Price_Plate" />
+                <ScalarProperty Name="Price_Actual" ColumnName="Price_Actual" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="State_Class" ColumnName="State_Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Guest">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_Guest">
+              <MappingFragment StoreEntitySet="SYS_Guest">
+                <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
+                <ScalarProperty Name="MC_Guest" ColumnName="MC_Guest" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="证件类型" ColumnName="证件类型" />
+                <ScalarProperty Name="证件号码" ColumnName="证件号码" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_RoomStage">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_RoomStage">
+              <MappingFragment StoreEntitySet="SYS_RoomStage">
+                <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
+                <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
+                <ScalarProperty Name="Number_RoomStage" ColumnName="Number_RoomStage" />
+                <ScalarProperty Name="MC_RoomStage" ColumnName="MC_RoomStage" />
+                <ScalarProperty Name="State_RoomStage" ColumnName="State_RoomStage" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="JionSign" ColumnName="JionSign" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_System">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_System">
+              <MappingFragment StoreEntitySet="SYS_System">
+                <ScalarProperty Name="SystemID" ColumnName="SystemID" />
+                <ScalarProperty Name="SystemMC" ColumnName="SystemMC" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Jurisdiction">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.User_Jurisdiction">
+              <MappingFragment StoreEntitySet="User_Jurisdiction">
+                <ScalarProperty Name="ID_Jurisdiction" ColumnName="ID_Jurisdiction" />
+                <ScalarProperty Name="MC_Jurisdiction" ColumnName="MC_Jurisdiction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_OperationLog">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.User_OperationLog">
+              <MappingFragment StoreEntitySet="User_OperationLog">
+                <ScalarProperty Name="ID_OperationLog" ColumnName="ID_OperationLog" />
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Time_Operation" ColumnName="Time_Operation" />
+                <ScalarProperty Name="Content_Abstract" ColumnName="Content_Abstract" />
+                <ScalarProperty Name="Content_Operation" ColumnName="Content_Operation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Table">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.User_Table">
+              <MappingFragment StoreEntitySet="User_Table">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="Number_Job" ColumnName="Number_Job" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MC_User" ColumnName="MC_User" />
+                <ScalarProperty Name="State_User" ColumnName="State_User" />
+                <ScalarProperty Name="Jrisdiction" ColumnName="Jrisdiction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIP_Grade">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.VIP_Grade">
+              <MappingFragment StoreEntitySet="VIP_Grade">
+                <ScalarProperty Name="ID_Grade" ColumnName="ID_Grade" />
+                <ScalarProperty Name="MC_Grade" ColumnName="MC_Grade" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIP_Table">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.VIP_Table">
+              <MappingFragment StoreEntitySet="VIP_Table">
+                <ScalarProperty Name="ID_VIP" ColumnName="ID_VIP" />
+                <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
+                <ScalarProperty Name="ID_Grade" ColumnName="ID_Grade" />
+                <ScalarProperty Name="Integra_VIPl" ColumnName="Integra_VIPl" />
+                <ScalarProperty Name="Price_Balance" ColumnName="Price_Balance" />
+                <ScalarProperty Name="Prcie_Overdraft" ColumnName="Prcie_Overdraft" />
+                <ScalarProperty Name="Date_Credit" ColumnName="Date_Credit" />
+                <ScalarProperty Name="Accounts" ColumnName="Accounts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YW_OpenStage">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.YW_OpenStage">
+              <MappingFragment StoreEntitySet="YW_OpenStage">
+                <ScalarProperty Name="ID_OpenStage" ColumnName="ID_OpenStage" />
+                <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />
+                <ScalarProperty Name="ID_VIP" ColumnName="ID_VIP" />
+                <ScalarProperty Name="Number_People" ColumnName="Number_People" />
+                <ScalarProperty Name="Time_Predict" ColumnName="Time_Predict" />
+                <ScalarProperty Name="Time_Leave" ColumnName="Time_Leave" />
+                <ScalarProperty Name="Money_Pledge" ColumnName="Money_Pledge" />
+                <ScalarProperty Name="Type_CheckIn" ColumnName="Type_CheckIn" />
+                <ScalarProperty Name="State_Secrecy" ColumnName="State_Secrecy" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="State_Message" ColumnName="State_Message" />
+                <ScalarProperty Name="Content_Message" ColumnName="Content_Message" />
+                <ScalarProperty Name="HouseStageID" ColumnName="HouseStageID" />
+                <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YW_Subscribe">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.YW_Subscribe">
+              <MappingFragment StoreEntitySet="YW_Subscribe">
+                <ScalarProperty Name="ID_Subscribe" ColumnName="ID_Subscribe" />
+                <ScalarProperty Name="ID_VIP" ColumnName="ID_VIP" />
+                <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />
+                <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
+                <ScalarProperty Name="Number_Subscribe" ColumnName="Number_Subscribe" />
+                <ScalarProperty Name="HouseStageID" ColumnName="HouseStageID" />
+                <ScalarProperty Name="Time_Predict" ColumnName="Time_Predict" />
+                <ScalarProperty Name="Time_Leave" ColumnName="Time_Leave" />
+                <ScalarProperty Name="Number_People" ColumnName="Number_People" />
+                <ScalarProperty Name="Money_Pledge" ColumnName="Money_Pledge" />
+                <ScalarProperty Name="State_Secrecy" ColumnName="State_Secrecy" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Type_CheckIn" ColumnName="Type_CheckIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

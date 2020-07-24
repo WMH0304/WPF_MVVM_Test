@@ -1,0 +1,111 @@
+﻿<Window x:Class="WPF_MvvMTest.View.Windows.W_FoundingConsumption"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest.View.Windows"
+         xmlns:ssd="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="开台消费"   
+        Background="Azure"
+        Loaded="Window_Loaded"
+        Height="550" 
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="帐号" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Name="TbAccounts" FontSize="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Background="Aqua" Width="100"/>
+        <TextBlock Text="房台号" Grid.Column="2" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="TbRoomTable" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="100"  Background="Aqua" Height="30"/>
+        <TextBlock Text="房台名" Grid.Column="4" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Name="TbRoomTableName" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="100"  Background="Aqua" Height="30"/>
+
+        <TextBlock Text="单号" Grid.Column="0" Grid.Row="1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Name="TbOddNumbers" Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="2" Width="200" Height="30" Background="Aqua"/>
+        <TextBlock Text="开台时间" Grid.Column="3" FontSize="30" Grid.Row="1"/>
+        <ssd:DateTimePicker Name="TbDevelopmentTime" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2" Height="30" Width="200" Background="Aqua"/>
+        <!--// <DatePicker  />-->
+        <TextBlock Text="人数" FontSize="30" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Name="TbPopulation" Grid.Column="1" Grid.Row="2" Height="30" Width="100" Background="Aqua" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="折扣" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Name="TbDiscount" Grid.Row="2" Grid.Column="3" Height="30" Width="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" Background="Aqua"/>
+        <TextBlock Grid.Row="2" Grid.Column="4" Text="当前班别" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="5" Height="30" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Aqua"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="备注信息" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="4" MaxWidth="500" Width="500" TextWrapping="Wrap" AcceptsReturn="True"/>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <CheckBox  VerticalContentAlignment="Center" VerticalAlignment="Center" Width="30" Height="30" Margin="40,0,0,0" />
+            <TextBlock Text="开单后立即添加消费记录" FontSize="15" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <TextBlock Text="可选房台" Grid.Row="5" FontSize="25" VerticalAlignment="Bottom"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="空台:间" FontSize="20" VerticalAlignment="Bottom" Foreground="Red"/>
+
+        <Grid Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <TabControl  Name="Room_DataGrid" Visibility="Visible" >
+                <TabItem Name="kexuanfangtai" Header="可选房台"/>
+            </TabControl>
+
+
+        </Grid>
+
+        <Button Grid.Row="7" Name="BtAdd" Grid.Column="3" Click="BtAdd_Click" >
+            <StackPanel Orientation="Horizontal">
+                <Label Content="&#xE291;" FontFamily="Segoe MDL2 Assets" FontSize="23" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="   添加"   VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
+
+        <Button Grid.Row="9" Name="remove" Grid.Column="3" Click="Remove_Click">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="&#xE290;" FontFamily="Segoe MDL2 Assets" FontSize="23" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="   移除"   VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <TextBlock Text="已选房台" Grid.Row="5" Grid.Column="4" FontSize="25" VerticalAlignment="Bottom"/>
+        <TextBlock Grid.Row="5" Grid.Column="5" Text="台数:间" FontSize="20" VerticalAlignment="Bottom" Foreground="Red"/>
+        <Grid Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="4">
+            <TabControl Name="DataGrid_right" Visibility="Visible">
+                <TabItem Name="heeh" Header="已选房台"/>
+            </TabControl>
+
+        </Grid>
+        <TextBlock Grid.Row="10" Text="状态:" FontSize="25"  VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="10" Text=" " FontSize="25"  VerticalAlignment="Center" HorizontalAlignment="Right" />
+
+      
+        <Button Grid.Row="10" Grid.Column="3" >
+            <StackPanel Orientation="Horizontal">
+                <Label Content="&#xee92;"  FontFamily="Segoe MDL2 Assets" Foreground="Gray" />
+                <Label Content="保  存" FontFamily="楷体" Foreground="Gray"/>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="10" Grid.Column="4" >
+            <StackPanel Orientation="Horizontal">
+                <Label Content="&#xef2c;"  FontFamily="Segoe MDL2 Assets" Foreground="Black" />
+                <Label Content="关  闭" FontFamily="楷体" Foreground="Black"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>

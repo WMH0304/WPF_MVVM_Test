@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2465389a1e8743b48eff4719b1842f2d" Name="Diagram1">
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementClass" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementStagePrice" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementUser" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_Bill" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_Consumption" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_Finance" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_PayRecord" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.LostAndFound" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.PJ_Project" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.PJ_ProjectClass" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.PJ_ProjectDetail" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_Class" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_Guest" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_RoomStage" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_System" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.User_Jurisdiction" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.User_OperationLog" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.User_Table" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.VIP_Grade" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.VIP_Table" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.YW_OpenStage" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.YW_Subscribe" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

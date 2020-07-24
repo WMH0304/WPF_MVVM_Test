@@ -1,0 +1,164 @@
+﻿<Window x:Class="WPF_MvvMTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Height="750"
+        Width="1500">
+
+    <Grid>
+      
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Background="#FF1D5BBA">
+
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btRealTimeExecutive" Background="#FF1D5BBA" Click="BtRealTimeExecutive_Click" ToolTip="实时管理"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      实时管理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="tbRoomTableReservation" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="房台预定"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      房台预定" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btDownPaymentProcessing" Background="#FF1D5BBA" Click="BtDownPaymentProcessing_Click" ToolTip="预定金处理"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="    预定金处理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btFoundingConsumption" Background="#FF1D5BBA" Click="BtFoundingConsumption_Click" ToolTip="开台消费"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="     开台消费" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btConsumptionIntoSingle" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="消费入单"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      消费入单" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="CheckOut" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="结账买单"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="       结账买单" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btStatusModifier" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="状态修改"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      状态修改" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btManagementSuccession" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="交班管理"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      交班管理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btCurrentConsumptionList" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="当前消费列表"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="  当前消费列表" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Button Name="btSignOut" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="退出系统"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+
+                </Button>
+                <Label Grid.Row="1" Width="50" Height="20" Content="      退出系统" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
+            </Grid>
+            <Border Width="20"></Border>
+            <Label Width="40" Content="早班:" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <Label Width="40" Name="lbClass" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Background="Aqua">
+            <!-- Tag 获取或设置一个可用于存储有关此元素的自定义信息的任意对象值。-->
+            <TabControl Name="tab_Main" Tag="100"/>
+        </Grid>
+        
+    </Grid>
+  
+</Window>

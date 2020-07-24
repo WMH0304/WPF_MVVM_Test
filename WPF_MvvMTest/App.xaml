@@ -1,0 +1,37 @@
+﻿<Application x:Class="WPF_MvvMTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF_MvvMTest"
+             StartupUri="MainWindow.xaml"
+            >
+   
+    <!--StartupUri="/View/Windows/W_RoomTableReservation.xaml"-->
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--获取 ResourceDictionary 字典的集合，这些字典构成了合并的字典中的各种资源字典。-->
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles\GGZY.xaml"/>
+                <!--封装好的公共样式-->
+                <!--<ResourceDictionary Source="publicstyle\Dictionary1.xaml"/>-->
+                <ResourceDictionary Source="Styles\BaseStyle.xaml"/>
+                <ResourceDictionary Source="Styles\Bootstrap.xaml"/>
+                <ResourceDictionary Source="Styles\Button.xaml"/>
+                <ResourceDictionary Source="Styles\Colors.xaml" />
+                <ResourceDictionary Source="Styles\DataGrid.xaml"/>
+                <ResourceDictionary Source="Styles\Fonts.xaml"/>
+                <ResourceDictionary Source="Styles\FormControl.xaml"/>
+                <ResourceDictionary Source="Styles\InputGroup.xaml"/>
+                <ResourceDictionary Source="Styles\Label.xaml"/>
+                <ResourceDictionary Source="Styles\Panel.xaml"/>
+                <ResourceDictionary Source="Styles\Path.xaml"/>
+                <ResourceDictionary Source="Styles\ProgressBar.xaml"/>
+                <ResourceDictionary Source="Styles\Sizes.xaml"/>
+                <ResourceDictionary Source="Styles\Window.xaml"/>
+                <ResourceDictionary Source="Styles\Tabcontrol.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
+        
+        
+    </Application.Resources>
+</Application>
