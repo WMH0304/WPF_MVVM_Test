@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EasternStar_WPF_MVVMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EasternStar_WPF_MVVMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AG_AgreementClass">
           <Key>
             <PropertyRef Name="ID_AgreementClass" />
@@ -59,7 +59,7 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Prict" Type="money" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="Time_Consumption" Type="datetime" Nullable="false" />
+          <Property Name="Time_Consumption" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="CW_Finance">
           <Key>
@@ -237,8 +237,8 @@
           <Property Name="ID_AgreementUser" Type="int" Nullable="false" />
           <Property Name="ID_VIP" Type="int" Nullable="false" />
           <Property Name="Number_People" Type="int" Nullable="false" />
-          <Property Name="Time_Predict" Type="datetime" Nullable="false" />
-          <Property Name="Time_Leave" Type="datetime" Nullable="false" />
+          <Property Name="Time_Predict" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Time_Leave" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Money_Pledge" Type="money" Nullable="false" />
           <Property Name="Type_CheckIn" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="State_Secrecy" Type="bit" Nullable="false" />
@@ -290,8 +290,7 @@
           <EntitySet Name="YW_OpenStage" EntityType="Self.YW_OpenStage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="YW_Subscribe" EntityType="Self.YW_Subscribe" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EasternStar_WPF_MVVMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -349,7 +348,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Prict" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="Time_Consumption" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Time_Consumption" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         <EntityType Name="CW_Finance">
           <Key>
@@ -527,8 +526,8 @@
           <Property Name="ID_AgreementUser" Type="Int32" Nullable="false" />
           <Property Name="ID_VIP" Type="Int32" Nullable="false" />
           <Property Name="Number_People" Type="Int32" Nullable="false" />
-          <Property Name="Time_Predict" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Time_Leave" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Time_Predict" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Time_Leave" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Money_Pledge" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Type_CheckIn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="State_Secrecy" Type="Boolean" Nullable="false" />

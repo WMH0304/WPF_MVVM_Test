@@ -180,6 +180,9 @@
     <Compile Include="View\Windows\W_ButtonAdd.xaml.cs">
       <DependentUpon>W_ButtonAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\W_ConsumerFinance.xaml.cs">
+      <DependentUpon>W_ConsumerFinance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\W_FoundingConsumption.xaml.cs">
       <DependentUpon>W_FoundingConsumption.xaml</DependentUpon>
     </Compile>
@@ -284,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\W_ButtonAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\W_ConsumerFinance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WPF_MvvMTest.EntityVo;
 using WPF_MvvMTest.Model;
 using WPF_MvvMTest.View.Windows.W_UC;
@@ -79,7 +70,7 @@ namespace WPF_MvvMTest.View.Windows
             
             if (ID_Guest_YW <=0)
             {
-                 YW_Subscribe y = new YW_Subscribe();
+                YW_Subscribe y = new YW_Subscribe();
                 y.ID_Guest = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_Guest;//客人id
                 y.ID_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_VIP;//vipid
                 y.HouseStageID = roomStages[0].ID_RoomStage.ToString() + ",";//客房id
@@ -108,7 +99,7 @@ namespace WPF_MvvMTest.View.Windows
             string YWid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest).Single().HouseStageID;//预订单客户id
 
             //嵌套右边表格
-            View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid);
+            View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
             w_RoomTableDataGridRight.RetM +=new ReuntMessage(ReceiveRight);//定义委托
             heeh.Content = w_RoomTableDataGridRight;
             heeh.IsSelected = true;
@@ -194,7 +185,7 @@ namespace WPF_MvvMTest.View.Windows
                 if (messageBoxResult ==MessageBoxResult.OK)
                 {
                     //右边表格刷新
-                    View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid);
+                    View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
                    
                     heeh.Content = null;
                     heeh.Content = w_RoomTableDataGridRight;
@@ -304,7 +295,7 @@ namespace WPF_MvvMTest.View.Windows
             if (m.SaveChanges()>0)
             {
                 //右边表格刷新
-                View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid);
+                View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
 
                 heeh.Content = null;
                 heeh.Content = w_RoomTableDataGridRight;
@@ -421,7 +412,7 @@ namespace WPF_MvvMTest.View.Windows
                 }
                 else
                 {
-                    break;
+                    break; 
                 }
             }
             if (mSc >0)

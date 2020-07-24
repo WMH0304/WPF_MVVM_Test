@@ -119,6 +119,7 @@ namespace WPF_MvvMTest
             if (rStages[0].State_RoomStage.Trim() =="未用")
             {
                 View.Windows.W_RoomTableReservation w = new View.Windows.W_RoomTableReservation(rStages);
+
                 w.ShowDialog();
 
             }
@@ -130,10 +131,7 @@ namespace WPF_MvvMTest
           
         }
 
-        private void BtDownPaymentProcessing_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
         /// <summary>
         /// 开台消费
         /// </summary>
@@ -144,17 +142,26 @@ namespace WPF_MvvMTest
             List<RoomStage> rStages = roomStages;
             if (rStages.Equals(null))
             {
-                throw new NullReferenceException();
+                MessageBox.Show("，请选择房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);  
             }
+
             if (rStages[0].State_RoomStage.Trim() == "未用")
             {
                 View.Windows.W_FoundingConsumption w = new View.Windows.W_FoundingConsumption(rStages);
+                w.Resh += new View.Windows.Refresh(Refresh);
                 w.ShowDialog();
             }
             else
             {
                 MessageBox.Show("该房台已被占用，请选择其他房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
             }
+        }
+        /// <summary>
+        /// 页面刷新
+        /// </summary>
+        public void Refresh()
+        {
+            Window_Loaded(null, null);
         }
     }
 }

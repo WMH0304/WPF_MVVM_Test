@@ -51,7 +51,7 @@
                     <RowDefinition Height="7*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Button Name="btDownPaymentProcessing" Background="#FF1D5BBA" Click="BtDownPaymentProcessing_Click" ToolTip="预定金处理"
+                <Button Name="btDownPaymentProcessing" Background="#FF1D5BBA"  ToolTip="预定金处理"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
