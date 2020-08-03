@@ -133,7 +133,36 @@ namespace WPF_MvvMTest.Resources
                                 "消费金额： " + item.Prict +"\n"+
                                 "剩余金额： " + a;
                         }
+                    }
+                    if (btL[i].State_RoomStage.Trim() == "预定")
+                    {
+                        int rid = btL[i].ID_RoomStage;
+                        int? keid = m.SYS_RoomStage.Where(p => p.ID_RoomStage == rid).Single().ID_Guest;
+                        var item = (from tb in m.YW_Subscribe
+                                    join tC in m.CW_Bill on tb.ID_Subscribe equals tC.SuOp_ID
+                                    join tG in m.SYS_Guest on tb.ID_Guest equals tG.ID_Guest
+                                    where tb.ID_Guest == keid
+                                    select new
+                                    {
+                                        tG.MC_Guest, //顾客名称
+                                        tG.gender,//顾客性别
+                                        tb.HouseStageID,//预定房台
+                                        tb.Number_People,//人数
+                                        tb.Number_Subscribe,//预约单号
+                                        tb.Time_Predict,//预定时间
+                                        tC.Number_Bill,//账号
+                                    }).SingleOrDefault();
 
+                        string gDe = item.gender.Trim() == "1" ? "男" : "女";
+
+                        button.ToolTip =
+                            "客人名称： " + item.MC_Guest + "\n" +
+                            "\0\0\0账号:  " + item.Number_Bill +"\n"+
+                            "顾客性别： " + gDe + "\n"+
+                            "预定房台： " + item.HouseStageID + "\n" +
+                            "\0\0\0人数: " + item.Number_People + "\n" +
+                            "预约单号： " + item.Number_Subscribe + "\n" +
+                            "预定时间： " + item.Time_Predict + "\n";
                     }
                     if (btL[i].State_RoomStage.Trim() == "停用" || btL[i].State_RoomStage.Trim() == "未用")
                     {

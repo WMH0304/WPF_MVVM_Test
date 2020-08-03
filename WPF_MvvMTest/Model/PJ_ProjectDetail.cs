@@ -18,6 +18,5 @@ namespace WPF_MvvMTest.Model
         public int ID_Class { get; set; }
         public int ID_Project { get; set; }
         public decimal Price { get; set; }
-        public Nullable<int> ID_Consumption { get; set; }
     }
 }

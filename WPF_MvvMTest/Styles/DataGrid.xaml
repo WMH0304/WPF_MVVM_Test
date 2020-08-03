@@ -74,6 +74,7 @@
             </MultiTrigger>
         </Style.Triggers>
     </Style>
+        
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="8"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -86,6 +87,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+        
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="#fff"/>
         <Setter Property="Foreground" Value="#000"/>
@@ -110,6 +112,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+        
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
         <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -154,6 +157,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+        
     <Style TargetType="{x:Type DataGridCell}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -187,6 +191,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+        
     <Style x:Key="DataGridTextCenter" TargetType="{x:Type TextBlock}">
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>

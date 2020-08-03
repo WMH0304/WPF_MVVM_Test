@@ -23,7 +23,7 @@
             </WrapPanel>
         
 
-        <StackPanel Grid.Column="1" Background="Black">
+        <StackPanel Grid.Column="1" Background="AliceBlue">
             <TextBlock Text="当前房台" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="BurlyWood" Padding="10"/>
 
             <TextBox Name="tbTheCurrentHousingUnits" Height="35" Width="150" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>

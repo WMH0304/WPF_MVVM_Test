@@ -43,9 +43,11 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -84,6 +86,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EntityVo\BtMessage.cs" />
+    <Compile Include="EntityVo\Consumer.cs" />
+    <Compile Include="EntityVo\Consumption_Into_a_single.cs" />
+    <Compile Include="EntityVo\IDocumentRenderer.cs" />
+    <Compile Include="EntityVo\Node.cs" />
+    <Compile Include="EntityVo\OrderDocumentRenderer.cs" />
+    <Compile Include="EntityVo\PrintfData.cs" />
     <Compile Include="EntityVo\RoomStage.cs" />
     <Compile Include="EntityVo\STATIC_cache.cs" />
     <Compile Include="Model\AG_AgreementClass.cs">
@@ -96,6 +104,9 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CW_Bill.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CW_ConsumeDetail.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\CW_Consumption.cs">
@@ -189,14 +200,29 @@
     <Compile Include="View\Windows\W_huantai.xaml.cs">
       <DependentUpon>W_huantai.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\W_Print_DataDetail.xaml.cs">
+      <DependentUpon>W_Print_DataDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\W_RoomTableReservation.xaml.cs">
       <DependentUpon>W_RoomTableReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\W_StatementLeave.xaml.cs">
+      <DependentUpon>W_StatementLeave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\W_UC\W_ConsumerFinanceDataGridLeftxaml.xaml.cs">
+      <DependentUpon>W_ConsumerFinanceDataGridLeftxaml.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\W_UC\W_ConsumerFinanceDataGridRight.xaml.cs">
+      <DependentUpon>W_ConsumerFinanceDataGridRight.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\W_UC\W_RoomTableDataGridLeft.xaml.cs">
       <DependentUpon>W_RoomTableDataGridLeft.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\W_UC\W_RoomTableDataGridRight.xaml.cs">
       <DependentUpon>W_RoomTableDataGridRight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\W_Print_Data.xaml.cs">
+      <DependentUpon>W_Print_Data.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FlowDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Usercontrol\UC_TealTimeExecutive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -302,7 +332,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Windows\W_Print_DataDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\W_RoomTableReservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\W_StatementLeave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\W_UC\W_ConsumerFinanceDataGridLeftxaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\W_UC\W_ConsumerFinanceDataGridRight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\W_UC\W_RoomTableDataGridRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\W_Print_Data.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,18 +402,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Models.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Models.edmx</DependentUpon>
-      <LastGenOutput>Models.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Models.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Models.edmx</DependentUpon>
-      <LastGenOutput>Models.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Image\png-0222.png" />
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +423,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\加号.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\offline_user.ico" />
+    <Content Include="Model\Models.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Models.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Models.edmx</DependentUpon>
+      <LastGenOutput>Models.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

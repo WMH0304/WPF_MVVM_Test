@@ -1,0 +1,155 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:local="clr-namespace:WPF_MvvMTest.View"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              ColumnWidth="400" FontSize="14" FontFamily="Georgia">
+    <FlowDocument.Resources>
+        <Style TargetType="Table" x:Key="BorderedTable">
+            <Setter Property="CellSpacing" Value="0"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        </Style>
+        <Style TargetType="TableCell" x:Key="BorderedCell">
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
+            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Padding" Value="3"></Setter>
+        </Style>
+    </FlowDocument.Resources>
+
+<!--上半部分-->
+    <Table FontSize="16">
+        <Table.Columns>
+            <TableColumn Width="150"></TableColumn>
+            <TableColumn Width="250"></TableColumn>
+            <TableColumn Width="150"></TableColumn>
+            <TableColumn Width="250"></TableColumn>
+        </Table.Columns>
+        <TableRowGroup>
+            
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        客人名称
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding krxm}"></Run>
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        主房台号
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding zfth}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        房台名称
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding ftmc}"></Run>
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        房台单号
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding ftdh}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        开台时间
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding ktsj}"></Run>
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        买单时间
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding mdsj}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+            
+        </TableRowGroup>
+    </Table>
+    
+    <!--下半部分-->
+    <Table Style="{StaticResource BorderedTable}">
+        <Table.Columns>
+            <TableColumn  Width="70"></TableColumn>
+            <TableColumn  Width="100"></TableColumn>
+            <TableColumn  Width="70"></TableColumn>
+            <TableColumn  Width="100"></TableColumn>
+            <TableColumn  Width="70"></TableColumn>
+            <TableColumn  Width="70"></TableColumn>
+            <TableColumn  Width="100"></TableColumn>
+            <TableColumn  Width="100"></TableColumn>
+        </Table.Columns>
+        <TableRowGroup Name="rowsDetails">
+            <TableRow FontWeight="Bold">
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>房台号</Paragraph>
+                </TableCell>
+
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>项目名称</Paragraph>
+                </TableCell>
+
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>单位</Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>单价</Paragraph>
+                </TableCell>
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>数量</Paragraph>
+                </TableCell>
+
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>折扣</Paragraph>
+                </TableCell>
+
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>金额</Paragraph>
+                </TableCell>
+
+                <TableCell Style="{StaticResource BorderedCell}">
+                    <Paragraph>支付方式</Paragraph>
+                </TableCell>
+
+            </TableRow>
+        </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="16">
+        <Run>总共费用：</Run>
+        <Run Text="{Binding TotalPrice, Mode=OneWay}"></Run>
+    </Paragraph>
+
+</FlowDocument>

@@ -77,7 +77,7 @@
                     <RowDefinition Height="7*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Button Name="btConsumptionIntoSingle" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="消费入单"
+                <Button Name="btConsumptionIntoSingle" Background="#FF1D5BBA" Click="BtConsumptionIntoSingle_Click" ToolTip="消费入单"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
@@ -90,7 +90,7 @@
                     <RowDefinition Height="7*"/>
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Button Name="CheckOut" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="结账买单"
+                <Button Name="BtCheckTheCheck" Background="#FF1D5BBA" Click="BtCheckTheCheck_Click" ToolTip="结账买单"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 

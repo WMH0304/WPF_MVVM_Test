@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_MvvMTest.EntityVo;
 using WPF_MvvMTest.Resources;
+using WPF_MvvMTest.View;
 
 namespace WPF_MvvMTest
 {
@@ -85,6 +86,12 @@ namespace WPF_MvvMTest
             }
 
         }
+        
+        /// <summary>
+        /// 实施管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtRealTimeExecutive_Click(object sender, RoutedEventArgs e)
         {
             TC = tab_Main;
@@ -100,9 +107,6 @@ namespace WPF_MvvMTest
             roomStages = rStages;
         }
 
-
-
-
         /// <summary>
         /// 房台预定
         /// </summary>
@@ -110,7 +114,6 @@ namespace WPF_MvvMTest
         /// <param name="e"></param>
         private void TbRoomTableReservation_Click(object sender, RoutedEventArgs e)
         {
-
             List<RoomStage> rStages = roomStages;
             if (rStages.Equals(null))
             {
@@ -119,19 +122,15 @@ namespace WPF_MvvMTest
             if (rStages[0].State_RoomStage.Trim() =="未用")
             {
                 View.Windows.W_RoomTableReservation w = new View.Windows.W_RoomTableReservation(rStages);
-
+                w.Resh += new View.Windows.Refresh(Refresh);//委托页面刷新
                 w.ShowDialog();
-
             }
             else
             {
                 MessageBox.Show("该房台已被占用，请选择其他房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
             }
-          
-          
         }
-
-        
+  
         /// <summary>
         /// 开台消费
         /// </summary>
@@ -144,8 +143,7 @@ namespace WPF_MvvMTest
             {
                 MessageBox.Show("，请选择房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);  
             }
-
-            if (rStages[0].State_RoomStage.Trim() == "未用")
+            if (rStages[0].State_RoomStage.Trim() == "未用" || rStages[0].State_RoomStage.Trim() == "预定")
             {
                 View.Windows.W_FoundingConsumption w = new View.Windows.W_FoundingConsumption(rStages);
                 w.Resh += new View.Windows.Refresh(Refresh);
@@ -156,12 +154,62 @@ namespace WPF_MvvMTest
                 MessageBox.Show("该房台已被占用，请选择其他房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
             }
         }
+       
         /// <summary>
         /// 页面刷新
         /// </summary>
         public void Refresh()
         {
             Window_Loaded(null, null);
+        }
+
+        /// <summary>
+        /// 消费入单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtConsumptionIntoSingle_Click(object sender, RoutedEventArgs e)
+        {
+            if (roomStages==null || roomStages.Count() ==0)
+            {
+                MessageBox.Show("请选择消费房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+            }
+            if (roomStages[0].State_RoomStage.Trim() == "已用")
+            {
+                View.Windows.W_ConsumerFinance w = new View.Windows.W_ConsumerFinance(roomStages);
+                w.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("该房台还未启用，请选择消费房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+            }
+        }
+
+        /// <summary>
+        /// 结账买单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtCheckTheCheck_Click(object sender, RoutedEventArgs e)
+        {
+            if (roomStages ==null && roomStages.Count() ==0)
+            {
+                MessageBox.Show("请选中房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+                return;
+            }
+            if (roomStages[0].State_RoomStage.Trim() != "已用")
+            {
+                MessageBox.Show("该房台未开台，请先开台消费后再结账", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+                return;
+            }
+            List<RoomStage> rooms = roomStages;
+            View.Windows.W_StatementLeave sL = new View.Windows.W_StatementLeave(rooms);
+            sL.ShowDialog();
+
+
+
+
+
         }
     }
 }

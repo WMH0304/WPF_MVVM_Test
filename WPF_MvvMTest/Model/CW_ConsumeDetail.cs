@@ -12,14 +12,12 @@ namespace WPF_MvvMTest.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CW_PayRecord
+    public partial class CW_ConsumeDetail
     {
-        public int ID_PayRecord { get; set; }
-        public Nullable<int> ID_Bill { get; set; }
-        public Nullable<int> ID_Guest { get; set; }
-        public Nullable<decimal> Price_Pay { get; set; }
-        public Nullable<System.DateTime> Time_Pay { get; set; }
-        public string PoP { get; set; }
-        public Nullable<bool> State { get; set; }
+        public int ID_ComsumeDetail { get; set; }
+        public Nullable<int> ID_Project { get; set; }
+        public Nullable<int> ID_Consumption { get; set; }
+        public Nullable<bool> State_ComsumeDetail { get; set; }
+        public Nullable<int> ID_PayRecord { get; set; }
     }
 }

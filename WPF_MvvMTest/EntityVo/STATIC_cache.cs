@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WPF_MvvMTest.EntityVo
 {
-  static class STATIC_cache
+    static class STATIC_cache
     {
-       static public int ID_RoomStage { get; set; }
+        static public int ID_RoomStage { get; set; }
         //  public int ID_Class { get; set; }
         static public string Number_RoomStage { get; set; }
         static public string MC_RoomStage { get; set; }
@@ -24,6 +24,10 @@ namespace WPF_MvvMTest.EntityVo
         static public string Remark { get; set; }
         static public string State_Class { get; set; }
 
-       public static  List<RoomStage> StaticRoomStages;
+        public static List<RoomStage> StaticRoomStages;
+
+        public static List<Consumer> StaticConsumerLeft;
+        public static List<Consumer> StaticConsumerRight;
+        public static string ScBill_id { get; set; }
     }
 }

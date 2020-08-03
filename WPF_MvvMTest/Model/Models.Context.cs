@@ -45,7 +45,8 @@ namespace WPF_MvvMTest.Model
         public virtual DbSet<User_Table> User_Table { get; set; }
         public virtual DbSet<VIP_Grade> VIP_Grade { get; set; }
         public virtual DbSet<VIP_Table> VIP_Table { get; set; }
-        public virtual DbSet<YW_OpenStage> YW_OpenStage { get; set; }
         public virtual DbSet<YW_Subscribe> YW_Subscribe { get; set; }
+        public virtual DbSet<YW_OpenStage> YW_OpenStage { get; set; }
+        public virtual DbSet<CW_ConsumeDetail> CW_ConsumeDetail { get; set; }
     }
 }

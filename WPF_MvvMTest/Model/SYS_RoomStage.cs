@@ -15,6 +15,7 @@ namespace WPF_MvvMTest.Model
     public partial class SYS_RoomStage
     {
         public int ID_RoomStage { get; set; }
+        public Nullable<int> ID_Guest { get; set; }
         public int ID_Class { get; set; }
         public string Number_RoomStage { get; set; }
         public string MC_RoomStage { get; set; }

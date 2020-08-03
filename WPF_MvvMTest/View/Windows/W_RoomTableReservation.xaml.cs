@@ -10,12 +10,14 @@ using WPF_MvvMTest.View.Windows.W_UC;
 
 namespace WPF_MvvMTest.View.Windows
 {
+    
     /// <summary>
     /// W_RoomTableReservation.xaml 的交互逻辑
     /// </summary>
     public partial class W_RoomTableReservation : Window
     {
-         List<RoomStage> roomStages;
+        public event Refresh Resh;
+        List<RoomStage> roomStages;
         List<RoomStage> RsRight;
         List<RoomStage> RsLeft;
         static TabControl TabControl;//左边
@@ -89,9 +91,14 @@ namespace WPF_MvvMTest.View.Windows
             Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).Single().ID_Subscribe;
 
             ////修改房台状态
+            ///
+            //客人id 
+            int keid = m.YW_Subscribe.Where(p => p.ID_Subscribe == Yydid).SingleOrDefault().ID_Guest;
             ID_RoomStage = roomStages[0].ID_RoomStage;
             SYS_RoomStage r = m.SYS_RoomStage.Where(p => p.ID_RoomStage == ID_RoomStage).Single();
-            r.State_RoomStage = "已用";
+
+            r.State_RoomStage = "预定";
+            r.ID_Guest = keid;
             m.SaveChanges();
 
             //获取id 右边获取数据用
@@ -160,14 +167,22 @@ namespace WPF_MvvMTest.View.Windows
             //roomStage.ID_RoomStage;
             // dgdt.ItemsSource[roomStage.ID_RoomStage].
             //id.ID_Subscribe
+
+
+
             string strHouseStageID = m.YW_Subscribe.Where(p => p.ID_Subscribe == id.ID_Subscribe).SingleOrDefault().HouseStageID;
 
             YW_Subscribe y = m.YW_Subscribe.Where(p => p.ID_Subscribe == id.ID_Subscribe).SingleOrDefault();
-
             y.HouseStageID = strHouseStageID +  RsLeft[0].ID_RoomStage.ToString() + ",";
+            m.Entry(y).State = System.Data.Entity.EntityState.Modified;
+            m.SaveChanges();
             int getIDR = RsLeft[0].ID_RoomStage;
+            int krid=   m.YW_Subscribe.Where(p => p.ID_Subscribe == id.ID_Subscribe).SingleOrDefault().ID_Guest;
             SYS_RoomStage o = m.SYS_RoomStage.Where(p => p.ID_RoomStage == getIDR).SingleOrDefault();
-            o.State_RoomStage = "已用";
+            o.ID_Guest = krid;
+            o.State_RoomStage = "预定";
+
+
 
             //获取已修改的房台数据
             List<RoomStage> rooms = (from tb in m.SYS_RoomStage where tb.ID_RoomStage == getIDR
@@ -276,8 +291,10 @@ namespace WPF_MvvMTest.View.Windows
             YW_Subscribe yW = m.YW_Subscribe.Where(p => p.ID_Subscribe == yddid).Single();
             yW.HouseStageID = ycft;
             m.Entry(yW).State = System.Data.Entity.EntityState.Modified;
+            m.SaveChanges();
             int Id_RoomStage = RsRight[0].ID_RoomStage;
             SYS_RoomStage RS = m.SYS_RoomStage.Where(p => p.ID_RoomStage == Id_RoomStage).Single();
+            RS.ID_Guest = null;
             RS.State_RoomStage = "未用";
             m.Entry(RS).State = System.Data.Entity.EntityState.Modified;
 
@@ -335,6 +352,7 @@ namespace WPF_MvvMTest.View.Windows
             foreach (var item in vs)
             {
                 SYS_RoomStage SRS = m.SYS_RoomStage.Where(p => p.ID_RoomStage.ToString().Trim() == item.Trim()).SingleOrDefault();
+                SRS.ID_Guest = null;
                 SRS.State_RoomStage = "未用";
             }
             YW_Subscribe YWS = m.YW_Subscribe.Where(p => p.Number_Subscribe == odd).SingleOrDefault();
@@ -346,7 +364,7 @@ namespace WPF_MvvMTest.View.Windows
 
         }
         /// <summary>
-        /// 保存成功
+        /// 保存
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -375,21 +393,26 @@ namespace WPF_MvvMTest.View.Windows
             YWS.Number_People = Convert.ToInt32(TbPopulation.Text);
             YWS.Remark = TbRemark.Text.Trim();
             m.Entry(YWS).State = System.Data.Entity.EntityState.Modified;
+            m.SaveChanges();
             //折扣
             
          
 
             //生成账单
                 int yddid = m.YW_Subscribe.Where(p => p.Number_Subscribe == odd).SingleOrDefault().ID_Subscribe;//预订单id
+
+                string  Mun = "ZD000" + m.CW_Bill.Count() + 1;//账单号
                 CW_Bill Cb = new CW_Bill();
                 Cb.SuOp_ID = yddid;//预订单id
-                Cb.Number_Bill = "ZD000" +m.CW_Bill.Count() +1;//账单号
-               
+                Cb.Number_Bill = Mun;
+
+
                 Cb.Remark = "预定";//备注
                 Cb.State_Bill = "预定";//状态
                 m.CW_Bill.Add(Cb);
                 m.SaveChanges();
-               
+            //保存数据
+           // STATIC_cache.ScBill_id = Mun;
 
             //预订单房台id
             string ftid = m.YW_Subscribe.Where(p => p.Number_Subscribe == odd).SingleOrDefault().HouseStageID;
@@ -421,7 +444,10 @@ namespace WPF_MvvMTest.View.Windows
                 if (messageBoxResult ==MessageBoxResult.OK)
                 {
                     this.Close();
+
+                  
                 }
+                Resh();
             }
           
         }

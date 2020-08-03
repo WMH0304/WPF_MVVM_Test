@@ -14,7 +14,7 @@ namespace WPF_MvvMTest.Model
     
     public partial class User_Table
     {
-        public decimal ID_User { get; set; }
+        public int ID_User { get; set; }
         public string Number_Job { get; set; }
         public string Password { get; set; }
         public string MC_User { get; set; }

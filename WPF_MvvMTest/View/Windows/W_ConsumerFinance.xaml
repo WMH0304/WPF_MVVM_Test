@@ -5,8 +5,129 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_MvvMTest.View.Windows"
         mc:Ignorable="d"
-        Title="W_ConsumerFinance" Height="450" Width="800">
+        Loaded="Window_Loaded"
+        Title="客人费用输入" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--左边的-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="项目清单" VerticalAlignment="Center" FontSize="20" Foreground="#4852ef"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock Text="编码/五笔" VerticalAlignment="Center" FontSize="20"  Foreground="#fa6969"/>
+                <TextBox Name="TbNum" Width="100" Background="AliceBlue" Margin="10,5,0,5" Height="25" />
+                <Button Click="Nan_Click" Name="nan" Content="搜索" Background="#6071f4" VerticalAlignment="Center" FontSize="10" Foreground="#f40000"  />
+                <TextBlock Text="消费房台" VerticalAlignment="Center" FontSize="20" Foreground="#6071f4" Margin="0,0,20,0"/>
+                <TextBlock Name="TbFtNum" VerticalAlignment="Center" FontSize="20" Foreground="#f40000"  />
+               
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Text="消费数量" VerticalAlignment="Center" FontSize="20"  Foreground="#fa6969"/>
+                <!--<TextBox Name="TbConsumeNum"  Width="150" Background="AliceBlue" Margin="10,5,10,5" Height="25"/>-->
+                <StackPanel Width="150" Orientation="Horizontal" Height="25">
+                    <Border BorderThickness="5,0,0,5" Width="120" Height="25">
+                        <TextBox Name="TbConsumeNum"  Width="120" Background="AliceBlue" Margin="-5,0,0,-5" Height="25"/>
+                    </Border>
+                    <StackPanel Width="30">
+                        <Button Width="30" Height="12" Style="{StaticResource btn-primary}" Name="BtPuls" Click="BtPuls_Click">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Label Content="＋" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red"  FontSize="10"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Label Height="1"/>
+                        <Button Width="30" Height="12" Style="{StaticResource btn-primary}" Name="BtSubtract" Click="BtSubtract_Click">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Label Content="－" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="Red"  FontSize="10"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <Button Content="添加" Name="BtAdd" Width="80" Click="BtAdd_Click" Style="{StaticResource btn-danger}"/>
+            </StackPanel>
+            <TabControl Name="TcData" Grid.Row="3">
+                <TabItem  Name="Ti_All"  Header="全部" Tag="0" MouseLeftButtonUp ="Label_MouseLeftButtonUp"/>
+
+                
+                <TabItem Name="Ti_All_1"  Header="桑拿项目"  Tag="1" MouseLeftButtonUp="Label_MouseLeftButtonUp">
+                  
+                </TabItem>
+                <TabItem Name="Ti_All_2" Tag="2" MouseLeftButtonUp ="Label_MouseLeftButtonUp" >
+                    <TabItem.Header>
+                        <Label Content="食品" />
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem Name="Ti_All_3" Tag="3" MouseLeftButtonUp ="Label_MouseLeftButtonUp">
+                    <TabItem.Header>
+                        <Label Content="饮料"  />
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem Name="Ti_All_4"  Tag="4" MouseLeftButtonUp ="Label_MouseLeftButtonUp">
+                    <TabItem.Header>
+                        <Label Content="香烟" />
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem Name="Ti_All_5" Tag="5" MouseLeftButtonUp ="Label_MouseLeftButtonUp" >
+                    <TabItem.Header>
+                        <Label Content="酒水" />
+                    </TabItem.Header>
+                </TabItem>
+                <TabItem Name="Ti_All_6"  Tag="6" MouseLeftButtonUp ="Label_MouseLeftButtonUp">
+                    <TabItem.Header>
+                        <Label Content="杂项"  />
+                    </TabItem.Header>
+
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Name="TbConsumptionMessage" Text="单号:" FontSize="10" VerticalAlignment="Center" Foreground="#6071f4"/>
+                
+            </StackPanel>
+            <TabControl Name="Right" Grid.Row="1">
+
+                <TabItem Name="TiRight">
+                    
+                </TabItem>
+            </TabControl>
+            <Grid Grid.Row="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="消费退单" Width="80" Margin="10,0,0,0" Name="BtConsumeChargeback" Click="BtConsumeChargeback_Click"/>
+                    <Button Content="赠送" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}" Click="BtConsumeChargeback_Click"/>
+                    <Button Content="消费转单" Name="BtConsumerTurnSingle" Click="BtConsumerTurnSingle_Click" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}"/>
+                    <Button Content="结账买单" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <TextBlock Text="折扣:"  VerticalAlignment="Center" Width="30" HorizontalAlignment="Center"/>
+                    <TextBox Width="50" x:Name="TbDiscount" Background="#979efe" Margin="0,2"/>
+                    <Button Content="全打骨折"  Name="BtDiscounts" Click="BtDiscount_Click" Width="80" Margin="10,0,0,0" />
+                    <Button Content="单打骨折" Name="BtDiscount" Click="BtDiscount_Click_1" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}"/>
+                   
+                </StackPanel>
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

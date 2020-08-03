@@ -143,13 +143,14 @@ public delegate void MessageSend(List<RoomStage> roomStages);
                 myBtDynamic.pus += new Pus(Push);
                 //获取控件内容id
                  myBtDynamic.GetButtons += new GetButton(SetBtuuons);
-                if (BtL[i].State_RoomStage.Trim() =="已用")
+                if (BtL[i].State_RoomStage.Trim() =="预定")
                 {
-                    myBtDynamic.Background = System.Windows.Media.Brushes.DeepSkyBlue; 
-
-                    
+                    myBtDynamic.Background = System.Windows.Media.Brushes.Blue;  
                 }
-
+                else if(BtL[i].State_RoomStage.Trim() == "已用")
+                {
+                    myBtDynamic.Background = System.Windows.Media.Brushes.DodgerBlue;
+                }
                 else if (BtL[i].State_RoomStage.Trim() == "停用")
                 {
                     myBtDynamic.Background = System.Windows.Media.Brushes.LightSlateGray;
