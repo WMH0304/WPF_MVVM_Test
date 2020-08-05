@@ -22,7 +22,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions> 
 
         <TextBlock Text="账号" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBox Grid.Column="2" Grid.Row="1" Name="TbAccount" />
