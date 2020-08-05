@@ -94,6 +94,9 @@
     <Compile Include="EntityVo\PrintfData.cs" />
     <Compile Include="EntityVo\RoomStage.cs" />
     <Compile Include="EntityVo\STATIC_cache.cs" />
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\AG_AgreementClass.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -185,6 +188,9 @@
       <DependentUpon>UC_TabItemWidthClose.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\Tools.cs" />
+    <Compile Include="View\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Usercontrol\UC_TealTimeExecutive.xaml.cs">
       <DependentUpon>UC_TealTimeExecutive.xaml</DependentUpon>
     </Compile>
@@ -224,6 +230,10 @@
     <Compile Include="View\W_Print_Data.xaml.cs">
       <DependentUpon>W_Print_Data.xaml</DependentUpon>
     </Compile>
+    <Page Include="Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -284,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Styles\MenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Panel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -309,6 +323,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlowDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

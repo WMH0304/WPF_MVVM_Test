@@ -190,7 +190,8 @@ namespace WPF_MvvMTest.View.Windows
         int j = 1;
         private void BtAdd_Click(object sender, RoutedEventArgs e)
         {
-            int count = Convert.ToInt32(TbConsumeNum.Text);
+            int count = Convert.ToInt32(TbConsumeNum.Text)==null?0: Convert.ToInt32(TbConsumeNum.Text);
+
 
             List<Consumer> cS = new List<Consumer>();
             cS = STATIC_cache.StaticConsumerLeft;

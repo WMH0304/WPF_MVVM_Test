@@ -274,8 +274,8 @@ namespace WPF_MvvMTest.View.Windows
         private void BtRMBSettlement_Click(object sender, RoutedEventArgs e)
         {
             //假如钱不够
-            int ljxf = Convert.ToInt32(TbTheCumulative.Text);
-            int bkzf = Convert.ToInt32(TbFodingTime.Text);
+            decimal ljxf = Convert.ToDecimal(TbTheCumulative.Text);
+            decimal bkzf = Convert.ToDecimal(TbFodingTime.Text);
             if (bkzf < ljxf)
             {
                 MessageBox.Show("你的钱不够哦，不要想着吃霸王餐哦", "大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
@@ -284,7 +284,7 @@ namespace WPF_MvvMTest.View.Windows
 
             //客人账号信息
             string krzh = TbGuestAccount.Text.Trim().ToString();
-            List<SYS_RoomStage> rS = m.SYS_RoomStage.Where(l => l.ID_Guest == m.VIP_Table.Where(k => k.Accounts == krzh).SingleOrDefault().ID_Grade).ToList();
+            List<SYS_RoomStage> rS = m.SYS_RoomStage.Where(l => l.ID_Guest == m.VIP_Table.Where(k => k.Accounts == krzh).FirstOrDefault().ID_Grade).ToList();
             foreach (var item in rS)
             {
                 //修改房台状态
@@ -324,7 +324,7 @@ namespace WPF_MvvMTest.View.Windows
                     List<CW_ConsumeDetail> cwCD = m.CW_ConsumeDetail.Where(p => p.ID_Consumption == (m.CW_Consumption.Where(c => c.ID_RoomStage == ftid).FirstOrDefault().ID_Consumption)).ToList();
                     foreach (var cW_Cme in cwCD)
                     {
-                        CW_ConsumeDetail cW_Consume = m.CW_ConsumeDetail.Where(p => p.ID_Consumption == cW_Cme.ID_Consumption).SingleOrDefault();
+                        CW_ConsumeDetail cW_Consume = m.CW_ConsumeDetail.Where(p => p.ID_Consumption == cW_Cme.ID_Consumption).FirstOrDefault();
                         cW_Consume.State_ComsumeDetail = false;
                         cW_Consume.ID_PayRecord = cwprid;
                         m.Entry(cW_Consume).State = System.Data.Entity.EntityState.Modified;
@@ -332,9 +332,18 @@ namespace WPF_MvvMTest.View.Windows
                     }
                 }
 
-              
 
-                
+
+         
+                if (CWb.Count >0)
+                {
+                MessageBoxResult mb=    MessageBox.Show("结账成功", "大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+
+                    if (mb==MessageBoxResult.OK)
+                    {
+                        this.Close();
+                    }
+                }
             }
 
 

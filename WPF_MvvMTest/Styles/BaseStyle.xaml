@@ -1,9 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Colors.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Fonts.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Sizes.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Fonts.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Styles\Sizes.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     <!--基样式-->
     <Style x:Key="BaseStyle" BasedOn="{x:Null}" TargetType="{x:Type Control}">

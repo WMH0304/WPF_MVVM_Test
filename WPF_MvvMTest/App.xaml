@@ -2,10 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WPF_MvvMTest"
-             StartupUri="MainWindow.xaml"
-          
+           
+         StartupUri="Login.xaml"
             >
-   <!--StartupUri="View\Windows\W_StatementLeave.xaml"-->
+    <!--StartupUri="MainWindow.xaml"-->
+    <!--StartupUri="View\Windows\W_StatementLeave.xaml"-->
     <!--StartupUri="View\Windows\W_ConsumerFinance.xaml"-->
     <!--StartupUri="/View/Windows/W_RoomTableReservation.xaml"-->
     <Application.Resources>
@@ -31,6 +32,7 @@
                 <ResourceDictionary Source="Styles\Sizes.xaml"/>
                 <ResourceDictionary Source="Styles\Window.xaml"/>
                 <ResourceDictionary Source="Styles\Tabcontrol.xaml"/>
+                <ResourceDictionary Source="Styles\MenuItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary> 
         

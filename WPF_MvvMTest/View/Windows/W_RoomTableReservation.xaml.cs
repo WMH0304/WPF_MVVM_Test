@@ -84,7 +84,7 @@ namespace WPF_MvvMTest.View.Windows
             }else
             {
                 //查询已存在的预约单id 
-                Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).Single().ID_Subscribe;
+                Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).FirstOrDefault().ID_Subscribe;
 
             }
             //查询新增的id
@@ -263,10 +263,7 @@ namespace WPF_MvvMTest.View.Windows
                     vs.RemoveAt(i);
                 }
             }
-
             //剩下的房台id 
-
-          
                 foreach (var item in vs)
                 {
                     
