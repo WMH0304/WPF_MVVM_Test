@@ -26,11 +26,24 @@ namespace WPF_MvvMTest
         }
 
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
-      /// <summary>
-      /// 登陆
-      /// </summary>
-      /// <param name="sender"></param>
-      /// <param name="e"></param>
+
+        /// <summary>
+        /// 页面加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            TbAccount.Text = "111111";
+
+            PbPassword.Password = "111111";
+        }
+
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtLogin_Click(object sender, RoutedEventArgs e)
         {
               //账号
@@ -44,9 +57,10 @@ namespace WPF_MvvMTest
                 int int_User = m.User_Table.Where(p => p.Password.Trim() == Password).Count();
                 if (int_User>0 )
                 {
+                    string name = m.User_Table.Where(o => o.Number_Job == Account).SingleOrDefault().MC_User;
                     //跳转到主页
-                    WPF_MvvMTest.View.HomePage m = new View.HomePage();
-                    m.ShowDialog();
+                    WPF_MvvMTest.View.HomePage homePage= new View.HomePage(name);
+                    homePage.ShowDialog();
                     this.Close();
                 }
                 else
@@ -110,5 +124,6 @@ namespace WPF_MvvMTest
             PbPassword.Visibility = Visibility.Visible;
             PbPassword.Password= TbPassword.Text;
         }
+      
     }
 }

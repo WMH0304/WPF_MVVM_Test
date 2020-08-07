@@ -188,6 +188,9 @@
       <DependentUpon>UC_TabItemWidthClose.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\Tools.cs" />
+    <Compile Include="View\FoodAndBeverageManagement\W_FoodAndBeverageManagement.xaml.cs">
+      <DependentUpon>W_FoodAndBeverageManagement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -326,6 +329,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FoodAndBeverageManagement\W_FoodAndBeverageManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -444,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\offline_user.ico" />
+    <Resource Include="Image\log.png" />
     <Content Include="Model\Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Models.edmx</DependentUpon>
@@ -455,5 +463,6 @@
       <LastGenOutput>Models.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

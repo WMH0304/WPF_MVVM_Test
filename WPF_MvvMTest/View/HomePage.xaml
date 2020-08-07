@@ -8,9 +8,130 @@
         Title="大主页"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        Height="1000"
-        Width="1200">
-    <Grid>
-        
+        MaxHeight="1080"
+        MaxWidth="1920"
+        Height="750" 
+        Background="#FFE3EEFD"
+        Width="1300">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110*"/>
+            <RowDefinition Height="370*"/>
+            <RowDefinition Height="239*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="227*"/>
+            <ColumnDefinition Width="1065*"/>
+        </Grid.ColumnDefinitions>
+        <!--头部-->
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\log.png"  HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Text="大海酒店管理系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="60" Foreground="White"/>
+            <TextBlock Grid.Column="3" Name="TbLogInPerson" Text="登陆人:" FontSize="25" Margin="10,20,0,0"/>
+            <TextBlock Text="时间：" FontSize="25" Grid.Column="3" Margin="10,70,0,0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock  Name="TbNowDateTime" FontSize="15" Grid.Column="3" Foreground="Red" VerticalAlignment="Center"  Margin="40,70,0,0" Width="250"/>
+        </Grid>
+        <!--常用功能-->
+        <StackPanel Orientation="Vertical" Grid.Row="1" Name="SpCommonlyUsedFunctions">
+            <StackPanel Orientation="Horizontal" Background="#7b80cf" >
+                <Button Content="常用功能     "   Width="170" Height="40" Name="BtCommonlyUsedGunctions" Click="BtCommonlyUsedGunctions_Click" Background="Transparent" BorderBrush="Transparent" />
+                <Button Content=" &#xE016;" Width="57" Name="BtHidden"  Height="40" FontSize="20" FontFamily="Segoe MDL2 Assets" Click="BtCommonlyUsedGunctions_Click"  Background="Transparent" BorderBrush="Transparent"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="261*"/>
+                <RowDefinition Height="261*"/>
+                <RowDefinition Height="50*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="204*"/>
+                <ColumnDefinition Width="204*"/>
+                <ColumnDefinition Width="204*"/>
+                <ColumnDefinition Width="204*"/>
+                <ColumnDefinition Width="204*"/>
+                <ColumnDefinition Width="21*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="酒店管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="1">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="餐饮管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Name="BtSaunaLiquid" Click="BtSaunaLiquid_Click">
+                    
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="桑拿/沐足管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="1">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="KTV娱乐收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="5" Grid.Row="1">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="棋牌收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="2">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="茶吧收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Grid.Row="2">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="经理财务查询" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="2">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="电话计费" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="2">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="仓库管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+            <StackPanel Grid.Column="5" Grid.Row="2">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                </Button>
+                <TextBlock Text="工资人事管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+            </StackPanel>
+
+
+
+
+        </Grid>
+
+
     </Grid>
 </Window>

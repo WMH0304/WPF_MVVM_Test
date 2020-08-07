@@ -358,7 +358,6 @@ namespace WPF_MvvMTest.View.Windows
             {
                 MessageBox.Show("预定取消成功！","大海提示",MessageBoxButton.OKCancel,MessageBoxImage.Asterisk);
             }
-
         }
         /// <summary>
         /// 保存

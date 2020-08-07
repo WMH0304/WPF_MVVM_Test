@@ -40,7 +40,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="tbRoomTableReservation" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="房台预定"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      房台预定" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -53,7 +53,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btDownPaymentProcessing" Background="#FF1D5BBA"  ToolTip="预定金处理"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="    预定金处理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
