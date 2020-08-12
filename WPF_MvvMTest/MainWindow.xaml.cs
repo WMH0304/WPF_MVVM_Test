@@ -179,6 +179,7 @@ namespace WPF_MvvMTest
             if (roomStages==null || roomStages.Count() ==0)
             {
                 MessageBox.Show("请选择消费房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+                return;
             }
             if (roomStages[0].State_RoomStage.Trim() == "已用")
             {
@@ -188,6 +189,7 @@ namespace WPF_MvvMTest
             else
             {
                 MessageBox.Show("该房台还未启用，请选择消费房台", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+                return;
             }
         }
 

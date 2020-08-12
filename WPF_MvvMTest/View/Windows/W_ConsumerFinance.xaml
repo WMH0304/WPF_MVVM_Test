@@ -118,7 +118,7 @@
                     <Button Content="消费退单" Width="80" Margin="10,0,0,0" Name="BtConsumeChargeback" Click="BtConsumeChargeback_Click"/>
                     <Button Content="赠送" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}" Click="BtConsumeChargeback_Click"/>
                     <Button Content="消费转单" Name="BtConsumerTurnSingle" Click="BtConsumerTurnSingle_Click" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}"/>
-                    <Button Content="结账买单" Width="80" Margin="10,0,0,0" Style="{StaticResource btn-primary}"/>
+                    <Button Content="结账买单" Width="80" Name="BtPayment" Margin="10,0,0,0" Style="{StaticResource btn-primary}" Click="BtPayment_Click" />
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <TextBlock Text="折扣:"  VerticalAlignment="Center" Width="30" HorizontalAlignment="Center"/>

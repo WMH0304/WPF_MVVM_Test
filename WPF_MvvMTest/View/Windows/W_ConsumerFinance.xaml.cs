@@ -175,8 +175,6 @@ namespace WPF_MvvMTest.View.Windows
                 }
                
             }
-            
-
         }
       
         /// <summary>
@@ -191,7 +189,7 @@ namespace WPF_MvvMTest.View.Windows
             if (cont == "1")
             {
                 return;
-            }
+            } 
 
             int i = Convert.ToInt32(cont) - 1;
 
@@ -224,34 +222,33 @@ namespace WPF_MvvMTest.View.Windows
             {
                 int xfid = m.CW_Consumption.Where(p => p.ID_RoomStage == ftid).Single().ID_Consumption;
 
-                CW_ConsumeDetail iCD = new CW_ConsumeDetail();
-                iCD.ID_Consumption = xfid;
-                iCD.ID_Project = cS[0].ID_Project;
-                iCD.State_ComsumeDetail = true;
-                m.CW_ConsumeDetail.Add(iCD);
+                for (int i = 0; i < count; i++)
+                {
+                    CW_ConsumeDetail iCD = new CW_ConsumeDetail();
+                    iCD.ID_Consumption = xfid;
+                    iCD.ID_Project = cS[0].ID_Project;
+                    iCD.State_ComsumeDetail = true;
+                    m.CW_ConsumeDetail.Add(iCD);
+                }
+             
                 if (m.SaveChanges()>0)
                 {
-                    j = j + 1;
-                    if (j <= count)
-                    {
-                        BtAdd_Click(null, null);
-                    }
-                    else
-                    {
+                   
+  
                         MessageBoxResult m = MessageBox.Show("消费入单成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                         if (m == MessageBoxResult.OK)
                         {
-                            TbConsumeNum.Text ="";
+                            TbConsumeNum.Text ="1";
                         }
                         //右边的表格
                         View.Windows.W_UC.W_ConsumerFinanceDataGridRight r = new W_UC.W_ConsumerFinanceDataGridRight(ftid, "", false,0);
                         r.TransmitConsumer += new W_UC.TransmitConsumer(DataRightCount);
                         TiRight.Content = null;
                         TiRight.Content = r;
-                    }
+               }
                   
                     
-                }
+                
                
             }
             else
@@ -318,16 +315,27 @@ namespace WPF_MvvMTest.View.Windows
                 MessageBox.Show("请输入", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
-            if (!Tools.Tools.IsNum(Discount))
+            //限制输入整数
+            if (Tools.Tools.IsInteger(Discount))
             {
                 MessageBox.Show("请输入正确折扣", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
-           
+            //折扣
+            // int int_Discount = Convert.ToInt32(Discount);
+
+            int int_Discount = int.Parse(Discount);
+            decimal dec_Discount =(decimal) int_Discount / 10;
+
+            string _Discount = dec_Discount.ToString();
+
+
+
+
 
             int ftid = DataMessage[0].ID_RoomStage;
             //右边的表格
-            View.Windows.W_UC.W_ConsumerFinanceDataGridRight r = new W_UC.W_ConsumerFinanceDataGridRight(ftid ,Discount,false,0);
+            View.Windows.W_UC.W_ConsumerFinanceDataGridRight r = new W_UC.W_ConsumerFinanceDataGridRight(ftid , _Discount, false,0);
             r.TransmitConsumer += new W_UC.TransmitConsumer(DataRightCount);
             TiRight.Content = null;
             TiRight.Content = r;
@@ -355,21 +363,37 @@ namespace WPF_MvvMTest.View.Windows
                 MessageBox.Show("请输入", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
-            if (Tools.Tools.IsNum(Discount))
+            if (Tools.Tools.IsInteger(Discount))
             {
                 MessageBox.Show("请输入正确折扣", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                 return;
             }
-           
+
+            //折扣
+            int int_Discount = int.Parse(Discount);
+            decimal dec_Discount = (decimal)int_Discount / 10;
+
+            string _Discount = dec_Discount.ToString();
+
             int idP = consumers[0].ID_Project;
             int ftid = DataMessage[0].ID_RoomStage;
             //右边的表格
-            View.Windows.W_UC.W_ConsumerFinanceDataGridRight r = new W_UC.W_ConsumerFinanceDataGridRight(ftid, Discount, true, idP);
+            View.Windows.W_UC.W_ConsumerFinanceDataGridRight r = new W_UC.W_ConsumerFinanceDataGridRight(ftid, _Discount, true, idP);
             r.TransmitConsumer += new W_UC.TransmitConsumer(DataRightCount);
             TiRight.Content = null;
             TiRight.Content = r;
 
             TbDiscount.Text = "";
+        }
+
+        /// <summary>
+        /// 结账买单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtPayment_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
 

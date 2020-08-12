@@ -33,5 +33,16 @@ namespace WPF_MvvMTest.Tools
             return reg1.IsMatch(str);
           
         }
+
+        /// <summary>
+        /// 限制输入正整数
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsInteger(string str)
+        {
+            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^([0-9]{1,}[.][0-9]*)$");
+            return reg1.IsMatch(str);
+        }
     }
 }

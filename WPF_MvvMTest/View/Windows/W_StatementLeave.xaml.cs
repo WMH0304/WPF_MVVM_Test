@@ -208,9 +208,9 @@ namespace WPF_MvvMTest.View.Windows
             //累计消费
             TbTheCumulative.Text = m.CW_Bill.Where(p => p.ID_Bill == (m.CW_Consumption.Where(o => o.ID_RoomStage == idRoom).FirstOrDefault().ID_Bill)).SingleOrDefault().Price.ToString() ;
             //已收定金       
-            TbGueAcount.Text = m.YW_Subscribe.Where(l => l.ID_Guest == igGuest).SingleOrDefault().Money_Pledge.ToString() ;
+           // TbGueAcount.Text = m.YW_Subscribe.Where(l => l.ID_Guest == igGuest).SingleOrDefault().Money_Pledge.ToString() ;
             //余额
-            TbRoTableName.Text = (Convert.ToDouble(TbTheCumulative.Text) - Convert.ToDouble(TbGueAcount.Text)).ToString();
+           // TbRoTableName.Text = (Convert.ToDouble(TbTheCumulative.Text) - Convert.ToDouble(TbGueAcount.Text)).ToString();
             if (ftid >0)
             {
                 TbFodingTime.Text = (Convert.ToDouble(TbFodingTime.Text) + Convert.ToDouble(TbTheCumulative.Text)).ToString();
