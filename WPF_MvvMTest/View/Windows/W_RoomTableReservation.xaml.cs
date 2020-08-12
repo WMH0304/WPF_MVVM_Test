@@ -27,7 +27,7 @@ namespace WPF_MvvMTest.View.Windows
         int ID_Guest;//客户id
         string tbRoomTable;
         string tbRoomTableName;
-        string zhanghao = "111111";//客户帐号
+        string zhanghao;//客户帐号
         int Yydid;//预约单id
         public W_RoomTableReservation(List<RoomStage> rStages)
         {
@@ -37,8 +37,24 @@ namespace WPF_MvvMTest.View.Windows
             InitializeComponent();
             tbRoomTable = roomStages[0].Number_RoomStage.Trim();
             tbRoomTableName = roomStages[0].MC_RoomStage.Trim() + roomStages[0].Number_RoomStage.Trim();
+           
         }
-       
+
+        /// <summary>
+        /// 下拉框事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TbAccounts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // var s = TbAccounts.SelectedItem;
+            int kerid = int.Parse(TbAccounts.SelectedValue.ToString());
+
+            zhanghao = m.VIP_Table.Where(l => l.ID_Guest == kerid).SingleOrDefault().Accounts;
+            EntityVo.STATIC_cache.Zhanghao = zhanghao;
+
+        }
+
         /// <summary>
         /// 页面加载事件
         /// </summary>
@@ -47,66 +63,88 @@ namespace WPF_MvvMTest.View.Windows
         ///  
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //预定单号
+
+            TbRoomTable.Text = tbRoomTable;
+            TbRoomTableName.Text = tbRoomTableName;
+
+
+            //账号下拉框
+            // TbAccounts
+            var cMmTbAccounts = m.SYS_Guest.ToList();
+            TbAccounts.ItemsSource = cMmTbAccounts;
+            TbAccounts.DisplayMemberPath = "MC_Guest";
+            TbAccounts.SelectedValuePath = "ID_Guest";
+
+
+
+
+            #region 
+
+          // 预定单号
             // TbOddNumbers.Text = DateTime.Now.ToFileTimeUtc().ToString();
-            int Tb = m.YW_Subscribe.Count()+1;
-            string count;
-           
-            count = "YD00" + Tb;
-            
-            TbOddNumbers.Text = count;
+            //int Tb = m.YW_Subscribe.Count() + 1;
+            //string count;
 
-            ////客人帐号 
-            TbAccounts.Text = zhanghao;
-            ////房台号
-            TbRoomTable.Text = roomStages[0].Number_RoomStage.Trim()==null? tbRoomTable: roomStages[0].Number_RoomStage.Trim();
-            ////房台名
-            TbRoomTableName.Text = (roomStages[0].MC_RoomStage.Trim() + roomStages[0].Number_RoomStage.Trim())==null? 
-            tbRoomTableName: roomStages[0].MC_RoomStage.Trim() + roomStages[0].Number_RoomStage.Trim();
+            //count = "YD00" + Tb;
+
+            //TbOddNumbers.Text = count;
+
+            //////客人帐号 
+            //TbAccounts.Text = zhanghao;
+            //////房台号
+            //TbRoomTable.Text = roomStages[0].Number_RoomStage.Trim() == null ? tbRoomTable : roomStages[0].Number_RoomStage.Trim();
+            //////房台名
+            //TbRoomTableName.Text = (roomStages[0].MC_RoomStage.Trim() + roomStages[0].Number_RoomStage.Trim()) == null ?
+            //tbRoomTableName : roomStages[0].MC_RoomStage.Trim() + roomStages[0].Number_RoomStage.Trim();
 
 
-            //根据帐号查询预定表
-            int ID_Guest_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao.Trim()).Single().ID_Guest;
-            int ID_Guest_YW = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP).Count();
-            ////表格加载前添加预定表
-            
-            if (ID_Guest_YW <=0)
-            {
-                YW_Subscribe y = new YW_Subscribe();
-                y.ID_Guest = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_Guest;//客人id
-                y.ID_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_VIP;//vipid
-                y.HouseStageID = roomStages[0].ID_RoomStage.ToString() + ",";//客房id
-                y.Number_Subscribe = TbOddNumbers.Text.Trim();//预约单号
-                y.Remark = "我是黑大帅";
-                y.Type_CheckIn = "足浴";
-                m.YW_Subscribe.Add(y);
-                m.SaveChanges();
-            }else
-            {
-                //查询已存在的预约单id 
-                Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).FirstOrDefault().ID_Subscribe;
+            ////根据帐号查询预定表
+            //int ID_Guest_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao.Trim()).Single().ID_Guest;
+            //int ID_Guest_YW = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP).Count();
+            //////表格加载前添加预定表
 
-            }
-            //查询新增的id
-            Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).Single().ID_Subscribe;
+            //if (ID_Guest_YW <= 0)
+            //{
+            //    YW_Subscribe y = new YW_Subscribe();
+            //    y.ID_Guest = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_Guest;//客人id
+            //    y.ID_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_VIP;//vipid
+            //    y.HouseStageID = roomStages[0].ID_RoomStage.ToString() + ",";//客房id
+            //    y.Number_Subscribe = TbOddNumbers.Text.Trim();//预约单号
+            //    y.Remark = "我是黑大帅";
+            //    y.Type_CheckIn = "足浴";
+            //    m.YW_Subscribe.Add(y);
+            //    m.SaveChanges();
+            //}
+            //else
+            //{
+            //    //查询已存在的预约单id 
+            //    Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).FirstOrDefault().ID_Subscribe;
 
-            ////修改房台状态
-            ///
-            //客人id 
-            int keid = m.YW_Subscribe.Where(p => p.ID_Subscribe == Yydid).SingleOrDefault().ID_Guest;
-            ID_RoomStage = roomStages[0].ID_RoomStage;
-            SYS_RoomStage r = m.SYS_RoomStage.Where(p => p.ID_RoomStage == ID_RoomStage).Single();
+            //}
+            ////查询新增的id
+            //Yydid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest_VIP && p.Number_Subscribe == TbOddNumbers.Text.Trim()).Single().ID_Subscribe;
 
-            r.State_RoomStage = "预定";
-            r.ID_Guest = keid;
-            m.SaveChanges();
+            //////修改房台状态
+            /////
+            ////客人id 
+            //int keid = m.YW_Subscribe.Where(p => p.ID_Subscribe == Yydid).SingleOrDefault().ID_Guest;
+            //ID_RoomStage = roomStages[0].ID_RoomStage;
+            //SYS_RoomStage r = m.SYS_RoomStage.Where(p => p.ID_RoomStage == ID_RoomStage).Single();
+
+            //r.State_RoomStage = "预定";
+
+            //m.SaveChanges();
 
             //获取id 右边获取数据用
-            ID_Guest = m.VIP_Table.Where(o => o.Accounts.Trim() == zhanghao).Single().ID_Guest;//顾客id
-            string YWid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest).Single().HouseStageID;//预订单客户id
+            //ID_Guest = m.VIP_Table.Where(o => o.Accounts.Trim() == zhanghao).Single().ID_Guest;//顾客id
+            //string YWid = m.YW_Subscribe.Where(p => p.ID_Guest == ID_Guest).Single().HouseStageID;//预订单客户id
+
+            #endregion
+
+
 
             //嵌套右边表格
-            View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
+            View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(0,0,0);
             w_RoomTableDataGridRight.RetM +=new ReuntMessage(ReceiveRight);//定义委托
             heeh.Content = w_RoomTableDataGridRight;
             heeh.IsSelected = true;
@@ -151,29 +189,80 @@ namespace WPF_MvvMTest.View.Windows
         /// <param name="e"></param>
         private void BtAdd_Click(object sender, RoutedEventArgs e)
         {
+            // 预约单号
+           
             //获取选中行
             if (RsLeft ==null ||RsLeft.Count ==0)
             {
                 RsLeft = STATIC_cache.StaticRoomStages;
                 //STATIC_cache.StaticRoomStages.Clear();
             }
+            if (string.IsNullOrEmpty(zhanghao))//客户帐号
+            {
+                MessageBox.Show("请选中客户信息","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                return;
+            }
             var id = (from tv in m.VIP_Table
                       join ty in m.YW_Subscribe on tv.ID_Guest equals ty.ID_Guest
-                      where tv.Accounts.Trim() == zhanghao select new
+                      where tv.Accounts.Trim() == zhanghao.Trim() select new
                       {
                           ty.ID_Guest,
                           ty.ID_Subscribe
                       }).SingleOrDefault();
+
+            //没有对应的预约单就添加
+            if (id ==null)
+            {
+
+                string count = "YYD0" + (m.YW_Subscribe.ToList().Count + 1);//获取 预约单条数      
+               EntityVo.STATIC_cache.Number_Subscribe = count;
+                TbOddNumbers.Text = count.Trim();
+                YW_Subscribe s = new YW_Subscribe();
+                s.ID_Guest = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_Guest;//客人id
+                s.ID_VIP = m.VIP_Table.Where(p => p.Accounts.Trim() == zhanghao).Single().ID_VIP;//vipid
+                s.HouseStageID = "";//房台id
+                s.Number_Subscribe = count;//单号
+                s.Remark = "我是黑大帅";
+                s.Type_CheckIn = "足浴";
+                m.YW_Subscribe.Add(s);
+                s.State_Secrecy = true;
+                m.SaveChanges();
+            }
+
+             id = (from tv in m.VIP_Table
+                      join ty in m.YW_Subscribe on tv.ID_Guest equals ty.ID_Guest
+                      where tv.Accounts.Trim() == zhanghao.Trim()
+                      select new
+                      {
+                          ty.ID_Guest,
+                          ty.ID_Subscribe
+                      }).SingleOrDefault();
+
             //roomStage.ID_RoomStage;
             // dgdt.ItemsSource[roomStage.ID_RoomStage].
             //id.ID_Subscribe
 
+            ///不知道为啥会报错
+            try
+            {
+                int id_sbb = id.ID_Subscribe;
+            }
+            catch (Exception)
+            {
 
+                return;
+            }
+         
 
+           
             string strHouseStageID = m.YW_Subscribe.Where(p => p.ID_Subscribe == id.ID_Subscribe).SingleOrDefault().HouseStageID;
 
+            if (RsLeft[0].ID_RoomStage.ToString().Trim() == strHouseStageID)
+            {
+                strHouseStageID = null;
+            }
             YW_Subscribe y = m.YW_Subscribe.Where(p => p.ID_Subscribe == id.ID_Subscribe).SingleOrDefault();
-            y.HouseStageID = strHouseStageID +  RsLeft[0].ID_RoomStage.ToString() + ",";
+            y.HouseStageID = strHouseStageID +  RsLeft[0].ID_RoomStage.ToString().Trim() + ",";
             m.Entry(y).State = System.Data.Entity.EntityState.Modified;
             m.SaveChanges();
             int getIDR = RsLeft[0].ID_RoomStage;
@@ -199,21 +288,22 @@ namespace WPF_MvvMTest.View.Windows
               MessageBoxResult messageBoxResult =   MessageBox.Show("添加成功！","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
                 if (messageBoxResult ==MessageBoxResult.OK)
                 {
-                    //右边表格刷新
-                    View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
-                   
+                    // YYid
+                    Yydid = m.YW_Subscribe.Where(p => p.Number_Subscribe.Trim() == EntityVo.STATIC_cache.Number_Subscribe.Trim()).SingleOrDefault().ID_Subscribe;
+
+                    //右边表格刷新  EntityVo.STATIC_cache.Number_Subscribe
+                    View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0,0);
                     heeh.Content = null;
                     heeh.Content = w_RoomTableDataGridRight;
                     w_RoomTableDataGridRight.UserControl_Loaded(null, null);
+
                     //左边表格刷新
-                 
                     View.Windows.W_UC.W_RoomTableDastaGridLeft w_RoomTableDataGridLeft = new W_UC.W_RoomTableDastaGridLeft(rooms);
                     kexuanfangtai.Content = null;
                     kexuanfangtai.Content = w_RoomTableDataGridLeft;
                     w_RoomTableDataGridLeft.UserControl_Loaded(null,null);
                 
                 }
-
             }
             RsLeft.Clear();
         }
@@ -252,7 +342,7 @@ namespace WPF_MvvMTest.View.Windows
 
             //移出房台id
             string RRIDR = RsRight[0].ID_RoomStage.ToString();
-            for (int i = 0; i < vs.Count; i++)
+            for (int i = 0;  i < vs.Count; i++)
             {
                 if (vs[i] =="")
                 {
@@ -264,12 +354,14 @@ namespace WPF_MvvMTest.View.Windows
                 }
             }
             //剩下的房台id 
-                foreach (var item in vs)
+            ycft = "";
+            foreach (var item in vs)
                 {
-                    
+               
                 if (item =="")
                 {
-                    ycft = "";
+                    
+                    ycft += null ;
                 }
                 else
                 {
@@ -309,7 +401,7 @@ namespace WPF_MvvMTest.View.Windows
             if (m.SaveChanges()>0)
             {
                 //右边表格刷新
-                View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0);
+                View.Windows.W_UC.W_RoomTableDataGridRight w_RoomTableDataGridRight = new W_UC.W_RoomTableDataGridRight(Yydid,0,0);
 
                 heeh.Content = null;
                 heeh.Content = w_RoomTableDataGridRight;
@@ -391,8 +483,8 @@ namespace WPF_MvvMTest.View.Windows
             m.Entry(YWS).State = System.Data.Entity.EntityState.Modified;
             m.SaveChanges();
             //折扣
-            
-         
+
+
 
             //生成账单
                 int yddid = m.YW_Subscribe.Where(p => p.Number_Subscribe == odd).SingleOrDefault().ID_Subscribe;//预订单id
@@ -401,8 +493,6 @@ namespace WPF_MvvMTest.View.Windows
                 CW_Bill Cb = new CW_Bill();
                 Cb.SuOp_ID = yddid;//预订单id
                 Cb.Number_Bill = Mun;
-
-
                 Cb.Remark = "预定";//备注
                 Cb.State_Bill = "预定";//状态
                 m.CW_Bill.Add(Cb);
@@ -440,10 +530,9 @@ namespace WPF_MvvMTest.View.Windows
                 if (messageBoxResult ==MessageBoxResult.OK)
                 {
                     this.Close();
-
-                  
+                    Resh();
                 }
-                Resh();
+                
             }
           
         }
@@ -456,5 +545,6 @@ namespace WPF_MvvMTest.View.Windows
         {
             this.Close();
         }
+     
     }
 }

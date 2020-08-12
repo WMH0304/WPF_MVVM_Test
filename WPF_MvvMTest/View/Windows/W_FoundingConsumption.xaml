@@ -35,8 +35,8 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="帐号" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36,4"/>
-        <TextBox Name="TbAccounts" FontSize="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Background="Aqua" Width="100" Margin="16,8,16,9"/>
+        <TextBlock Text="客名" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36,4"/>
+        <ComboBox Name="TbAccounts" FontSize="20" Style="{StaticResource ComboBoxStyle}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Background="Aqua" Width="100" Margin="16,8,16,9"/>
         <TextBlock Text="房台号" Grid.Column="2" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="21,4"/>
         <TextBlock Name="TbRoomTable" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="100"  Background="Aqua" Height="30" Margin="16,8,16,9"/>
         <TextBlock Text="房台名" Grid.Column="4" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="21,4"/>

@@ -139,8 +139,9 @@ namespace WPF_MvvMTest.Resources
                         int rid = btL[i].ID_RoomStage;
                         int? keid = m.SYS_RoomStage.Where(p => p.ID_RoomStage == rid).Single().ID_Guest;
                         var item = (from tb in m.YW_Subscribe
-                                    join tC in m.CW_Bill on tb.ID_Subscribe equals tC.SuOp_ID
+                                  
                                     join tG in m.SYS_Guest on tb.ID_Guest equals tG.ID_Guest
+                                    join tV in m.VIP_Table on tG.ID_Guest equals tV.ID_Guest
                                     where tb.ID_Guest == keid
                                     select new
                                     {
@@ -150,14 +151,18 @@ namespace WPF_MvvMTest.Resources
                                         tb.Number_People,//人数
                                         tb.Number_Subscribe,//预约单号
                                         tb.Time_Predict,//预定时间
-                                        tC.Number_Bill,//账号
+                                        tV.Accounts,
                                     }).SingleOrDefault();
-
+                        if (item ==null)
+                        {
+                            return;
+                        }
                         string gDe = item.gender.Trim() == "1" ? "男" : "女";
 
+                        EntityVo.STATIC_cache.Number_Subscribe = item.Number_Subscribe.Trim(); 
                         button.ToolTip =
                             "客人名称： " + item.MC_Guest + "\n" +
-                            "\0\0\0账号:  " + item.Number_Bill +"\n"+
+                            "\0\0\0账号:  " + item.Accounts + "\n"+
                             "顾客性别： " + gDe + "\n"+
                             "预定房台： " + item.HouseStageID + "\n" +
                             "\0\0\0人数: " + item.Number_People + "\n" +
@@ -215,7 +220,7 @@ namespace WPF_MvvMTest.Resources
             }
 
              tuple = new Tuple<string, string, string, string,int,string >(tbRoom_name, cbStatus, tbDescribe, cbClass , ID_RoomStage, Number_RoomStage);
-            View.Windows.W_ButtonAdd w_ButtonAdd = new View.Windows.W_ButtonAdd(tuple);
+            View.Windows.W_ButtonAdd w_ButtonAdd = new View.Windows.W_ButtonAdd(tuple,0);
             w_ButtonAdd.ShowDialog();
 
         }

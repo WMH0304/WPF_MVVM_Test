@@ -19,13 +19,14 @@ using WPF_MvvMTest.Model;
 using WPF_MvvMTest.Resources;
 using WPF_MvvMTest.View.Windows;
 
+public delegate void MessageSend(List<RoomStage> roomStages);
 namespace WPF_MvvMTest.View.Usercontrol
 {
     /// <summary>
     /// UC_TealTimeExecutive.xaml 的交互逻辑
     /// </summary>
     /// 
-public delegate void MessageSend(List<RoomStage> roomStages);
+
     public partial class UC_TealTimeExecutive : UserControl
     {
         public event MessageSend MessageSend;
@@ -94,6 +95,7 @@ public delegate void MessageSend(List<RoomStage> roomStages);
             }
              BtL = (from tbR in myModels.SYS_RoomStage
                     join tbC in myModels.SYS_Class on tbR.ID_Class.ToString().Trim() equals tbC.Code_Class.ToString().Trim()
+                    where tbR.ID_Class ==1
                     orderby tbR.Describe
                     select new 
                        RoomStage
@@ -254,7 +256,7 @@ public delegate void MessageSend(List<RoomStage> roomStages);
         /// <param name="e"></param>
         private void BtAddButton_Click(object sender, RoutedEventArgs e)
         {
-            W_ButtonAdd w_ButtonAdd = new W_ButtonAdd(null);
+            W_ButtonAdd w_ButtonAdd = new W_ButtonAdd(null,1);
             // w_ButtonAdd.Closed += new EventHandler(w_ButtonAdd.UE_close);
             w_ButtonAdd.ChangC += new ChangeClose(Push);
            

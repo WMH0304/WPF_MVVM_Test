@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_MvvMTest.Model;
-
+//定义委托
+public delegate void ChangeClose();
 namespace WPF_MvvMTest.View.Windows
 {
     /// <summary>
@@ -21,21 +22,26 @@ namespace WPF_MvvMTest.View.Windows
     /// </summary>
     /// 
 
-        //定义委托
-    public delegate void ChangeClose();
+   
     public partial class W_ButtonAdd : Window
     {
         //定义事件
         public event ChangeClose ChangC;
-        public W_ButtonAdd(Tuple<string,string,string,string,int,string> tuple)
+        public W_ButtonAdd(Tuple<string,string,string,string,int,string> tuple,int roomtype)
         {
             tupl = tuple;
+            type_room = roomtype;
             InitializeComponent();
         }
+        int type_room;
         Tuple<string, string, string, string,int, string> tupl;
         static int Id_RoomStage;
         Model.EasternStar_WPF_MVVMEntities my = new Model.EasternStar_WPF_MVVMEntities();
-        //页面加载事件
+        /// <summary>
+        /// 页面加载事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (tupl !=null)
@@ -50,18 +56,18 @@ namespace WPF_MvvMTest.View.Windows
                 CbStatus.Text = cbStatus;
                 TbDescribe.Text = tbDescribe;
                 CbClass.Text = cbClass;
-
             }
             //绑定下拉框
             var c = my.SYS_Class.ToList();
             CbClass.ItemsSource = c;
             CbClass.DisplayMemberPath = "Jc_Class";
             CbClass.SelectedValuePath = "ID_Class";
-
-
-
         }
-        //确定
+        /// <summary>
+        /// 确定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="routedEvent"></param>
         private void BtConfirm_Click(object sender, RoutedEventArgs routedEvent)
         {
             try
@@ -75,7 +81,6 @@ namespace WPF_MvvMTest.View.Windows
                 int cbClass = sYS_.ID_Class;
                 int numberRoomStage = my.SYS_RoomStage.Count();
 
-
                 int c = Convert.ToInt32(cbClass);
                 int count = my.SYS_RoomStage.Where(p => p.MC_RoomStage.Trim().ToString() == tbRoom_name && p.State_RoomStage == cbStatus &&
                 p.Describe == tbDescribe && p.ID_Class ==c ).Count();
@@ -85,7 +90,6 @@ namespace WPF_MvvMTest.View.Windows
 
               else  if (tbRoom_name!= "" && cbStatus != "" &&tbDescribe != "" && c>0)
                 {
-                   
                     //修改
                     if (tupl != null)
                     {
@@ -149,7 +153,11 @@ namespace WPF_MvvMTest.View.Windows
            
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="eventArgs"></param>
         public void UE_close(object o,EventArgs eventArgs)
         {
             this.Close();
@@ -176,6 +184,5 @@ namespace WPF_MvvMTest.View.Windows
 
         }
 
-     
     }
 }

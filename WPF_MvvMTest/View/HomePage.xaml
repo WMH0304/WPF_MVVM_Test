@@ -72,7 +72,7 @@
                 <TextBlock Text="酒店管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="1">
-                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent">
+                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtFoodAndBeverageManagement_Click" Name="BtFoodAndBeverageManagement">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
                 <TextBlock Text="餐饮管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>

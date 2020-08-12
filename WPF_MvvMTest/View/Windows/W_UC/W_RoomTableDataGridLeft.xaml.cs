@@ -30,18 +30,23 @@ namespace WPF_MvvMTest.View.Windows.W_UC
         List<RoomStage> r;
         public W_RoomTableDastaGridLeft(List<RoomStage> rooms)
         {
+
             //if (type !=null)
             //{
 
             //}else \
             if (r !=null)
             {
-                //r.Clear();
+               
                 r.AddRange(rooms);
             }else if (r ==null)
             {
                  r = rooms;
 
+            }
+            else
+            {
+                r = rooms;
             }
             InitializeComponent();
         }
@@ -57,11 +62,11 @@ namespace WPF_MvvMTest.View.Windows.W_UC
         {
 
             // stages.AddRange(r);
-            int id_rs = r[0].ID_RoomStage;
+          
             //左边的表格
             List <RoomStage> s = (from tb in m.SYS_RoomStage
                                   join tc in m.SYS_Class on tb.ID_Class equals tc.ID_Class
-                                where tb.State_RoomStage == "未用" && tb.ID_RoomStage != id_rs
+                                where tb.State_RoomStage == "未用" 
                                   select new RoomStage
                                 {
 
@@ -115,8 +120,12 @@ namespace WPF_MvvMTest.View.Windows.W_UC
             #endregion
 
             //求差集
-
-            dgdt.ItemsSource = s.Except(r);
+            if (r!=null)
+                dgdt.ItemsSource = s.Except(r);
+            else
+                dgdt.ItemsSource = s;
+            
+          
 
         }
 

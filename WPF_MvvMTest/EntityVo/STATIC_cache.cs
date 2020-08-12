@@ -24,10 +24,18 @@ namespace WPF_MvvMTest.EntityVo
         static public string Remark { get; set; }
         static public string State_Class { get; set; }
 
+
         public static List<RoomStage> StaticRoomStages;
 
         public static List<Consumer> StaticConsumerLeft;
         public static List<Consumer> StaticConsumerRight;
         public static string ScBill_id { get; set; }
+
+        //账号——VIP
+        public static string Zhanghao { set; get; }
+        //预约单号 
+        public static string Number_Subscribe { set; get; }
+
+
     }
 }

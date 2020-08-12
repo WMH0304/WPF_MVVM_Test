@@ -18,7 +18,7 @@
            
             <WrapPanel Grid.Column="0" Name="UC_WP" Margin="-10,-10,10,10">
                 <Button Width="100" Height="100" Margin="15" Background="#39b54a" Name="btAddButton" Click="BtAddButton_Click">
-                <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
+                <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
                 </Button>
             </WrapPanel>
         

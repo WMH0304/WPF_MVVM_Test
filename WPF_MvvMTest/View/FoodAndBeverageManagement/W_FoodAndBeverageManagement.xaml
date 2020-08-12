@@ -39,7 +39,7 @@
                     <TextBlock Text="  实时房台"/>
                 </StackPanel>
             </Button>
-            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
+            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent" Name="BtRoomTableReservation" Click="BtRoomTableReservation_Click">
                 <StackPanel>
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png" ></Image>
                     <TextBlock Text="  房台预定"/>
@@ -90,7 +90,7 @@
             <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
                 <StackPanel>
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png" ></Image>
-                    <TextBlock Text="  推出系统"/>
+                    <TextBlock Text="    主系统"/>
                 </StackPanel>
             </Button>
             
@@ -104,7 +104,7 @@
                 <WrapPanel Name="WpButton">
 
                 </WrapPanel>
-                <Button Width="100" Height="100" Margin="15" Background="#39b54a" Name="btAddButton" >
+                <Button Width="100" Height="100" Margin="15" Background="#39b54a" Name="btAddButton"  Click="BtAddButton_Click">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
                 </Button>
             </WrapPanel>
@@ -112,7 +112,7 @@
         <StackPanel  Grid.Column="2" Grid.Row="2">
             <TextBlock Text="当前房台" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox Name="TbCurrentTime" Width="200"/>
-            <Button Name="BtFiltration" Content="点击房台可过滤" Margin="10"/>
+            <Button Name="BtFiltration" Content="点击房台可过滤" Margin="10" Click="BtFiltration_Click"/>
 
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Width="100"  HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Text="    全部"/>
@@ -121,24 +121,30 @@
             
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Width="100"  HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Text=" 可用台"/>
-                <TextBlock Width="100"   HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Width="100"  Name="Tbavailable" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
             </StackPanel>
             
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Width="100"  HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Text=" 已用台"/>
-                <TextBlock Width="100"    HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Width="100" Name="tBhasbeenused"    HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
             </StackPanel>
             
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Width="100"  HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Text=" 停用台"/>
-                <TextBlock Width="100" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Width="100" Name="tBdisable" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
             </StackPanel>
             
             <StackPanel Margin="10" Orientation="Horizontal">
                 <TextBlock Width="100"  HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Text=" 预定房"/>
-                <TextBlock Width="100"   HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Width="100"   Name="tBreservation" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center"/>
             </StackPanel>
-            
+
+
+
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <Button Content="删除房台信息" Margin="50,0,0,0" Height="100" Name="BtDeleteRooms" Click="BtDeleteRooms_Click"></Button>
+            </StackPanel>
+
         </StackPanel>
         
         

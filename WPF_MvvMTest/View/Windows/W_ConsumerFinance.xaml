@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_MvvMTest.View.Windows"
+        xmlns:input ="clr-namespace:System.Windows.Input;assembly=PresentationCore"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="客人费用输入" Height="450" Width="800">
@@ -35,7 +36,7 @@
                 <!--<TextBox Name="TbConsumeNum"  Width="150" Background="AliceBlue" Margin="10,5,10,5" Height="25"/>-->
                 <StackPanel Width="150" Orientation="Horizontal" Height="25">
                     <Border BorderThickness="5,0,0,5" Width="120" Height="25">
-                        <TextBox Name="TbConsumeNum"  Width="120" Background="AliceBlue" Margin="-5,0,0,-5" Height="25"/>
+                        <TextBox Name="TbConsumeNum" input:InputMethod.IsInputMethodEnabled="False"  Width="120" Background="AliceBlue" Margin="-5,0,0,-5" Height="25"/>
                     </Border>
                     <StackPanel Width="30">
                         <Button Width="30" Height="12" Style="{StaticResource btn-primary}" Name="BtPuls" Click="BtPuls_Click">

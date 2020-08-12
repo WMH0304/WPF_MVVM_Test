@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WPF_MvvMTest.Tools
@@ -16,8 +17,10 @@ namespace WPF_MvvMTest.Tools
         /// <returns></returns>
         public static bool IsNum(string str)
         {
-            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^[0-9]*$");
-            return reg1.IsMatch(str);
+            string pattern = @"^[0-9]*[1-9][0-9]*$";
+            return Regex.IsMatch(str, pattern);
+            //System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^[0-9]*$");
+            //return reg1.IsMatch(str);
         }
         /// <summary>
         /// 限制折扣正则

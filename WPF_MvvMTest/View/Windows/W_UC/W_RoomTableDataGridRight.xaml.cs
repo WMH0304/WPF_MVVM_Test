@@ -27,9 +27,10 @@ namespace WPF_MvvMTest.View.Windows.W_UC
         public event ReuntMessage RetM;
         int YYid;
         int rid;
-        string zhanghao = "111111";//客户帐号 
+        int kt_id;
+        //string zhanghao = "111111";//客户帐号 
         List<RoomStage> stages = new List<RoomStage>();
-        public W_RoomTableDataGridRight(int yydid,int rooid)
+        public W_RoomTableDataGridRight(int yydid,int rooid,int ktid)
         {
             if (yydid>0)
             {
@@ -39,10 +40,15 @@ namespace WPF_MvvMTest.View.Windows.W_UC
             {
                 rid = rooid;
             }
+            if (ktid >0)
+            {
+                kt_id = ktid;
+            }
 
             InitializeComponent();
         }
         Model.EasternStar_WPF_MVVMEntities m = new Model.EasternStar_WPF_MVVMEntities();
+       
         /// <summary>
         /// 控件加载
         /// </summary>
@@ -74,9 +80,12 @@ namespace WPF_MvvMTest.View.Windows.W_UC
                                     });
                 }
             }
-             if(rid >0 )
+            else if(rid >0 )
             {
                 //获取开台表中的客房id  rid 传过来的id
+                string zhanghao = EntityVo.STATIC_cache.Zhanghao;
+
+
 
                 string HouseStageID = m.YW_OpenStage.Where(p => p.ID_VIP ==
                 (m.VIP_Table.Where(v => v.Accounts == zhanghao).FirstOrDefault().ID_VIP)).SingleOrDefault().HouseStageID;
@@ -100,7 +109,39 @@ namespace WPF_MvvMTest.View.Windows.W_UC
                                         MC_RoomStage = tb.MC_RoomStage,
                                     });
                 }
-               
+
+            }
+
+            else if(kt_id >0)
+            {
+                string HouseStageID = m.YW_OpenStage.Where(p => p.ID_OpenStage == kt_id).SingleOrDefault().HouseStageID;
+                //加入有多个id 遍历数组获取
+                string[] vs = HouseStageID.Split(',');
+                stages.Clear();
+                foreach (var item in vs)
+                {
+                    if (item.Trim() == "")
+                    {
+                        break;
+                    }
+                    int rsid = Convert.ToInt32(item);
+                    stages.AddRange(from tb in m.SYS_RoomStage
+                                    where tb.ID_RoomStage == rsid
+                                    select new RoomStage
+                                    {
+                                        ID_RoomStage = tb.ID_RoomStage,
+                                        Number_RoomStage = tb.Number_RoomStage,//房号
+                                        MC_RoomStage = tb.MC_RoomStage,
+                                    });
+                }
+            }
+
+            else
+            {
+                stages = null;
+                dgd.ItemsSource = stages;
+                return;
+
             }
             stages.Distinct();
             //stages = (RoomStage)dgd.ItemsSource;

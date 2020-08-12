@@ -155,10 +155,27 @@ namespace WPF_MvvMTest.View.Windows
         /// <param name="e"></param>
         private void BtPuls_Click(object sender, RoutedEventArgs e)
         {
-          
-             string cont=  TbConsumeNum.Text;
-            int i = Convert.ToInt32(cont)+1;
-            TbConsumeNum.Text = i.ToString();
+            if (TbConsumeNum !=null)
+            {
+                string cont = TbConsumeNum.Text;
+                try
+                {
+                    int i = Convert.ToInt32(cont) + 1;
+                    if (i<=0)
+                    {
+                        MessageBox.Show("请输入正整数", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                        return;
+                    }
+                    TbConsumeNum.Text = i.ToString();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("请输入正整数", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                }
+               
+            }
+            
 
         }
       

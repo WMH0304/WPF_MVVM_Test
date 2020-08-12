@@ -33,10 +33,16 @@ namespace WPF_MvvMTest
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             TC = tab_Main;
             View.Usercontrol.UC_TealTimeExecutive uC_TealTimeExecutive = new View.Usercontrol.UC_TealTimeExecutive();
-            uC_TealTimeExecutive.MessageSend += new View.Usercontrol.MessageSend(Reception);
+            uC_TealTimeExecutive.MessageSend += new MessageSend(Reception);
             AddItem(sender,"实时管理",uC_TealTimeExecutive);
+            
+            //创建监听
+            //WPF_MvvMTest.View.Windows.W_RoomTableReservation room = new View.Windows.W_RoomTableReservation(null);
+            //room.Resh += new Refresh(Refresh);
+
         }
 
         /// <summary>
@@ -122,7 +128,7 @@ namespace WPF_MvvMTest
             if (rStages[0].State_RoomStage.Trim() =="未用")
             {
                 View.Windows.W_RoomTableReservation w = new View.Windows.W_RoomTableReservation(rStages);
-                w.Resh += new View.Windows.Refresh(Refresh);//委托页面刷新
+                w.Resh += new Refresh(Refresh);//委托页面刷新
                 w.ShowDialog();
             }
             else
@@ -145,8 +151,8 @@ namespace WPF_MvvMTest
             }
             if (rStages[0].State_RoomStage.Trim() == "未用" || rStages[0].State_RoomStage.Trim() == "预定")
             {
-                View.Windows.W_FoundingConsumption w = new View.Windows.W_FoundingConsumption(rStages);
-                w.Resh += new View.Windows.Refresh(Refresh);
+                View.Windows.W_FoundingConsumption w = new View.Windows.W_FoundingConsumption(rStages, rStages[0].State_RoomStage.Trim());
+                w.Resh += new Refresh(Refresh);
                 w.ShowDialog();
             }
             else

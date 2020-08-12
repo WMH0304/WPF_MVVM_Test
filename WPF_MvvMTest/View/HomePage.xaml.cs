@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WPF_MvvMTest.View.Usercontrol;
 
 namespace WPF_MvvMTest.View
 {
@@ -20,6 +21,7 @@ namespace WPF_MvvMTest.View
     /// </summary>
     public partial class HomePage : Window
     {
+    
         private DispatcherTimer ShowTimer;
         public HomePage(string name)
         {
@@ -27,7 +29,7 @@ namespace WPF_MvvMTest.View
             InitializeComponent();
             user_name = name;
             ShowTimer = new System.Windows.Threading.DispatcherTimer();
-            ShowTimer.Tick += new EventHandler(ShowCurTime);
+           // ShowTimer.Tick += new EventHandler(ShowCurTime);
             //设置时间间隔
             ShowTimer.Interval = new TimeSpan(0, 0,0,1,0);
             ShowTimer.Start();
@@ -41,15 +43,15 @@ namespace WPF_MvvMTest.View
             //获得时分秒 
             //this.TbNowDateTime.Text += DateTime.Now.ToString("HH:mm:ss:ms");
 
-            //获得星期几
-            this.TbNowDateTime.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
-            this.TbNowDateTime.Text += " ";
-            //获得年月日
-            this.TbNowDateTime.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
-            this.TbNowDateTime.Text += " ";
-            //获得时分秒
-            this.TbNowDateTime.Text += DateTime.Now.ToString("HH:mm:ss");
-            this.TbNowDateTime.Text += " ";
+            ////获得星期几
+            //this.TbNowDateTime.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            //this.TbNowDateTime.Text += " ";
+            ////获得年月日
+            //this.TbNowDateTime.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            //this.TbNowDateTime.Text += " ";
+            ////获得时分秒
+            //this.TbNowDateTime.Text += DateTime.Now.ToString("HH:mm:ss");
+            //this.TbNowDateTime.Text += " ";
         }
 
         string user_name;
@@ -64,15 +66,12 @@ namespace WPF_MvvMTest.View
 
 
             TbLogInPerson.Text ="登陆人: "+ user_name;
-           
-
-            double h = SystemParameters.WorkArea.Height;
-            double w = SystemParameters.WorkArea.Width;
-            this.Width = w;
-            this.Height =h;
 
 
-
+            //double h = SystemParameters.WorkArea.Height;
+            //double w = SystemParameters.WorkArea.Width;
+            //this.Width = w;
+            //this.Height = h;
         }
 
         /// <summary>
@@ -106,6 +105,17 @@ namespace WPF_MvvMTest.View
             MainWindow m = new MainWindow();
             m.ShowDialog();
             this.Close();
+        }
+
+        /// <summary>
+        /// 餐饮管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtFoodAndBeverageManagement_Click(object sender, RoutedEventArgs e)
+        {
+            WPF_MvvMTest.View.FoodAndBeverageManagement.W_FoodAndBeverageManagement WFBM = new FoodAndBeverageManagement.W_FoodAndBeverageManagement();
+            WFBM.ShowDialog();
         }
     }
 }

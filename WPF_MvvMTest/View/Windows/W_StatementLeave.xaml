@@ -114,7 +114,7 @@
                             <TreeView.Resources>
                                 <HierarchicalDataTemplate DataType="{x:Type locals:Node}" ItemsSource="{Binding Nodes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Height="20" Width="20" Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\offline_user.ico"></Image>
+                                        <Image Height="20" Width="20" Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\offline_user.ico"></Image>
                                         <TextBlock Text="{Binding NodeName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding NodeName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
                                 </HierarchicalDataTemplate>
