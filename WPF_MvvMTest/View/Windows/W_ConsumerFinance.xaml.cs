@@ -385,7 +385,6 @@ namespace WPF_MvvMTest.View.Windows
 
             TbDiscount.Text = "";
         }
-
         /// <summary>
         /// 结账买单
         /// </summary>
@@ -393,7 +392,8 @@ namespace WPF_MvvMTest.View.Windows
         /// <param name="e"></param>
         private void BtPayment_Click(object sender, RoutedEventArgs e)
         {
-
+            View.Windows.W_StatementLeave sL = new W_StatementLeave(DataMessage);
+            sL.ShowDialog();
         }
 
 

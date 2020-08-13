@@ -285,14 +285,10 @@ namespace WPF_MvvMTest.View.Windows
             //客人账号信息
             string krzh = TbGuestAccount.Text.Trim().ToString();
             List<SYS_RoomStage> rS = m.SYS_RoomStage.Where(l => l.ID_Guest == m.VIP_Table.Where(k => k.Accounts == krzh).FirstOrDefault().ID_Grade).ToList();
+            int rs_id = rS[0].ID_RoomStage;
             foreach (var item in rS)
             {
-                //修改房台状态
-                SYS_RoomStage sysRs = m.SYS_RoomStage.Where(p => p.ID_RoomStage == item.ID_RoomStage).SingleOrDefault();
-                sysRs.ID_Guest = null;
-                sysRs.State_RoomStage = "未用";
-                m.Entry(sysRs).State = System.Data.Entity.EntityState.Modified;
-                m.SaveChanges();
+               
 
                 //房台id 
                 int ftid = item.ID_RoomStage;
@@ -301,6 +297,20 @@ namespace WPF_MvvMTest.View.Windows
                 foreach (var cW in CWb)
                 {
                  DateTime dtNow =   DateTime.Now;
+                  
+                    //添加支付记录
+                    CW_PayRecord cWpr = new CW_PayRecord();
+                    cWpr.ID_Bill = cW.ID_Bill;
+                    cWpr.ID_Guest = rs_id;
+                    cWpr.Price_Pay = Convert.ToDecimal(TbTheCumulative.Text);
+                    cWpr.Time_Pay = dtNow;
+                    cWpr.PoP = "现金支付";
+                    cWpr.State = true;//已支付
+                    m.CW_PayRecord.Add(cWpr);
+                    m.SaveChanges();
+                    int cwprid = m.CW_PayRecord.Where(p => p.ID_Bill == cW.ID_Bill && p.ID_Guest == rs_id &&p.State ==false).ToList()[0].ID_PayRecord;
+
+
                     //账单
                     CW_Bill cwB = m.CW_Bill.Where(p => p.ID_Bill == cW.ID_Bill).SingleOrDefault();
                     cwB.Price = Convert.ToDecimal(TbTheCumulative.Text);
@@ -309,17 +319,8 @@ namespace WPF_MvvMTest.View.Windows
                     m.Entry(cwB).State = System.Data.Entity.EntityState.Modified;
                     m.SaveChanges();
 
-                    //添加支付记录
-                    CW_PayRecord cWpr = new CW_PayRecord();
-                    cWpr.ID_Bill = cW.ID_Bill;
-                    cWpr.ID_Guest = item.ID_Guest;
-                    cWpr.Price_Pay = Convert.ToDecimal(TbTheCumulative.Text);
-                    cWpr.Time_Pay = dtNow;
-                    cWpr.PoP = "现金支付";
-                    cWpr.State = true;//已支付
-                    m.CW_PayRecord.Add(cWpr);
-                    m.SaveChanges();
-                    int cwprid = m.CW_PayRecord.Where(p => p.ID_Bill == cW.ID_Bill || p.ID_Guest == item.ID_Guest).Single().ID_PayRecord;
+
+
                     //消费记录明细
                     List<CW_ConsumeDetail> cwCD = m.CW_ConsumeDetail.Where(p => p.ID_Consumption == (m.CW_Consumption.Where(c => c.ID_RoomStage == ftid).FirstOrDefault().ID_Consumption)).ToList();
                     foreach (var cW_Cme in cwCD)
@@ -332,9 +333,14 @@ namespace WPF_MvvMTest.View.Windows
                     }
                 }
 
+                //修改房台状态
+                SYS_RoomStage sysRs = m.SYS_RoomStage.Where(p => p.ID_RoomStage == item.ID_RoomStage).SingleOrDefault();
+                sysRs.ID_Guest = null;
+                sysRs.State_RoomStage = "未用";
+                m.Entry(sysRs).State = System.Data.Entity.EntityState.Modified;
+                m.SaveChanges();
 
 
-         
                 if (CWb.Count >0)
                 {
                 MessageBoxResult mb=    MessageBox.Show("结账成功", "大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
