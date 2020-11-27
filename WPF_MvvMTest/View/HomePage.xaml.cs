@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WPF_MvvMTest.View.Usercontrol;
+using WPF_MvvMTest.Model;
 
 namespace WPF_MvvMTest.View
 {
@@ -21,18 +22,21 @@ namespace WPF_MvvMTest.View
     /// </summary>
     public partial class HomePage : Window
     {
-    
+
+
+        Model.EasternStar_WPF_MVVMEntities M = new EasternStar_WPF_MVVMEntities();
         private DispatcherTimer ShowTimer;
         public HomePage(string name)
         {
           
-            InitializeComponent();
+           
             user_name = name;
             ShowTimer = new System.Windows.Threading.DispatcherTimer();
            // ShowTimer.Tick += new EventHandler(ShowCurTime);
             //设置时间间隔
             ShowTimer.Interval = new TimeSpan(0, 0,0,1,0);
             ShowTimer.Start();
+            InitializeComponent();
         }
        
 
@@ -102,9 +106,10 @@ namespace WPF_MvvMTest.View
         /// <param name="e"></param>
         private void BtSaunaLiquid_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
-            m.ShowDialog();
-            this.Close();
+            //MainWindow m = new MainWindow();
+            //this.Close();
+            //m.ShowDialog();
+           
         }
 
         /// <summary>
@@ -114,8 +119,24 @@ namespace WPF_MvvMTest.View
         /// <param name="e"></param>
         private void BtFoodAndBeverageManagement_Click(object sender, RoutedEventArgs e)
         {
-            WPF_MvvMTest.View.FoodAndBeverageManagement.W_FoodAndBeverageManagement WFBM = new FoodAndBeverageManagement.W_FoodAndBeverageManagement();
+
+            var id_class = M.SYS_Class.Where(m => m.Jc_Class.Trim() == "餐饮").Single().ID_Class;
+
+            WPF_MvvMTest.View.FoodAndBeverageManagement.W_FoodAndBeverageManagement WFBM = new FoodAndBeverageManagement.W_FoodAndBeverageManagement(id_class);
+            this.Close();
             WFBM.ShowDialog();
+          
+        }
+
+       
+        /// <summary>
+        /// 酒店管理页面跳转
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_hotel_management_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

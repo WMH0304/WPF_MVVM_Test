@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -188,6 +189,18 @@
       <DependentUpon>UC_TabItemWidthClose.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\Tools.cs" />
+    <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Cost_of_inputs.xaml.cs">
+      <DependentUpon>FABM_Cost_of_inputs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_founding_consumption.xaml.cs">
+      <DependentUpon>FABM_founding_consumption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml.cs">
+      <DependentUpon>FABM_Pay_the_bill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Room_table_reservation.xaml.cs">
+      <DependentUpon>FABM_Room_table_reservation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FoodAndBeverageManagement\W_FoodAndBeverageManagement.xaml.cs">
       <DependentUpon>W_FoodAndBeverageManagement.xaml</DependentUpon>
     </Compile>
@@ -232,6 +245,9 @@
     </Compile>
     <Compile Include="View\W_Print_Data.xaml.cs">
       <DependentUpon>W_Print_Data.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="测试窗口.xaml.cs">
+      <DependentUpon>测试窗口.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -329,6 +345,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\FoodAndBeverageManagement\Windows\FABM_Cost_of_inputs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoodAndBeverageManagement\Windows\FABM_founding_consumption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoodAndBeverageManagement\Windows\FABM_Room_table_reservation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FoodAndBeverageManagement\W_FoodAndBeverageManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\W_Print_Data.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="测试窗口.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

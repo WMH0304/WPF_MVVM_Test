@@ -51,7 +51,7 @@
                     <TextBlock Text="预定金处理"/>
                 </StackPanel>
             </Button>
-            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
+            <Button Name="Bt_Founding_consumption" Width="100" Height="120" Background="Transparent" BorderBrush="Transparent" Click="Bt_Founding_consumption_Click">
                 <StackPanel>
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png" ></Image>
                     <TextBlock Text="  开台消费"/>

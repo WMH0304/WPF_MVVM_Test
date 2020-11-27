@@ -99,9 +99,12 @@ namespace WPF_MvvMTest.View.Windows.W_UC
             {//啥都没有 
                 TbAsmount.Text = total_money.ToString();
             }
+            /**/
             //修改账单表
-            int zdid = m.CW_Bill.Where(k => k.ID_Bill == (m.CW_Consumption.Where(p => p.ID_RoomStage == id).FirstOrDefault().ID_Bill)).SingleOrDefault().ID_Bill;
+            int zdid = m.CW_Bill.Where(k => k.ID_Bill == (m.CW_Consumption.Where(p => p.ID_RoomStage == id && p.Effective ==true).FirstOrDefault().ID_Bill)).FirstOrDefault().ID_Bill;
 
+
+           
             CW_Bill cB = m.CW_Bill.Where(p => p.ID_Bill == zdid).Single();
             cB.Price = total_money;//修改账单总金额
             m.Entry(cB).State = System.Data.Entity.EntityState.Modified;

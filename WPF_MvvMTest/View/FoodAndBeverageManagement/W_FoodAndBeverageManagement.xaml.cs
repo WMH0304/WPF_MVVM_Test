@@ -17,6 +17,7 @@ using WPF_MvvMTest.Resources;
 using System.Diagnostics;
 using WPF_MvvMTest.View.Usercontrol;
 using WPF_MvvMTest.View.Windows;
+using WPF_MvvMTest.View.FoodAndBeverageManagement.Windows;
 
 namespace WPF_MvvMTest.View.FoodAndBeverageManagement
 {
@@ -26,10 +27,14 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
     public partial class W_FoodAndBeverageManagement : Window
     {
         public event MessageSend FbMessageSend;
-        public W_FoodAndBeverageManagement()
+        int id_class;
+        public W_FoodAndBeverageManagement(int idclass)
         {
+            id_class = idclass;
+            STATIC_cache.ID_Class = idclass;
             InitializeComponent();
         }
+        
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
 
 
@@ -63,15 +68,15 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
             tBhasbeenused.Text = int_hasbeenused.ToString() + "间";
             tBdisable.Text = int_disable.ToString() + "间";
             tBreservation.Text = int_reservation.ToString() + "间";
-          
         }
         /// <summary>
         /// 查询房台数据
         /// </summary>
         public void SelectData()
         {
+
             LRS = (from tr in m.SYS_RoomStage
-                   where tr.ID_Class == 2
+                   where tr.ID_Class == id_class
                    select new RoomStage
                    {
                        ID_RoomStage = tr.ID_RoomStage,
@@ -81,7 +86,8 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                        State_RoomStage = tr.State_RoomStage,
                        Describe = tr.Describe,
                        JionSign = tr.JionSign,
-                   }).ToList();
+                       
+                   }).AsParallel().ToList();
         }
 
         /// <summary>
@@ -104,11 +110,13 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                 myBtDynamic.TbRoom_class.Text = LRS[i].MC_RoomStage.ToString();//房台名称
                 //换台刷新
                 myBtDynamic.pus += new Pus(Push);
+                myBtDynamic.pus -= new Pus(Push);
                 //获取控件内容id
                 myBtDynamic.GetButtons += new GetButton(SetBtuuons);
 
-                //换台刷新
-                myBtDynamic.pus += new Pus(Push);
+                ////换台刷新
+                //myBtDynamic.pus += new Pus(Push);
+                //myBtDynamic.pus -= new Pus(Push);
                 //获取控件内容id
                 // myBtDynamic.GetButtons += new GetButton(SetBtuuons);
                 if (LRS[i].State_RoomStage.Trim() == "预定")
@@ -150,44 +158,27 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
         //调用刷新页面方法
         void Push()
         {
-
             Window_Loaded(null, null);
         }
 
-        /// <summary>
-        /// 房台预定
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtRoomTableReservation_Click(object sender, RoutedEventArgs e)
-        {
-            if (LRS ==null ||LRS.Count ==0)
-            {
-                MessageBox.Show("请选择目标房台","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
-                return;
-            }
-
-
-
-        }
-
+        #region 基本信息
         /// <summary>
         /// 点击过滤房台
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
         private void BtFiltration_Click(object sender, RoutedEventArgs e)
         {
             string tbCurrentTime = TbCurrentTime.Text;
-          
             if (!string.IsNullOrEmpty(tbCurrentTime))
             {
                 SelectData();
-                LRS.Where(p => p.MC_RoomStage.Trim() == tbCurrentTime || p.Number_RoomStage.Trim() == tbCurrentTime).ToList();
+                LRS = LRS.Where(p => p.MC_RoomStage.Trim() == tbCurrentTime || p.Number_RoomStage.Trim() == tbCurrentTime).ToList();
 
-                if (LRS.Count() ==0)
+                if (LRS.Count() == 0)
                 {
-                    MessageBox.Show("没有房台信息","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                    MessageBox.Show("没有房台信息", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     TbCurrentTime.Text = "";
                     return;
                 }
@@ -207,7 +198,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
         /// <param name="e"></param>
         private void BtDeleteRooms_Click(object sender, RoutedEventArgs e)
         {
-            if (LRS.Count ==1)
+            if (LRS.Count == 1)
             {
                 int Room_id = LRS[0].ID_RoomStage;
                 SYS_RoomStage sr = m.SYS_RoomStage.Where(p => p.ID_RoomStage == Room_id).SingleOrDefault();
@@ -215,9 +206,9 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                 // m.SaveChanges();
                 m.Entry(sr).State = System.Data.Entity.EntityState.Modified;
 
-                if (m.SaveChanges()>0)
+                if (m.SaveChanges() > 0)
                 {
-                    MessageBox.Show("房台删除成功！","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                    MessageBox.Show("房台删除成功！", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     Push();
 
                 }
@@ -229,10 +220,77 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
         private void BtAddButton_Click(object sender, RoutedEventArgs e)
         {
-            W_ButtonAdd WBA = new W_ButtonAdd(null,2);
+            W_ButtonAdd WBA = new W_ButtonAdd(null, 2);
+
+            WBA.ChangC += new ChangeClose(Push);
+            WBA.ChangC -= new ChangeClose(Push);
             WBA.ShowDialog();
+        }
+
+
+        #endregion
+
+
+        /// <summary>
+        /// 房台预定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtRoomTableReservation_Click(object sender, RoutedEventArgs e)
+        {
+            if (LRS ==null ||LRS.Count ==0)
+            {
+                MessageBox.Show("请选择目标房台","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                return;
+            }
+            if (LRS[0].State_RoomStage.Trim() =="未用")
+            {
+              
+                Tuple<string, string> tuple = new Tuple<string, string>(LRS[0].Number_RoomStage, LRS[0].MC_RoomStage);
+
+                SelectData();
+                if (tuple != null && LRS.Count != 0)
+                {
+                    FABM_Room_table_reservation w = new FABM_Room_table_reservation(tuple, LRS);
+                   // this.Hide();
+                    w.ShowDialog();  
+                }
+                else
+                {
+                    MessageBox.Show("请选中房台后再进行预定","大海提示",MessageBoxButton.OK,MessageBoxImage.Asterisk);
+                    return;
+                }
+              
+            }
+        }
+    
+        /// <summary>
+        /// 开台消费
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_Founding_consumption_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LRS.Equals(null))
+            {
+                if (LRS[0].State_RoomStage.Trim() !="开台")
+                {
+                    FABM_founding_consumption f = new FABM_founding_consumption(LRS);
+                    f.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("目标房台已开台", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("请选中房台","大海提示",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            }
         }
 
 

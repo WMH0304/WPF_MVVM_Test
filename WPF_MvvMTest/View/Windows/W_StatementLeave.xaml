@@ -107,7 +107,7 @@
                 <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <StackPanel >
-                <TabControl Height="1000">
+                <TabControl Height="324">
                     <TabItem Header="结账房台">
                         <TreeView Name="TvTree" SelectedItemChanged="TvTree_SelectedItemChanged">
                             <!--获取或设置本地定义的资源字典。-->
@@ -125,7 +125,15 @@
             </StackPanel>
             <StackPanel Grid.Column="1" >
                 <TabControl>
-                    <TabItem Header="全部记录">
+                    <TabItem Header="全部记录" RenderTransformOrigin="0.5,0.5">
+                        <TabItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.405"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TabItem.RenderTransform>
                         <DataGrid Name="DgDateAll" ItemsSource="{Binding}"   Visibility="Visible"  IsReadOnly="False" AutoGenerateColumns="False" CanUserResizeColumns="False" 
                       CanUserResizeRows="False" SelectionMode="Single" CanUserReorderColumns="False"
                       AlternationCount="2" RowHeaderWidth="0" CanUserAddRows="False"  

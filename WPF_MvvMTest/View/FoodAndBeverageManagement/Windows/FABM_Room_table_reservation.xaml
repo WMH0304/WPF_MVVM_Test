@@ -1,0 +1,241 @@
+﻿<Window x:Class="WPF_MvvMTest.View.FoodAndBeverageManagement.Windows.FABM_Room_table_reservation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest.View.FoodAndBeverageManagement.Windows"
+        xmlns:ssd="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+         Background="#FFE3EEFD" 
+        Title="餐饮预定" Height="800" Width="982">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Image Margin="100,0,0,0" Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\offline_user.ico"  Width="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="账号：" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox Name="CbZhanghao" Width="100" SelectionChanged="CbZhanghao_SelectionChanged"  />
+            <Label Width="5"/>
+            <Label Content="房台号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\offline_user.ico"  Width="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Width="150" VerticalAlignment="Center"  Name="LbRoomNum"  HorizontalAlignment="Center" Height="30" FontSize="20" Background="Red"></TextBlock>
+            <Label Width="5"/>
+            <Label Content="房台名" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Label Width="5"/>
+            <TextBlock  Width="150"  Name="LbRoomName"  VerticalAlignment="Center"  HorizontalAlignment="Center" Height="30" FontSize="20" Background="Red"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Content="单号："/>
+            <TextBox x:Name="Tb_odd" Grid.Column="2" Grid.ColumnSpan="2"   TextChanged="Tb_odd_MouseLeftButtonDown">
+
+            </TextBox>
+            <Label Grid.Column="4" Content="开台时间:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ssd:DateTimePicker Name="TbDevelopmentTime" Grid.Column="5"  Height="35" Grid.ColumnSpan="2"  VerticalAlignment="Center" />
+            <Label Content="人数:" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox  x:Name="Tb_number_of_people" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Background="Azure" HorizontalAlignment="Center" Height="30" Width="100" >
+                <!--<TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="Aqua"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox  Grid.RowSpan="2" FontSize="20"  Style="{Binding}" />
+                                        <Button Background="Transparent" Grid.Column="1" BorderBrush="Transparent" Content="+" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Style="{Binding}"/>
+                                        <Button  Background="Transparent" Grid.Row="1" BorderBrush="Transparent" Grid.Column="1" Content="-" FontSize="10"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" Height="20" Style="{Binding}"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>-->
+            </TextBox>
+            <Label Grid.Row="1" Grid.Column="3" Content="折扣：" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="Tb_discount" Grid.Row="1" Grid.Column="4" />
+            <Label Grid.Row="1" Grid.Column="5" Content="当前市别：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ComboBox IsEnabled="False" Grid.Row="1" Grid.Column="6"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="153*"/>
+                <ColumnDefinition Width="153*"/>
+                <ColumnDefinition Width="152*"/>
+                <ColumnDefinition Width="42*"/>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="152*"/>
+                <ColumnDefinition Width="152*"/>
+                <ColumnDefinition  Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="协议单位：" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="42,18,41,19"/>
+            <ComboBox   Name="CbBargainingUnit" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,10,0,9"/>
+            <Label Grid.Column="4" Content="贵宾卡号：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="41,18,41,19"/>
+            <TextBox x:Name="Tb_vip_account" Grid.Column="6" Grid.ColumnSpan="2" Margin="0,10,0,9"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="备注信息：" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="46,19,47,18"/>
+            <TextBox x:Name="Tb_remark" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="6" Margin="0,9,0,10"/>
+
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="103*"/>
+                <ColumnDefinition Width="143*"/>
+                <ColumnDefinition Width="123*"/>
+                <ColumnDefinition Width="123*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="2">
+                <CheckBox x:Name="Cb_add" Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Left"/>
+                <Label Grid.Column="1"  Height="30"  VerticalContentAlignment="Center"  Content="开单后立即添加消费记录" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="211*"/>
+                <ColumnDefinition Width="78*"/>
+                <ColumnDefinition Width="203*"/>
+            </Grid.ColumnDefinitions>
+
+            <TabControl>
+                <TabItem Name="Ti_room_choosable" Header="可选房台">
+                    <DataGrid
+                              Name="DgLeft"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              SelectedCellsChanged="DgLeft_SelectedCellsChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
+                            <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
+                            <DataGridTextColumn  Header="名称" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                            <DataGridTemplateColumn Width="1*" Header="预定否">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="否"></Label>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </TabItem>
+            </TabControl>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="1" Name="BtAddition" Click="BtAddition_Click" 
+                        Content="=> 添加" VerticalAlignment="Center" Style="{StaticResource btn-info}" 
+                        HorizontalAlignment="Center" />
+                <Button Name="BtRemove" Grid.Row="3"  VerticalAlignment="Center" Click="BtRemove_Click"
+                        Content="&lt;=移除"  Style="{StaticResource btn-info}" 
+                        HorizontalAlignment="Center"/>
+
+            </Grid>
+
+            <TabControl Grid.Column="2">
+                <TabItem Name="Ti_already_room" Header="已选房台">
+                    <DataGrid 
+                        Name="DgRight"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
+                            <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
+                            <DataGridTextColumn  Header="名称" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid >
+                <Label Content="空台:" Name="LbNumberOfRoomsAvailable" Margin="50,0,0,0"/>
+                <Label Content="台数:" Name="Lb_set_number" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="0,0,93,0"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column="2" Content="加预定台" Style="{StaticResource btn-success}" Name="Bt_add_scheduled_station" Click="Bt_add_scheduled_station_Click"/>
+                <Button Grid.Column="3" Content="预定取消" Style="{StaticResource btn-info}" Name="Bt_due_to_cancellation" Click="Bt_due_to_cancellation_Click"/>
+                <Button Grid.Column="4" Content="保存" Style="{StaticResource btn-success}" Name="Bt_save" Click="Bt_save_Click"/>
+                <Button Grid.Column="5" Content="关闭" Style="{StaticResource btn-info}" Name="Bt_cancel" Click="Bt_cancel_Click"/>
+            </Grid>
+        </Grid>
+
+
+
+    </Grid>
+</Window>

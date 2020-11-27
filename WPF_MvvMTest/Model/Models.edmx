@@ -70,6 +70,7 @@
           <Property Name="Prict" Type="money" Nullable="false" />
           <Property Name="Discount" Type="decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="Time_Consumption" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Effective" Type="bit" />
         </EntityType>
         <EntityType Name="CW_Finance">
           <Key>
@@ -162,6 +163,7 @@
             <PropertyRef Name="ID_Guest" />
           </Key>
           <Property Name="ID_Guest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_AgreementUser" Type="int" />
           <Property Name="MC_Guest" Type="nchar" MaxLength="8" Nullable="false" />
           <Property Name="gender" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="证件类型" Type="nchar" MaxLength="10" Nullable="false" />
@@ -275,6 +277,7 @@
           <Property Name="State_Secrecy" Type="bit" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Type_CheckIn" Type="nchar" MaxLength="10" />
+          <Property Name="Number_OpenStage" Type="nchar" MaxLength="30" />
         </EntityType>
         <EntityContainer Name="EasternStar_WPF_MVVMModelStoreContainer">
           <EntitySet Name="AG_AgreementClass" EntityType="Self.AG_AgreementClass" Schema="dbo" store:Type="Tables" />
@@ -360,6 +363,7 @@
           <Property Name="Prict" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="Time_Consumption" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Effective" Type="Boolean" />
         </EntityType>
         <EntityType Name="CW_Finance">
           <Key>
@@ -458,6 +462,7 @@
           <Property Name="证件号码" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ID_AgreementUser" Type="Int32" />
         </EntityType>
         <EntityType Name="SYS_RoomStage">
           <Key>
@@ -546,6 +551,7 @@
           <Property Name="State_Secrecy" Type="Boolean" Nullable="false" />
           <Property Name="Remark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Type_CheckIn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Number_OpenStage" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityContainer Name="EasternStar_WPF_MVVMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AG_AgreementClass" EntityType="Self.AG_AgreementClass" />
@@ -657,6 +663,7 @@
           <EntitySetMapping Name="CW_Consumption">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_Consumption">
               <MappingFragment StoreEntitySet="CW_Consumption">
+                <ScalarProperty Name="Effective" ColumnName="Effective" />
                 <ScalarProperty Name="ID_Consumption" ColumnName="ID_Consumption" />
                 <ScalarProperty Name="ID_ProjectDetail" ColumnName="ID_ProjectDetail" />
                 <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
@@ -764,6 +771,7 @@
           <EntitySetMapping Name="SYS_Guest">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_Guest">
               <MappingFragment StoreEntitySet="SYS_Guest">
+                <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />
                 <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
                 <ScalarProperty Name="MC_Guest" ColumnName="MC_Guest" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
@@ -854,6 +862,7 @@
           <EntitySetMapping Name="YW_Subscribe">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.YW_Subscribe">
               <MappingFragment StoreEntitySet="YW_Subscribe">
+                <ScalarProperty Name="Number_OpenStage" ColumnName="Number_OpenStage" />
                 <ScalarProperty Name="ID_Subscribe" ColumnName="ID_Subscribe" />
                 <ScalarProperty Name="ID_VIP" ColumnName="ID_VIP" />
                 <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />

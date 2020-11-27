@@ -24,6 +24,7 @@ namespace WPF_MvvMTest.EntityVo
         static public string Remark { get; set; }
         static public string State_Class { get; set; }
 
+        
 
         public static List<RoomStage> StaticRoomStages;
 

@@ -1,0 +1,280 @@
+﻿<Window x:Class="WPF_MvvMTest.View.FoodAndBeverageManagement.Windows.FABM_founding_consumption"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest.View.FoodAndBeverageManagement.Windows"
+        mc:Ignorable="d"
+        Title="开台消费"
+        Loaded="Window_Loaded"
+         Background="#FFE3EEFD" 
+        Height="550"
+        Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
+            <Border Width="20"/>
+            <TextBlock Text="账号:" FontSize="20" VerticalAlignment="Center" Margin="5,0,0,0"></TextBlock>
+            <TextBox x:Name="Tb_Founding_account" VerticalAlignment="Center" Width="90" Height="30" FontSize="15" HorizontalAlignment="Center" Visibility="Collapsed">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="15"/>
+                            
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="25"/>
+                        </Style.Setters>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <ComboBox  x:Name="Cb_Founding_account"  VerticalAlignment="Center" Width="90" Height="30" FontSize="15" HorizontalAlignment="Center">
+             
+               
+            </ComboBox>
+            <TextBlock Text="房台号:" FontSize="20"/>
+            <TextBox   Text="sadfasd" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="15"/>
+
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="25"/>
+                        </Style.Setters>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+
+                    </Style>
+                </TextBox.Resources>
+
+            </TextBox>
+            <TextBlock Text="房台名:" FontSize="20"/>
+            <TextBox   Text="sadfasd" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Style.Setters>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="FontSize" Value="15"/>
+
+                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Height" Value="25"/>
+                        </Style.Setters>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+
+                    </Style>
+                </TextBox.Resources>
+
+            </TextBox>
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" Text="单号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource Input-Transparent }">
+              
+            </TextBox>
+            <TextBlock Grid.ColumnSpan="2" Grid.Column="4" Text="开台时间:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Column="6" Style="{StaticResource Input-Transparent }"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="人数" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource Input-Transparent }" />
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="折扣" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource Input-Transparent }" />
+            <TextBlock Grid.Row="1" Grid.Column="5" Text="市别" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ComboBox Grid.Row="1" Grid.Column="6" Background="Transparent">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Transparent" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                </ComboBox.Resources>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="协议单位" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+                <ComboBox Grid.Row="1" Grid.Column="6" Background="Transparent" Width="150">
+                    <ComboBox.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Transparent" />
+                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+                    </ComboBox.Resources>
+                </ComboBox>
+                <TextBlock Text="贵宾卡号" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+                <TextBox Background="Transparent" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock Text="备注信息" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Margin="10,0,0,0"/>
+                <TextBox Width="350" Background="Transparent" HorizontalScrollBarVisibility ="Auto" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <CheckBox  Margin="60,0,0,0">
+                    <CheckBox.Style>
+                        <Style>
+                            
+                        </Style>
+                    </CheckBox.Style>
+                </CheckBox>
+                <TextBlock Text="开单后立即添加消费记录" Foreground="#CC66FF"/>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <TabControl Grid.Column="1">
+                <TabItem Header="可选房台">
+                    <DataGrid
+                              Name="DgLeft"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              SelectedCellsChanged="DgLeft_SelectedCellsChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
+                            <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
+                            <DataGridTextColumn  Header="名称" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                            <DataGridTemplateColumn Width="1*" Header="预定否">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Label Content="否"></Label>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                
+            </TabControl>
+
+            <TabControl Grid.Column="5">
+                <TabItem Header="已选房台">
+                    <DataGrid
+                              Name="DgRight"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              SelectedCellsChanged="DgLeft_SelectedCellsChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
+                            <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
+                            <DataGridTextColumn  Header="名称" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+
+
+
+                </Grid.RowDefinitions>
+                <Button Grid.Row="1" Style="{StaticResource btn-info}" Content="添加=>"></Button>
+                <Button Grid.Row="3" Style="{StaticResource btn-info}" Content="&lt;=移去"></Button>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Text="状态:" VerticalAlignment="Center"  FontSize="20"/>
+            <TextBlock Grid.Column="2" Text="" VerticalAlignment="Center"  FontSize="20"/>
+            <Button Grid.Column="3" Style="{StaticResource btn-success}">保存</Button>
+            <Button Grid.Column="4" Style="{StaticResource btn-danger}">取消</Button>
+            
+        </Grid>
+        
+        
+    </Grid>
+</Window>

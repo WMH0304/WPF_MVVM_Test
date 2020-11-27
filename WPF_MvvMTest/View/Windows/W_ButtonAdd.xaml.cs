@@ -84,10 +84,11 @@ namespace WPF_MvvMTest.View.Windows
                 int c = Convert.ToInt32(cbClass);
                 int count = my.SYS_RoomStage.Where(p => p.MC_RoomStage.Trim().ToString() == tbRoom_name && p.State_RoomStage == cbStatus &&
                 p.Describe == tbDescribe && p.ID_Class ==c ).Count();
-                if (count>0)
-
+                if (count > 0)
+                {
                     MessageBox.Show("已存在房台信息", "大海提示", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-
+                    return;
+                }
               else  if (tbRoom_name!= "" && cbStatus != "" &&tbDescribe != "" && c>0)
                 {
                     //修改
@@ -98,7 +99,7 @@ namespace WPF_MvvMTest.View.Windows
                         r.MC_RoomStage = tbRoom_name;
                         r.State_RoomStage = cbStatus;
                         r.Describe = tbDescribe;
-                        r.ID_Class = Convert.ToInt32(cbClass);
+                        r.ID_Class = type_room;
                         my.Entry(r).State = System.Data.Entity.EntityState.Modified;
                       
                         if (my.SaveChanges() > 0)
@@ -122,7 +123,7 @@ namespace WPF_MvvMTest.View.Windows
                         m.State_RoomStage = cbStatus;
                         m.Number_RoomStage = (numberRoomStage +1).ToString();
                         m.Describe = tbDescribe;
-                        m.ID_Class = Convert.ToInt32(cbClass);
+                        m.ID_Class = type_room;
                         my.SYS_RoomStage.Add(m);
                         
                         if (my.SaveChanges() > 0)

@@ -514,6 +514,7 @@ namespace WPF_MvvMTest.View.Windows
                     Cc.ID_RoomStage = Convert.ToInt32(item);
                     //账单id 
                     Cc.ID_Bill = m.CW_Bill.Where(p => p.SuOp_ID == yddid).SingleOrDefault().ID_Bill;
+                    Cc.Effective = true;
                     //折扣、TbDiscount
                     Cc.Discount = Convert.ToDecimal(TbDiscount.Text);
                     m.CW_Consumption.Add(Cc);

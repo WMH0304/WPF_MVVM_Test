@@ -27,5 +27,6 @@ namespace WPF_MvvMTest.Model
         public bool State_Secrecy { get; set; }
         public string Remark { get; set; }
         public string Type_CheckIn { get; set; }
+        public string Number_OpenStage { get; set; }
     }
 }

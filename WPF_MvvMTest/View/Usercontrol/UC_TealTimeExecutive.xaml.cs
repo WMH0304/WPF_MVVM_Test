@@ -85,7 +85,7 @@ namespace WPF_MvvMTest.View.Usercontrol
                 };
                 button.Click += new RoutedEventHandler(BtAddButton_Click);
                 button.MouseEnter += new MouseEventHandler(BtDongTaisheng);
-                Uri uri = new Uri(@"C:\Users\Administrator\source\repos\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png", UriKind.Relative);
+                Uri uri = new Uri(@"D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png", UriKind.Relative);
                 ImageBrush ib = new ImageBrush();
                 ib.ImageSource = new BitmapImage(uri);
                 button.Background = ib;
@@ -135,32 +135,38 @@ namespace WPF_MvvMTest.View.Usercontrol
                 //    //@"\n" + BtL[i].MC_RoomStage,
 
                 //    Background = System.Windows.Media.Brushes.LightSeaGreen,
+
+             
+
+                    UC_BtDynamic myBtDynamic = new UC_BtDynamic(BtL);
+                    myBtDynamic.TbRoom_num.Text = BtL[i].Number_RoomStage;
+                    myBtDynamic.TbRoom_class.Text = BtL[i].MC_RoomStage.Trim() + BtL[i].Number_RoomStage;
+                    myBtDynamic.Name = "btn" + BtL[i].ID_RoomStage;
+                    //换台刷新
+                    myBtDynamic.pus += new Pus(Push);
+                    //获取控件内容id
+                    myBtDynamic.GetButtons += new GetButton(SetBtuuons);
+                    if (BtL[i].State_RoomStage.Trim() == "预定")
+                    {
+                        myBtDynamic.Background = System.Windows.Media.Brushes.Blue;
+                    }
+                    else if (BtL[i].State_RoomStage.Trim() == "已用")
+                    {
+                        myBtDynamic.Background = System.Windows.Media.Brushes.YellowGreen;
+                    }
+                    else if (BtL[i].State_RoomStage.Trim() == "停用")
+                    {
+                        myBtDynamic.Background = System.Windows.Media.Brushes.LightSlateGray;
+                    }
+
+                    //  myBtDynamic.Click += new RoutedEventHandler(btnEvent_Click);
+
+                    UC_WP.Children.Add(myBtDynamic);
+
               
-
-                UC_BtDynamic myBtDynamic = new UC_BtDynamic(BtL);
-                myBtDynamic.TbRoom_num.Text = BtL[i].Number_RoomStage;
-                myBtDynamic.TbRoom_class.Text = BtL[i].MC_RoomStage.Trim() + BtL[i].Number_RoomStage;
-                myBtDynamic.Name = "btn" + BtL[i].ID_RoomStage;
-                //换台刷新
-                myBtDynamic.pus += new Pus(Push);
-                //获取控件内容id
-                 myBtDynamic.GetButtons += new GetButton(SetBtuuons);
-                if (BtL[i].State_RoomStage.Trim() =="预定")
-                {
-                    myBtDynamic.Background = System.Windows.Media.Brushes.Blue;  
-                }
-                else if(BtL[i].State_RoomStage.Trim() == "已用")
-                {
-                    myBtDynamic.Background = System.Windows.Media.Brushes.DodgerBlue;
-                }
-                else if (BtL[i].State_RoomStage.Trim() == "停用")
-                {
-                    myBtDynamic.Background = System.Windows.Media.Brushes.LightSlateGray;
-                }
-
-              //  myBtDynamic.Click += new RoutedEventHandler(btnEvent_Click);
-
-                UC_WP.Children.Add(myBtDynamic);
+              
+               
+                
                 };
 
 
@@ -261,6 +267,7 @@ namespace WPF_MvvMTest.View.Usercontrol
             w_ButtonAdd.ChangC += new ChangeClose(Push);
            
             w_ButtonAdd.ShowDialog();
+            w_ButtonAdd.ChangC -= new ChangeClose(Push);
         }
         //调用刷新页面方法
         void Push()

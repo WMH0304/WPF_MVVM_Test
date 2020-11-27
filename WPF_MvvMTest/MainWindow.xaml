@@ -27,7 +27,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btRealTimeExecutive" Background="#FF1D5BBA" Click="BtRealTimeExecutive_Click" ToolTip="实时管理"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                     
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      实时管理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -66,7 +66,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btFoundingConsumption" Background="#FF1D5BBA" Click="BtFoundingConsumption_Click" ToolTip="开台消费"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="     开台消费" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -79,7 +79,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btConsumptionIntoSingle" Background="#FF1D5BBA" Click="BtConsumptionIntoSingle_Click" ToolTip="消费入单"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      消费入单" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -92,7 +92,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="BtCheckTheCheck" Background="#FF1D5BBA" Click="BtCheckTheCheck_Click" ToolTip="结账买单"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="       结账买单" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -105,7 +105,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btStatusModifier" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="状态修改"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      状态修改" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -118,7 +118,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btManagementSuccession" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="交班管理"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      交班管理" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -131,7 +131,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btCurrentConsumptionList" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="当前消费列表"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="  当前消费列表" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>
@@ -144,7 +144,7 @@
                 </Grid.RowDefinitions>
                 <Button Name="btSignOut" Background="#FF1D5BBA" Click="TbRoomTableReservation_Click" ToolTip="退出系统"
                     HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Image Source="F:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
+                    <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
 
                 </Button>
                 <Label Grid.Row="1" Width="50" Height="20" Content="      退出系统" FontSize="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Foreground="Black"></Label>

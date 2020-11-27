@@ -151,6 +151,7 @@ namespace WPF_MvvMTest.Resources
                                         tb.Number_People,//人数
                                         tb.Number_Subscribe,//预约单号
                                         tb.Time_Predict,//预定时间
+                                        
                                         tV.Accounts,
                                     }).SingleOrDefault();
                         if (item ==null)
@@ -213,7 +214,8 @@ namespace WPF_MvvMTest.Resources
                     tbRoom_name = btL[i].MC_RoomStage.ToString().Trim();
                     cbStatus = btL[i].State_RoomStage.ToString().Trim();
                     tbDescribe = btL[i].Describe.ToString().Trim();
-                    cbClass = btL[i].Jc_Class.ToString().Trim();
+                    cbClass = btL[i].ID_Class.ToString().Trim();
+                   // cbClass = btL[i].Jc_Class.ToString().Trim();
                     ID_RoomStage = btL[i].ID_RoomStage;
                     Number_RoomStage = btL[i].Number_RoomStage;
                 }
@@ -245,7 +247,8 @@ namespace WPF_MvvMTest.Resources
                     tbRoom_name = btL[i].MC_RoomStage.ToString().Trim();
                     cbStatus = btL[i].State_RoomStage.ToString().Trim();
                     tbDescribe = btL[i].Describe.ToString().Trim();
-                    cbClass = btL[i].Jc_Class.ToString().Trim();
+                    //cbClass = btL[i].Jc_Class.ToString().Trim();
+                    cbClass = btL[i].ID_Class.ToString().Trim();
                     ID_RoomStage = btL[i].ID_RoomStage;
                     Number_RoomStage = btL[i].Number_RoomStage;
                 }

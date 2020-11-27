@@ -66,65 +66,65 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent">
+                <Button Name="Bt_hotel_management"  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent" Click="Bt_hotel_management_Click">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="酒店管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="酒店管理" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="1">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Background="Transparent" BorderBrush="Transparent" Click="BtFoodAndBeverageManagement_Click" Name="BtFoodAndBeverageManagement">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="餐饮管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="餐饮管理" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Grid.Row="1">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0" Name="BtSaunaLiquid" Click="BtSaunaLiquid_Click">
                     
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="桑拿/沐足管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="桑拿/沐足管理" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="4" Grid.Row="1">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="KTV娱乐收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="KTV娱乐收银" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="5" Grid.Row="1">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="棋牌收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="棋牌收银" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="2">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="茶吧收银" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="茶吧收银" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="2">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="经理财务查询" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="经理财务查询" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Grid.Row="2">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="电话计费" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="电话计费" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="4" Grid.Row="2">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="仓库管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="仓库管理" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
             <StackPanel Grid.Column="5" Grid.Row="2">
                 <Button  Width="150" Height="100" VerticalAlignment="Center" Margin="0,100,0,0">
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png"></Image>
                 </Button>
-                <TextBlock Text="工资人事管理" HorizontalAlignment="Center" FontSize="30" Foreground="Yellow"/>
+                <TextBlock Text="工资人事管理" HorizontalAlignment="Center" FontSize="30" Foreground="#392f41"/>
             </StackPanel>
 
 

@@ -21,5 +21,6 @@ namespace WPF_MvvMTest.Model
         public string 证件号码 { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
+        public Nullable<int> ID_AgreementUser { get; set; }
     }
 }

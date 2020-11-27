@@ -4,6 +4,35 @@
         <ResourceDictionary Source="/Styles/Button.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/Styles/Label.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
+
+
+    <Style x:Key="Input-Transparent"  TargetType="{x:Type TextBox}">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+        </Style.Resources>
+        <Style.Setters>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="15"/>
+            
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="25"/>
+            
+        </Style.Setters>
+        
+        
+    </Style>
+   
+
+
+
+
+
     <!--按钮-->
     <Style x:Key="InputGroupButtonBaseStyle" BasedOn="{StaticResource ButtonBaseBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background">

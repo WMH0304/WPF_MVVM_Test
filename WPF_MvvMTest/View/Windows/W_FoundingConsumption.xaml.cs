@@ -36,6 +36,7 @@ namespace WPF_MvvMTest.View.Windows
         string 预定或开台;
         int yydid =0;//预定单id
         int room_id;//房台id
+        int vip_id;
         public W_FoundingConsumption(List<RoomStage> roomStages,string YdOrKt)
         {
             预定或开台 = YdOrKt;
@@ -363,7 +364,7 @@ namespace WPF_MvvMTest.View.Windows
                 zhanghao = m.VIP_Table.Where(p => p.ID_Guest == (m.SYS_Guest.Where(g => g.MC_Guest == tbAccounts).FirstOrDefault().ID_Guest)).FirstOrDefault().Accounts;
             }
             //会员id 
-            int vip_id = m.VIP_Table.Where(p => p.Accounts == zhanghao).SingleOrDefault().ID_VIP;
+             vip_id = m.VIP_Table.Where(p => p.Accounts == zhanghao).SingleOrDefault().ID_VIP;
             //客人id
             int krid = m.VIP_Table.Where(p => p.ID_VIP == vip_id).SingleOrDefault().ID_Guest;
 
@@ -388,7 +389,6 @@ namespace WPF_MvvMTest.View.Windows
                  id_ = id.ID_VIP;
                  isOp = m.YW_OpenStage.Where(l => l.ID_VIP == id_ && l.State_Message == true).FirstOrDefault().ID_OpenStage;
             }
-          
             //预约表中有对应的数据数据
             if (Sub > 0)
             {
@@ -459,7 +459,6 @@ namespace WPF_MvvMTest.View.Windows
 
              
             }
-
             //如果开台表已存在开台表就只做修改
             else if (isOp > 0)
             {
@@ -656,10 +655,13 @@ namespace WPF_MvvMTest.View.Windows
             }
 
 
+            vip_id = m.VIP_Table.Where(p => p.Accounts == zhanghao).SingleOrDefault().ID_VIP;
 
+            //客人id
+            int krid = m.VIP_Table.Where(p => p.ID_VIP == vip_id).SingleOrDefault().ID_Guest;
 
-            //客人id 
-            int krid = m.VIP_Table.Where(p => p.Accounts == zhanghao).SingleOrDefault().ID_Guest;
+            
+          
             //账单表
             // string Mun = STATIC_cache.ScBill_id;
             //CW_Bill_id
@@ -709,9 +711,42 @@ namespace WPF_MvvMTest.View.Windows
             m.CW_PayRecord.Add(cP);
             m.SaveChanges();
 
+
+
+
+            /**********/
+            //根据会员 id 找到客人id
+            int Guest_id = m.SYS_Guest.Where(p => p.ID_Guest ==
+            (m.VIP_Table.Where(v => v.ID_VIP == vip_id).FirstOrDefault().ID_Guest)).SingleOrDefault().ID_Guest;
+
+            try
+            {
+                int os = m.YW_OpenStage.Where(m => m.ID_VIP == vip_id && m.State_Message == true).SingleOrDefault().ID_OpenStage;
+            }
+            catch (Exception)
+            {
+
+                YW_OpenStage oS = new YW_OpenStage();
+                oS.ID_VIP = vip_id;
+                oS.Number_People = 0;
+                oS.Remark = TbRemark.Text.ToString();
+                oS.GuestID = Guest_id;
+                oS.Type_CheckIn = "足浴";
+                oS.Remark = "鬼知道你备注什么";
+                oS.Content_Message = "谁设计的奇葩";
+                oS.State_Message = true;
+                oS.HouseStageID = rS[0].ID_RoomStage + ",";
+                oS.Time_Predict = DateTime.Now;
+                oS.Time_Leave = DateTime.Now;
+                m.YW_OpenStage.Add(oS);
+                m.SaveChanges();
+            }
+           
+           
+
+            /************/
             //开台id
-            int ktid = m.YW_OpenStage.Where(p => p.ID_VIP ==
-            (m.VIP_Table.Where(v => v.ID_Guest == krid).FirstOrDefault().ID_VIP)).SingleOrDefault().ID_OpenStage;
+            int ktid = m.YW_OpenStage.Where(p => p.ID_VIP ==(m.VIP_Table.Where(v => v.ID_Guest == krid).FirstOrDefault().ID_VIP)).SingleOrDefault().ID_OpenStage;
 
             //开台房台id
             string ktftid = m.YW_OpenStage.Where(p => p.ID_OpenStage == ktid).Single().HouseStageID;
@@ -733,17 +768,21 @@ namespace WPF_MvvMTest.View.Windows
                 cC.Discount = Convert.ToDecimal(TbDiscount.Text) == 0 ? throw new NullReferenceException() : Convert.ToDecimal(TbDiscount.Text);
                 cC.Time_Consumption =DateTime.Now.ToLocalTime();
                 m.CW_Consumption.Add(cC);
-               
-                if (m.SaveChanges() >0)
+                //修改房台状态
+                SYS_RoomStage Rs = m.SYS_RoomStage.Where(m => m.ID_RoomStage == ftid).SingleOrDefault();
+                Rs.State_RoomStage = "已用";
+
+            }
+            if (m.SaveChanges() > 0)
+            {
+              
+
+                MessageBoxResult m = MessageBox.Show("开台成功！", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+                if (m == MessageBoxResult.OK)
                 {
-
-                  MessageBoxResult m=  MessageBox.Show("开台成功！", "大海提示", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
-                    if (m==MessageBoxResult.OK)
-                    {
-                        this.Close();
-                        Resh();
-                    }
+                    this.Close();
+                    Resh();
                 }
             }
 

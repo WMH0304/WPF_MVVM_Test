@@ -22,5 +22,6 @@ namespace WPF_MvvMTest.Model
         public decimal Prict { get; set; }
         public decimal Discount { get; set; }
         public System.DateTime Time_Consumption { get; set; }
+        public Nullable<bool> Effective { get; set; }
     }
 }

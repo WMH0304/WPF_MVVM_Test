@@ -60,8 +60,9 @@ namespace WPF_MvvMTest
                     string name = m.User_Table.Where(o => o.Number_Job == Account).SingleOrDefault().MC_User;
                     //跳转到主页
                     WPF_MvvMTest.View.HomePage homePage= new View.HomePage(name);
-                    homePage.ShowDialog();
                     this.Close();
+                    homePage.ShowDialog();
+                   
                 }
                 else
                 {
