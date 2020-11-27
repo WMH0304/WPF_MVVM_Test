@@ -42,7 +42,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
         }
         /// <summary>
-        /// 页面加载事件
+        /// 页面加载事件第三方
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
