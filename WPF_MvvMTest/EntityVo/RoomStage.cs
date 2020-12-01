@@ -19,6 +19,8 @@ namespace WPF_MvvMTest.EntityVo
         public string Describe { get; set; }
         public int JionSign { get; set; }
 
+        public int ?ID_Guest { get; set; }
+
    public string Due_to_no { get; set; }
 
 

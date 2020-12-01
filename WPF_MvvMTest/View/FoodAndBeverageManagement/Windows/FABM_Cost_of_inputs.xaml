@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="客人费用输入" 
          Background="#FFE3EEFD" 
+        Loaded="Window_Loaded"
         Height="712" 
         Width="825">
     <Grid >

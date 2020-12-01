@@ -259,6 +259,7 @@
           <Property Name="State_Message" Type="bit" Nullable="false" />
           <Property Name="Content_Message" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="HouseStageID" Type="nchar" MaxLength="30" Nullable="false" />
+          <Property Name="Number_OpenStage" Type="nchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="YW_Subscribe">
           <Key>
@@ -596,6 +597,7 @@
           <Property Name="Content_Message" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="HouseStageID" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="GuestID" Type="Int32" Nullable="false" />
+          <Property Name="Number_OpenStage" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="CW_ConsumeDetail">
           <Key>
@@ -882,6 +884,7 @@
           <EntitySetMapping Name="YW_OpenStage">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.YW_OpenStage">
               <MappingFragment StoreEntitySet="YW_OpenStage">
+                <ScalarProperty Name="Number_OpenStage" ColumnName="Number_OpenStage" />
                 <ScalarProperty Name="GuestID" ColumnName="GuestID" />
                 <ScalarProperty Name="HouseStageID" ColumnName="HouseStageID" />
                 <ScalarProperty Name="Content_Message" ColumnName="Content_Message" />

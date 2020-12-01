@@ -28,5 +28,6 @@ namespace WPF_MvvMTest.Model
         public string Content_Message { get; set; }
         public string HouseStageID { get; set; }
         public int GuestID { get; set; }
+        public string Number_OpenStage { get; set; }
     }
 }

@@ -410,6 +410,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                     MessageBox.Show("保存成功","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
                     Refresh_table(gruest_id, STATIC_cache.ID_Class);
                     Common.Clear();
+                    this.Close();
                 }
             }
             else

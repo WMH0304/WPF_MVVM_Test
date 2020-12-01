@@ -129,7 +129,7 @@
             <TextBlock Grid.Row="1" Grid.Column="3" Text="折扣" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox x:Name="Tb_discount"  Width="50" Grid.Row="1" Grid.Column="4" Style="{StaticResource Input-Transparent }" />
             <TextBlock Grid.Row="1" Grid.Column="5" Text="市别" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <ComboBox Grid.Row="1" Grid.Column="6" Background="Transparent">
+            <ComboBox  Name="Cb_to_city" Grid.Row="1" Grid.Column="6" Foreground ="Red"  Background="Transparent">
                 <ComboBox.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Transparent" />
                     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
@@ -157,7 +157,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <TextBlock Text="备注信息" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Margin="10,0,0,0"/>
-                <TextBox Width="350" Background="Transparent" HorizontalScrollBarVisibility ="Auto" />
+                <TextBox x:Name="Tb_postscript" Width="350" Background="Transparent" HorizontalScrollBarVisibility ="Auto" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
                 <CheckBox x:Name="Cb_choice"  Margin="60,0,0,0">
@@ -183,7 +183,7 @@
                 <ColumnDefinition Width="5"/>
             </Grid.ColumnDefinitions>
             <TabControl Grid.Column="1">
-                <TabItem Header="可选房台">
+                <TabItem Header="可选房台" Name="Ti_optional">
                     <DataGrid
                               Name="DgLeft"
                               Visibility="Visible"  
@@ -217,7 +217,7 @@
             </TabControl>
 
             <TabControl Grid.Column="5">
-                <TabItem Header="已选房台">
+                <TabItem Header="已选房台" Name="Ti_The_selected_room">
                     <DataGrid
                               Name="DgRight"
                               Visibility="Visible"  
@@ -231,7 +231,7 @@
                               AlternationCount="2" 
                               RowHeaderWidth="0" 
                               ScrollViewer.VerticalScrollBarVisibility="Visible"
-                              SelectedCellsChanged="DgLeft_SelectedCellsChanged">
+                              SelectedCellsChanged="DgRight_SelectedCellsChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
                             <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
@@ -253,8 +253,8 @@
 
 
                 </Grid.RowDefinitions>
-                <Button Grid.Row="1" Style="{StaticResource btn-info}" Content="添加=>"></Button>
-                <Button Grid.Row="3" Style="{StaticResource btn-info}" Content="&lt;=移去"></Button>
+                <Button x:Name="Bt_addition" Click="Bt_addition_Click" Grid.Row="1" Style="{StaticResource btn-info}" Content="添加=>"></Button>
+                <Button x:Name="Bt_remove" Click="Bt_remove_Click" Grid.Row="3" Style="{StaticResource btn-info}" Content="&lt;=移去"></Button>
             </Grid>
         </Grid>
 
@@ -270,8 +270,8 @@
 
             <TextBlock Grid.Column="1" Text="状态:" VerticalAlignment="Center"  FontSize="20"/>
             <TextBlock Grid.Column="2" Text="" VerticalAlignment="Center"  FontSize="20"/>
-            <Button Grid.Column="3" Style="{StaticResource btn-success}">保存</Button>
-            <Button Grid.Column="4" Style="{StaticResource btn-danger}">取消</Button>
+            <Button x:Name="Bt_save" Click="Bt_save_Click" Grid.Column="3" Style="{StaticResource btn-success}">保存</Button>
+            <Button Grid.Column="4" Name="Bt_cancel" Click="Bt_cancel_Click"  Style="{StaticResource btn-danger}">取消</Button>
 
         </Grid>
 

@@ -15,6 +15,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
     public partial class FABM_founding_consumption : Window
     {
         Model.EasternStar_WPF_MVVMEntities m = new Model.EasternStar_WPF_MVVMEntities();
+
         /// <summary>
         /// 临时集合
         /// </summary>
@@ -26,8 +27,14 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
             public string Accounts { get; set; }
             public string Remark { get; set; }
 
+            public int ID_RoomStage { get; set; }
+
+
         }
+
         List<RoomStage> Rs;
+
+        int intdt = -1;//表格选择
 
         /// <summary>
         /// 左边集合
@@ -43,7 +50,10 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         /// <param name="rooms"></param>
         ObservableCollection<RoomStage> common = new ObservableCollection<RoomStage>();
 
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="rooms"></param>
         public FABM_founding_consumption(List<RoomStage> rooms)
         {
             if (!rooms.Equals(null))
@@ -59,11 +69,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
             InitializeComponent();
         }
-        //表格里面的 空房数 放到 TabControl 里
-        private void DgLeft_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
 
-        }
         /// <summary>
         /// 页面加载事件第三方
         /// </summary>
@@ -71,17 +77,9 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            DgLeft.ItemsSource = LeftOc;
-
-            DgRight.ItemsSource = RightOc;
-
-
             int ID_RoomStage = Rs[0].ID_RoomStage;
 
             int? ID_Guest = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).SingleOrDefault().ID_Guest;
-
-
 
             int int_Effective_single = m.YW_OpenStage.Where(c => c.State_Message == true).ToList().Count + 1;
 
@@ -93,19 +91,14 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
             Cb_choice.IsChecked = true;//是否开台
 
-
             if (Rs[0].State_RoomStage.Trim() == "预定")
             {
                 int ID_VIP = m.VIP_Table.Where(c => c.ID_Guest == ID_Guest).SingleOrDefault().ID_VIP;
-
-
 
                 string ser = m.SYS_Guest.Where(c => c.ID_Guest == ID_Guest).FirstOrDefault().MC_Guest;
 
                 //账号
                 Tb_Founding_account.Text = ser.Trim();//账号
-
-                /// string card_number = m.VIP_Table.Where(c => c.ID_Guest == (m.SYS_RoomStage.Where(r => r.ID_RoomStage == Rs[0].ID_RoomStage).FirstOrDefault().ID_Guest)).FirstOrDefault().Accounts;
 
                 string card_number = m.VIP_Table.Where(c => c.ID_Guest == ID_Guest).FirstOrDefault().Accounts;
 
@@ -113,20 +106,6 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
                 Cb_Founding_account.Visibility = Visibility.Collapsed;
                 Tb_Founding_account.Visibility = Visibility.Visible;
-
-
-                // Tb_Founding_account.Text = //账号
-
-
-                //if (!Bargaining_unit.Equals(string.Empty))
-                //{
-                //    Tb_Founding_account.Text = Bargaining_unit.Trim();
-                //}
-                //else
-                //{
-                //    Tb_Founding_account.IsEnabled = true;
-                //}
-
 
                 var _str = from tbs in m.YW_Subscribe
                            join tbr in m.SYS_RoomStage on tbs.ID_Guest equals tbr.ID_Guest
@@ -136,7 +115,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                            select new Temporary
                            {
 
-
+                               ID_RoomStage = tbr.ID_RoomStage,
                                Number_People = tbs.Number_People,//人数
 
                                Discount = tbc.Discount,//折扣
@@ -188,13 +167,27 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
             }
 
+            Ti_optional.Header = "可选房台" + LeftOc.Count + "间";
+            Ti_The_selected_room.Header = "已选房台" + RightOc.Count + "间";
             Get_data(ID_Guest);
             Rs.Clear();
+            DgLeft.ItemsSource = LeftOc;
+
+            DgRight.ItemsSource = RightOc;
+
+            List<string> ts = new System.Collections.Generic.List<string>();
+            ts.Add("早市");
+            ts.Add("午市");
+            ts.Add("晚市");
+            ts.Add("夜市");
+            Cb_to_city.ItemsSource = ts;
+
+
 
         }
 
         /// <summary>
-        /// 过去数据
+        /// 获取数据
         /// </summary>
         /// <param name="id_guest"></param>
         private void Get_data(int? id_guest)
@@ -204,6 +197,8 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
                                     select new RoomStage
                                     {
+                                        ID_Guest = tbr.ID_Guest,
+                                        ID_RoomStage = tbr.ID_RoomStage,
                                         MC_RoomStage = tbr.MC_RoomStage,//名称
 
                                         Number_RoomStage = tbr.Number_RoomStage,//房台号
@@ -261,13 +256,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                 }
             }
 
-
-
         }
-
-
-
-
 
         /// <summary>
         /// 下拉框改变事件
@@ -282,13 +271,216 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
             SYS_Guest CbZhanghao_id = Cb_Founding_account.SelectedItem as SYS_Guest;
 
             //协议单位
-            Tb_bargaining_unit.Text = m.AG_AgreementUser.Where(c => c.ID_AgreementUser == m.SYS_Guest.Where(global => global.ID_Guest == CbZhanghao_id.ID_Guest).FirstOrDefault().ID_AgreementUser).FirstOrDefault().MC_AgreementUser;
-
+            if (CbZhanghao_id.ID_AgreementUser > 0)
+            {
+                Tb_bargaining_unit.IsEnabled = true;
+                Tb_bargaining_unit.Text = m.AG_AgreementUser.Where(c => c.ID_AgreementUser == m.SYS_Guest.Where(global => global.ID_Guest == CbZhanghao_id.ID_Guest).FirstOrDefault().ID_AgreementUser).FirstOrDefault().MC_AgreementUser;
+            }
+            else
+            {
+                Tb_bargaining_unit.Text = string.Empty;
+                Tb_bargaining_unit.IsEnabled = false;
+            }
             //贵宾账号
             Tb_account.Text = m.VIP_Table.Where(c => c.ID_Guest == CbZhanghao_id.ID_Guest).FirstOrDefault().Accounts;
 
+        }
+
+        /// <summary>
+        /// 添加按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_addition_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                RoomStage room = DgLeft.Items[intdt] as RoomStage;
+                LeftOc.Remove(room);
+                RightOc.Add(room);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("请选择要操作的房台", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
 
+            Ti_optional.Header = "可选房台" + LeftOc.Count + "间";
+            Ti_The_selected_room.Header = "已选房台" + RightOc.Count + "间";
+        }
+
+        /// <summary>
+        /// 移除按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_remove_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RoomStage room = DgRight.Items[intdt] as RoomStage;
+                LeftOc.Add(room);
+                RightOc.Remove(room);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("请选择要操作的房台", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
+            Ti_optional.Header = "可选房台" + LeftOc.Count;
+            Ti_The_selected_room.Header = "已选房台" + RightOc.Count;
+        }
+
+        /// <summary>
+        /// 左边表格点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgLeft_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            RoomStage room = DgLeft.CurrentItem as RoomStage;
+            intdt = DgLeft.SelectedIndex;
+        }
+
+        /// <summary>
+        /// 右边表格点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DgRight_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            RoomStage room = DgRight.CurrentItem as RoomStage;
+            intdt = DgRight.SelectedIndex;
+        }
+
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_save_Click(object sender, RoutedEventArgs e)
+        {
+            if (Cb_Founding_account.Text.Equals(null) && Tb_Founding_account.Equals(null) && Tb_Room_table.Text.Equals(null) && Tb_Room_table_name.Text.Equals(null) && Tb_odd.Text.Equals(null) && Tb_Founding_time.Text.Equals(null) && Tb_number_of_people.Text.Equals(null) && Tb_discount.Text.Equals(null) && Tb_bargaining_unit.Text.Equals(null) && Tb_account.Text.Equals(null) && Tb_postscript.Text.Equals(null))
+            {
+                MessageBox.Show("请将信息填写完整", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            //未定状态 
+            if (Cb_Founding_account.IsVisible)
+            {
+                int? Guest = m.SYS_Guest.Where(c => c.MC_Guest.Trim() == Cb_Founding_account.Text).SingleOrDefault().ID_AgreementUser;
+
+
+
+
+                string hsid = string.Empty;
+                foreach (var item in RightOc)
+                {
+                    hsid += item.ID_RoomStage + ",";
+                    CW_Consumption c = new CW_Consumption();
+                    c.ID_RoomStage = item.ID_RoomStage;
+                    c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
+                    c.Effective = true;
+                    m.CW_Consumption.Add(c);
+                    m.SaveChanges();
+                };
+                var ID_VIP = m.VIP_Table.Where(c => c.Accounts == Tb_account.Text.Trim()).FirstOrDefault().ID_VIP;
+                YW_OpenStage o = new YW_OpenStage();
+                o.Number_People = int.Parse(Tb_number_of_people.Text.Trim());//人数
+                o.Number_OpenStage = Tb_odd.Text.Trim();
+                o.ID_VIP = ID_VIP;
+                o.State_Secrecy = true;
+                o.Remark = Tb_postscript.Text.Trim();
+                o.Type_CheckIn = "餐饮";
+                o.Content_Message = string.Empty;
+                if (!Guest.Equals(null))
+                {
+                    o.ID_AgreementUser = (int)Guest;
+                }
+                o.HouseStageID = hsid;
+                o.Time_Predict = Convert.ToDateTime(Tb_Founding_time.Text.Trim());
+                m.YW_OpenStage.Add(o);
+
+                if (m.SaveChanges() > 0)
+                {
+                    MessageBox.Show("开台成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Close();
+                    return;
+                }
+
+            }
+
+            //预定状态
+            if (Tb_Founding_account.IsVisible)
+            {
+                string hsid = string.Empty;
+                foreach (var item in RightOc)
+                {
+                    //查看该房台是否存在消费但
+                    var date = m.CW_Consumption.Where(c => c.ID_RoomStage == item.ID_RoomStage && c.Effective == true).FirstOrDefault();
+                    if (date.Equals(null))
+                    {
+                        CW_Consumption c = new CW_Consumption();
+                        c.ID_RoomStage = item.ID_RoomStage;
+                        c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
+                        c.Effective = true;
+                        m.CW_Consumption.Add(c);
+                        m.SaveChanges();
+                    }
+                    //修改房台信息
+                    SYS_RoomStage r = m.SYS_RoomStage.Where(c => c.ID_RoomStage == item.ID_RoomStage && c.State_RoomStage.Trim() == "预定").SingleOrDefault();
+                    r.ID_Guest = null;
+                    r.State_RoomStage = "已用";
+                    m.Entry(r).State = System.Data.Entity.EntityState.Modified;
+
+                }
+                var ID_VIP = m.VIP_Table.Where(c => c.Accounts == Tb_account.Text.Trim()).FirstOrDefault().ID_VIP;
+
+                //修改预定信息
+                YW_Subscribe w = m.YW_Subscribe.Where(c => c.ID_VIP == ID_VIP && c.State_Secrecy == true).SingleOrDefault();
+                w.State_Secrecy = false;
+                m.Entry(w).State = System.Data.Entity.EntityState.Modified;
+                m.SaveChanges();
+
+
+
+                YW_OpenStage o = new YW_OpenStage();
+                o.Number_People = int.Parse(Tb_number_of_people.Text.Trim());//人数
+                o.Number_OpenStage = Tb_odd.Text.Trim();
+                o.ID_VIP = ID_VIP;
+                o.State_Secrecy = true;
+                o.Remark = Tb_postscript.Text.Trim();
+                o.HouseStageID = hsid;
+                o.Time_Predict = Convert.ToDateTime(Tb_Founding_time.Text.Trim());
+                o.Type_CheckIn = "餐饮";
+                o.Content_Message = string.Empty;
+                m.YW_OpenStage.Add(o);
+
+
+
+                if (m.SaveChanges() > 0)
+                {
+                    MessageBox.Show("开台成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Close();
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取消按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -28,5 +28,10 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         {
 
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
