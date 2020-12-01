@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_MvvMTest.View.FoodAndBeverageManagement"
         mc:Ignorable="d"
-        Title="酒店管理系统" 
+        Title="餐饮管理系统" 
         Background="#FFE3EEFD" 
         Loaded="Window_Loaded"
         Height="800"

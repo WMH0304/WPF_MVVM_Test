@@ -276,7 +276,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
         {
             if (!LRS.Equals(null))
             {
-                if (LRS[0].State_RoomStage.Trim() !="开台")
+                if (LRS[0].State_RoomStage.Trim() !="开台" && LRS[0].State_RoomStage.Trim() != "停用")
                 {
                     FABM_founding_consumption f = new FABM_founding_consumption(LRS);
                     f.ShowDialog();

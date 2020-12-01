@@ -18,8 +18,8 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
+
+
         <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
             <Border Width="20"/>
             <TextBlock Text="账号:" FontSize="20" VerticalAlignment="Center" Margin="5,0,0,0"></TextBlock>
@@ -33,7 +33,7 @@
                             <Setter Property="FontStyle" Value="Italic"/>
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="FontSize" Value="15"/>
-                            
+
                             <Setter Property="Width" Value="100"/>
                             <Setter Property="Height" Value="25"/>
                         </Style.Setters>
@@ -47,12 +47,11 @@
                 </TextBox.Resources>
             </TextBox>
 
-            <ComboBox  x:Name="Cb_Founding_account"  VerticalAlignment="Center" Width="90" Height="30" FontSize="15" HorizontalAlignment="Center">
-             
-               
+           
+            <ComboBox   SelectionChanged="Cb_Founding_account_SelectionChanged"  x:Name="Cb_Founding_account"  VerticalAlignment="Center" Width="90" Height="30" FontSize="15" HorizontalAlignment="Center">
             </ComboBox>
             <TextBlock Text="房台号:" FontSize="20"/>
-            <TextBox   Text="sadfasd" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBox x:Name="Tb_Room_table"   VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Style.Setters>
@@ -63,7 +62,7 @@
                             <Setter Property="Foreground" Value="Black"/>
                             <Setter Property="FontSize" Value="15"/>
 
-                            <Setter Property="Width" Value="100"/>
+                            <Setter Property="Width" Value="95"/>
                             <Setter Property="Height" Value="25"/>
                         </Style.Setters>
                     </Style>
@@ -76,8 +75,8 @@
                 </TextBox.Resources>
 
             </TextBox>
-            <TextBlock Text="房台名:" FontSize="20"/>
-            <TextBox   Text="sadfasd" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="房台名:" FontSize="20" Margin="5,0,0,0"/>
+            <TextBox x:Name="Tb_Room_table_name"    VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Style.Setters>
@@ -110,25 +109,25 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="54*"/>
+                <ColumnDefinition Width="54*"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="55*"/>
+                <ColumnDefinition Width="109*"/>
+                <ColumnDefinition Width="55*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1" Text="单号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-            <TextBox Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource Input-Transparent }">
-              
+            <TextBlock Text="单号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Grid.ColumnSpan="2" Margin="34,12,29,10"/>
+            <TextBox x:Name="Tb_odd" Grid.Column="1" FontSize="15"  Grid.ColumnSpan="4" Style="{StaticResource Input-Transparent }" Margin="30,13,54,10" Width="Auto">
+
             </TextBox>
             <TextBlock Grid.ColumnSpan="2" Grid.Column="4" Text="开台时间:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-            <TextBox Grid.Column="6" Style="{StaticResource Input-Transparent }"/>
+            <TextBox Background="Red" Grid.ColumnSpan="2" Width="150" x:Name="Tb_Founding_time" Grid.Column="6" Style="{StaticResource Input-Transparent }"/>
             <TextBlock Grid.Row="1" Grid.Column="1" Text="人数" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-            <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource Input-Transparent }" />
+            <TextBox Name="Tb_number_of_people" Width="50" Grid.Row="1" Grid.Column="2" Style="{StaticResource Input-Transparent }" />
             <TextBlock Grid.Row="1" Grid.Column="3" Text="折扣" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
-            <TextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource Input-Transparent }" />
+            <TextBox x:Name="Tb_discount"  Width="50" Grid.Row="1" Grid.Column="4" Style="{StaticResource Input-Transparent }" />
             <TextBlock Grid.Row="1" Grid.Column="5" Text="市别" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <ComboBox Grid.Row="1" Grid.Column="6" Background="Transparent">
                 <ComboBox.Resources>
@@ -145,25 +144,26 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="协议单位" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
-                <ComboBox Grid.Row="1" Grid.Column="6" Background="Transparent" Width="150">
+                <TextBlock Name="tb_barit_text" Text="协议单位" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+                <TextBox x:Name="Tb_bargaining_unit"  Grid.Row="1" Grid.Column="6" Background="Transparent" Width="150"/>
+                <!--<ComboBox Name="Cb_bargaining_unit" Grid.Row="1" Grid.Column="6" Background="Transparent" Width="150">
                     <ComboBox.Resources>
                         <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="Transparent" />
                         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                     </ComboBox.Resources>
-                </ComboBox>
+                </ComboBox>-->
                 <TextBlock Text="贵宾卡号" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
-                <TextBox Background="Transparent" Width="150"/>
+                <TextBox x:Name="Tb_account" Background="Transparent" Width="150"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="1">
                 <TextBlock Text="备注信息" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Margin="10,0,0,0"/>
                 <TextBox Width="350" Background="Transparent" HorizontalScrollBarVisibility ="Auto" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2">
-                <CheckBox  Margin="60,0,0,0">
+                <CheckBox x:Name="Cb_choice"  Margin="60,0,0,0">
                     <CheckBox.Style>
                         <Style>
-                            
+
                         </Style>
                     </CheckBox.Style>
                 </CheckBox>
@@ -213,7 +213,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </TabItem>
-                
+
             </TabControl>
 
             <TabControl Grid.Column="5">
@@ -237,7 +237,7 @@
                             <DataGridTextColumn Header="房台" Binding="{Binding Number_RoomStage}" Width="1*"/>
                             <DataGridTextColumn  Header="名称" Binding="{Binding MC_RoomStage}" Width="1*"/>
                         </DataGrid.Columns>
-                        
+
                     </DataGrid>
                 </TabItem>
             </TabControl>
@@ -272,9 +272,9 @@
             <TextBlock Grid.Column="2" Text="" VerticalAlignment="Center"  FontSize="20"/>
             <Button Grid.Column="3" Style="{StaticResource btn-success}">保存</Button>
             <Button Grid.Column="4" Style="{StaticResource btn-danger}">取消</Button>
-            
+
         </Grid>
-        
-        
+
+
     </Grid>
 </Window>
