@@ -57,7 +57,7 @@
                     <TextBlock Text="  开台消费"/>
                 </StackPanel>
             </Button>
-            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
+            <Button  x:Name="Bt_Consumption_into_a_single" Click="Bt_Consumption_into_a_single_Click" Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
                 <StackPanel>
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png" ></Image>
                     <TextBlock Text="  消费入单"/>

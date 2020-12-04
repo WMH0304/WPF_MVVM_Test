@@ -121,7 +121,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                 // myBtDynamic.GetButtons += new GetButton(SetBtuuons);
                 if (LRS[i].State_RoomStage.Trim() == "预定")
                 {
-                    myBtDynamic.Background = System.Windows.Media.Brushes.Blue;
+                    myBtDynamic.Background = System.Windows.Media.Brushes.LightSkyBlue;
                 }
                 else if (LRS[i].State_RoomStage.Trim() == "已用")
                 {
@@ -276,7 +276,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
         {
             if (!LRS.Equals(null))
             {
-                if (LRS[0].State_RoomStage.Trim() !="开台" && LRS[0].State_RoomStage.Trim() != "停用")
+                if (LRS[0].State_RoomStage.Trim() != "停用" && LRS[0].State_RoomStage.Trim() != "已用")
                 {
                     FABM_founding_consumption f = new FABM_founding_consumption(LRS);
                     f.ShowDialog();
@@ -284,12 +284,45 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                 }
                 else
                 {
-                    MessageBox.Show("目标房台已开台", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBox.Show("目标房台已开台或者已停用", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 }
             }
             else
             {
                 MessageBox.Show("请选中房台","大海提示",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+            }
+        }
+
+        /// <summary>
+        /// 消费入单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_Consumption_into_a_single_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LRS.Equals(null))
+            {
+                if (LRS[0].State_RoomStage.Trim() == "停用")
+                {
+                    MessageBox.Show("房台已停用", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    return;
+                }
+                if (LRS[0].State_RoomStage.Trim() == "未用" || LRS[0].State_RoomStage.Trim() == "预定")
+                {
+                    MessageBox.Show("房台消费开台之后才能消费入单", "大海提示", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (LRS[0].State_RoomStage.Trim() =="已用")
+                {
+                    FABM_Cost_of_inputs f = new FABM_Cost_of_inputs(LRS);
+                    f.ShowDialog();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选中房台", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             }
         }
 

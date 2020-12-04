@@ -258,6 +258,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
         }
 
+
         /// <summary>
         /// 下拉框改变事件
         /// </summary>
@@ -366,29 +367,51 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         /// <param name="e"></param>
         private void Bt_save_Click(object sender, RoutedEventArgs e)
         {
-            if (Cb_Founding_account.Text.Equals(null) && Tb_Founding_account.Equals(null) && Tb_Room_table.Text.Equals(null) && Tb_Room_table_name.Text.Equals(null) && Tb_odd.Text.Equals(null) && Tb_Founding_time.Text.Equals(null) && Tb_number_of_people.Text.Equals(null) && Tb_discount.Text.Equals(null) && Tb_bargaining_unit.Text.Equals(null) && Tb_account.Text.Equals(null) && Tb_postscript.Text.Equals(null))
+
+            //代码还有整合得空间，算了懒得去搞~
+            if (Cb_Founding_account.Text.Equals(string.Empty) && Tb_Founding_account.Equals(string.Empty) || Tb_Room_table.Text.Equals(string.Empty) || Tb_Room_table_name.Text.Equals(string.Empty) || Tb_odd.Text.Equals(string.Empty) || Tb_Founding_time.Text.Equals(string.Empty) || Tb_number_of_people.Text.Equals(string.Empty) || Tb_discount.Text.Equals(string.Empty)  || Tb_account.Text.Equals(string.Empty) || Tb_postscript.Text.Equals(string.Empty))
             {
                 MessageBox.Show("请将信息填写完整", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            string hsid = string.Empty;
+
             //未定状态 
             if (Cb_Founding_account.IsVisible)
             {
                 int? Guest = m.SYS_Guest.Where(c => c.MC_Guest.Trim() == Cb_Founding_account.Text).SingleOrDefault().ID_AgreementUser;
 
-
-
-
-                string hsid = string.Empty;
+               
                 foreach (var item in RightOc)
                 {
                     hsid += item.ID_RoomStage + ",";
+                    
+                   
+
+                    //消费表
                     CW_Consumption c = new CW_Consumption();
                     c.ID_RoomStage = item.ID_RoomStage;
                     c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
                     c.Effective = true;
                     m.CW_Consumption.Add(c);
                     m.SaveChanges();
+
+                    //账单表
+                    CW_Bill b = new CW_Bill();
+                    b.ID_Bill = c.ID_Consumption;
+                    b.Number_Bill = Tb_odd.Text.Trim();
+                    m.CW_Bill.Add(b);
+                    m.SaveChanges();
+
+                    SYS_RoomStage r = m.SYS_RoomStage.Where(d => d.ID_RoomStage == item.ID_RoomStage).FirstOrDefault();
+                    r.State_RoomStage = "已用";
+                    r.ID_Guest = item.ID_Guest;
+                    m.Entry(r).State = System.Data.Entity.EntityState.Modified;
+                    m.SaveChanges();
+
+                    
+
+
                 };
                 var ID_VIP = m.VIP_Table.Where(c => c.Accounts == Tb_account.Text.Trim()).FirstOrDefault().ID_VIP;
                 YW_OpenStage o = new YW_OpenStage();
@@ -413,13 +436,11 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                     Close();
                     return;
                 }
-
             }
 
             //预定状态
             if (Tb_Founding_account.IsVisible)
-            {
-                string hsid = string.Empty;
+            {           
                 foreach (var item in RightOc)
                 {
                     //查看该房台是否存在消费但
@@ -431,6 +452,12 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                         c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
                         c.Effective = true;
                         m.CW_Consumption.Add(c);
+                        m.SaveChanges();
+
+                        CW_Bill b = new CW_Bill();
+                        b.ID_Bill = c.ID_Consumption;
+                        b.Number_Bill = Tb_odd.Text.Trim();
+                        m.CW_Bill.Add(b);
                         m.SaveChanges();
                     }
                     //修改房台信息
@@ -448,8 +475,6 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                 m.Entry(w).State = System.Data.Entity.EntityState.Modified;
                 m.SaveChanges();
 
-
-
                 YW_OpenStage o = new YW_OpenStage();
                 o.Number_People = int.Parse(Tb_number_of_people.Text.Trim());//人数
                 o.Number_OpenStage = Tb_odd.Text.Trim();
@@ -461,8 +486,6 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                 o.Type_CheckIn = "餐饮";
                 o.Content_Message = string.Empty;
                 m.YW_OpenStage.Add(o);
-
-
 
                 if (m.SaveChanges() > 0)
                 {

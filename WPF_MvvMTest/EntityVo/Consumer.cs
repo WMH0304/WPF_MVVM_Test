@@ -45,6 +45,11 @@ namespace WPF_MvvMTest.EntityVo
         /// 支付方式
         /// </summary>
          public string MethodOfPayment { set; get; }
+        /// <summary>
+        /// 时间
+        /// </summary>
+        public DateTime Time { get; set; }
+        
     }
 
     /// <summary>
