@@ -49,7 +49,12 @@ namespace WPF_MvvMTest.EntityVo
         /// 时间
         /// </summary>
         public DateTime Time { get; set; }
-        
+        /// <summary>
+        /// 赠送否
+        /// </summary>
+        public string presenter { get; set; }
+
+
     }
 
     /// <summary>

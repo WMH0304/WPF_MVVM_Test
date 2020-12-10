@@ -57,6 +57,8 @@
           <Property Name="ID_Consumption" Type="int" />
           <Property Name="ID_PayRecord" Type="int" />
           <Property Name="State_ComsumeDetail" Type="bit" />
+          <Property Name="presenter" Type="bit" />
+          <Property Name="money" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="CW_Consumption">
           <Key>
@@ -141,7 +143,6 @@
             <PropertyRef Name="ID_ProjectDetail" />
           </Key>
           <Property Name="ID_ProjectDetail" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_Class" Type="int" Nullable="false" />
           <Property Name="ID_Project" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
         </EntityType>
@@ -435,7 +436,6 @@
             <PropertyRef Name="ID_ProjectDetail" />
           </Key>
           <Property Name="ID_ProjectDetail" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Class" Type="Int32" Nullable="false" />
           <Property Name="ID_Project" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
@@ -608,6 +608,8 @@
           <Property Name="ID_Consumption" Type="Int32" />
           <Property Name="State_ComsumeDetail" Type="Boolean" />
           <Property Name="ID_PayRecord" Type="Int32" />
+          <Property Name="presenter" Type="Boolean" />
+          <Property Name="money" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -750,7 +752,6 @@
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.PJ_ProjectDetail">
               <MappingFragment StoreEntitySet="PJ_ProjectDetail">
                 <ScalarProperty Name="ID_ProjectDetail" ColumnName="ID_ProjectDetail" />
-                <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
                 <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
@@ -905,6 +906,8 @@
           <EntitySetMapping Name="CW_ConsumeDetail">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_ConsumeDetail">
               <MappingFragment StoreEntitySet="CW_ConsumeDetail">
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="presenter" ColumnName="presenter" />
                 <ScalarProperty Name="ID_PayRecord" ColumnName="ID_PayRecord" />
                 <ScalarProperty Name="State_ComsumeDetail" ColumnName="State_ComsumeDetail" />
                 <ScalarProperty Name="ID_Consumption" ColumnName="ID_Consumption" />

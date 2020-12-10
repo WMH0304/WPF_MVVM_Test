@@ -7,39 +7,53 @@
         mc:Ignorable="d"
         Title="结账买单" 
          Background="#FFE3EEFD" 
+        Loaded="Window_Loaded"
         Height="550"
         Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="30*" /><!--//房台信息-->
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="30*" /><!--//客人账户-->
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="30*" /><!--开台时间-->
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="30*" /><!--备注信息-->
-            <RowDefinition Height="5*" />
-            
-            <RowDefinition Height="30*"/><!--账号信息-->
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="30*"/><!--累计消费-->
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="30*"/><!--宾客支付-->
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="30*" /><!--结账备注-->
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="400*"/><!--下半部分-->
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="22" />
+            <!--//房台信息-->
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="22*" />
+            <!--//客人账户-->
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="23*" />
+            <!--开台时间-->
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="22*" />
+            <!--备注信息-->
+            <RowDefinition Height="4*" />
+
+            <RowDefinition Height="23*"/>
+            <!--账号信息-->
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="23*"/>
+            <!--累计消费-->
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="23*"/>
+            <!--宾客支付-->
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="22*" />
+            <!--结账备注-->
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="303*"/>
+            <!--下半部分-->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/><!--客人账号-->
+            <ColumnDefinition Width="30*"/>
+            <!--客人账号-->
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/><!--客人内容-->
+            <ColumnDefinition Width="30*"/>
+            <!--客人内容-->
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/><!--主房台-->
+            <ColumnDefinition Width="30*"/>
+            <!--主房台-->
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/><!--内容-->
+            <ColumnDefinition Width="30*"/>
+            <!--内容-->
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="30*"/>
             <!--房台名称-->
@@ -63,9 +77,9 @@
 
         <TextBlock Text="房台信息" Foreground="#177cb0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-       
+
         <TextBlock Grid.Row="3" Grid.Column="1" Text="客人账号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="Tb_The_guest_account" />
 
         <TextBlock Grid.Row="3" Grid.Column="5" Text="主房台号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -81,7 +95,7 @@
 
         <TextBlock Grid.Row="5" Grid.Column="1" Text="开台时间:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3"/>
-        
+
         <TextBlock Grid.Row="5" Grid.Column="7" Text="买单时间:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="3"/>
 
@@ -104,7 +118,7 @@
 
             <TextBox.Style>
                 <Style>
-                    
+
                 </Style>
             </TextBox.Style>
             <TextBox.Resources>
@@ -113,7 +127,7 @@
                     <Setter Property="BorderBrush" Value="#c1d0dc"/>
                 </Style>
             </TextBox.Resources>
-            
+
         </TextBox>
 
         <TextBlock Grid.Row="11" Grid.Column="5" Text="已收定金：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -144,7 +158,7 @@
                     <Setter Property="BorderBrush" Value="#c1d0dc"/>
                 </Style>
             </TextBox.Resources>
-            
+
         </TextBox>
 
         <TextBlock Grid.Row="15" Grid.Column="1" Text="结账备注：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -194,7 +208,7 @@
             </TextBox.Resources>
         </TextBox>
 
-        <Button Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="人民币结账">
+        <Button Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="人民币结账" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -204,8 +218,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        
-        <Button Grid.Row="11" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="打印账单">
+
+        <Button Grid.Row="11" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="打印账单" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -215,8 +229,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        
-        <Button Grid.Row="13" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="多种方式结账">
+
+        <Button Grid.Row="13" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="多种方式结账" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -226,8 +240,8 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        
-        <Button Grid.Row="13" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="消费入账">
+
+        <Button Grid.Row="13" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="消费入账" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -262,7 +276,7 @@
                     </TreeView.ItemTemplate>
                 </TreeView>
             </TabItem>
-            
+
         </TabControl>
 
         <TabControl Grid.Row="17" Grid.Column="5" Grid.ColumnSpan="15">
@@ -316,7 +330,7 @@
                         </Setter>
                     </Style>
                 </TabItem.Style>-->
-               
+
                 <!--<TabItem.Template>
                     <ControlTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -325,8 +339,8 @@
 
                     </ControlTemplate>
                 </TabItem.Template>-->
-                
-                
+
+
                 <DataGrid Name="DgDateAll" ItemsSource="{Binding}"   Visibility="Visible"  IsReadOnly="False" AutoGenerateColumns="False" CanUserResizeColumns="False" 
                       CanUserResizeRows="False" SelectionMode="Single" CanUserReorderColumns="False"
                       AlternationCount="2" RowHeaderWidth="0" CanUserAddRows="False"  

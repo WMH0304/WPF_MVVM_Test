@@ -7,11 +7,16 @@ using System.Threading.Tasks;
 
 namespace WPF_MvvMTest.Tools
 {
+    /// <summary>
+    /// 我的工具类
+    /// </summary>
    static class Tools
     {
+       
+
 
         /// <summary>
-        /// 限制输入数字
+        /// 1.限制输入数字
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
@@ -22,20 +27,22 @@ namespace WPF_MvvMTest.Tools
             //System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^[0-9]*$");
             //return reg1.IsMatch(str);
         }
+
+
         /// <summary>
-        /// 限制折扣正则
+        /// 2.限制折扣正则
         /// </summary> 只能输入0-1之间的两个小数,比如 0.0.~ 0.99
         /// /// <param name="str"></param>
         /// <returns></returns>/^(0|[1-9]\d*)(\s|$|.\d{1,2}\b)/ 
         public static bool IsDiscount(string str)
         {
-            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^(?:0(?:\.(?!00)[0-9]{2})?|1.00)$");
+            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^((0\.[1-9]{1})|(([1-9]{1})(\.\d{1})?))$");
             return reg1.IsMatch(str);
           
         }
 
         /// <summary>
-        /// 限制输入正整数
+        /// 3.限制输入正整数
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -46,7 +53,7 @@ namespace WPF_MvvMTest.Tools
         }
 
         /// <summary>
-        /// 判断是否是字母
+        /// 4.判断是否是字母
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -56,5 +63,7 @@ namespace WPF_MvvMTest.Tools
 
             return regex.IsMatch(str);
         }
+
+        
     }
 }

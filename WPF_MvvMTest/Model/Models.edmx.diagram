@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="86fd54116ee34ad18349597a06643986" Name="Diagram1" ZoomLevel="86" ShowGrid="true">
-        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementClass" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementClass" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementStagePrice" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.AG_AgreementUser" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_Bill" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />

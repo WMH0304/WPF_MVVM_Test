@@ -326,6 +326,41 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
             }
         }
 
+        /// <summary>
+        /// 结账买单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Bt_pay_the_bill_Click(object sender, RoutedEventArgs e)
+        {
+            if (!LRS.Equals(null))
+            {
+                if (LRS[0].State_RoomStage.Trim() == "停用")
+                {
+                    MessageBox.Show("房台已停用", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    return;
+                }
+                if (LRS[0].State_RoomStage.Trim() == "未用" || LRS[0].State_RoomStage.Trim() == "预定")
+                {
+                    MessageBox.Show("房台消费开台之后才能结账买单", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (LRS[0].State_RoomStage.Trim() == "已用")
+                {
+                    FABM_Pay_the_bill f = new FABM_Pay_the_bill(LRS);
+                    f.ShowDialog();
+
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("请选中房台", "大海提示", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            }
+        }
+
 
 
 

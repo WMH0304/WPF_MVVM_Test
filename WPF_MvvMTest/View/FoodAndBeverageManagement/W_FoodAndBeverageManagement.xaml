@@ -63,7 +63,7 @@
                     <TextBlock Text="  消费入单"/>
                 </StackPanel>
             </Button>
-            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent">
+            <Button Width="100" Height="120" Background="Transparent" BorderBrush="Transparent" Name="Bt_pay_the_bill" Click="Bt_pay_the_bill_Click" >
                 <StackPanel>
                     <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\png-0222.png" ></Image>
                     <TextBlock Text="  结账买单"/>

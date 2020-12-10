@@ -295,6 +295,8 @@
                             <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
                             <DataGridTextColumn  Header="单位" Binding="{Binding Unit}" Width="auto"/>
                             <DataGridTextColumn  Header="金额" Binding="{Binding Price}" Width="auto"/>
+                            
+                            <DataGridTextColumn  Header="赠送否" Binding="{Binding presenter}" Width="auto"/>
                             <DataGridTextColumn  Header="时间" Binding="{Binding Time,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Width="auto"/>
 
                         </DataGrid.Columns>
@@ -344,6 +346,7 @@
                 <Button Grid.Column="5" Grid.Row="1" Height="28" Width="90" Content="删除消费" Name="Bt_Delete_the_consumption" Click="Bt_addition_Click"/>
                 <Button Grid.Column="7" Grid.Row="1" Height="28" Width="90" Content="结账买单" Name="Bt_settle_accounts" Click="Bt_addition_Click"/>
                 <Button Grid.Column="1" Grid.Row="3" Height="28" Width="90"  Content="消费转单" Name="Bt_Consumer_turn_single" Click="Bt_addition_Click"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Height="28" Width="90"  Visibility="Hidden"  Name="Tb_discount"/>
                 <Button Grid.Column="3" Grid.Row="3" Height="28" Width="90" Content="打折" Name="Bt_discount" Click="Bt_addition_Click"/>
                 <Button Grid.Column="5" Grid.Row="3" Height="28" Width="90" Content="单项打折" Name="Bt_Single_item_at_a_discount" Click="Bt_addition_Click"/>
                 <Button Grid.Column="7" Grid.Row="3" Height="28" Width="90" Content="关闭窗口" Name="Bt_close_the_window" Click="Bt_addition_Click"/>

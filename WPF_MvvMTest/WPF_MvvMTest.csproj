@@ -188,6 +188,7 @@
     <Compile Include="Resources\UC_TabItemWidthClose.xaml.cs">
       <DependentUpon>UC_TabItemWidthClose.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Common_means.cs" />
     <Compile Include="Tools\Tools.cs" />
     <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Cost_of_inputs.xaml.cs">
       <DependentUpon>FABM_Cost_of_inputs.xaml</DependentUpon>

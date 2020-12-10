@@ -15,7 +15,6 @@ namespace WPF_MvvMTest.Model
     public partial class PJ_ProjectDetail
     {
         public decimal ID_ProjectDetail { get; set; }
-        public int ID_Class { get; set; }
         public int ID_Project { get; set; }
         public decimal Price { get; set; }
     }
