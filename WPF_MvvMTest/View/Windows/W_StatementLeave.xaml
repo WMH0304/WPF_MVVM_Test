@@ -103,8 +103,9 @@
         <!--结账房台-->
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="132*"/>
+                <ColumnDefinition Width="563*"/>
+                <ColumnDefinition Width="97*"/>
             </Grid.ColumnDefinitions>
             <StackPanel >
                 <TabControl Height="324">
@@ -123,7 +124,7 @@
                     </TabItem>
                 </TabControl>
             </StackPanel>
-            <StackPanel Grid.Column="1" >
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" >
                 <TabControl>
                     <TabItem Header="全部记录" RenderTransformOrigin="0.5,0.5">
                         <TabItem.RenderTransform>
@@ -158,6 +159,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
+
                     <TabItem Header="消费记录">
 
                         <DataGrid Name="DgRecordsOfConsumption" ItemsSource="{Binding}"   Visibility="Visible"  IsReadOnly="False" AutoGenerateColumns="False" CanUserResizeColumns="False" 

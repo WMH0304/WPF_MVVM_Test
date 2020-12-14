@@ -124,6 +124,8 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
             // var right = from tbc in m.CW_ConsumeDetail
             #endregion
             //右边表格数据获取
+            Dg_right_data.ItemsSource = null;
+
             Get_data_right();
 
             //DGTC_accruing_amounts.Header = op.Where(c => c.presenter == "否").Select(p => p.Price).ToList().Sum();
@@ -474,7 +476,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         {
             string str = Tb_Consumption_quantity.Text.Trim();
 
-            if (WPF_MvvMTest.Tools.Tools.IsInteger(str))
+            if (!WPF_MvvMTest.Tools.Tools.IsInteger(str))
             {
                 MessageBox.Show("请输入正整数", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -486,15 +488,17 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                 try
                 {
                     //  int ID_cp = m.CW_Consumption.Where(c => c.ID_RoomStage == ID_Room && c.Effective == true).SingleOrDefault().ID_Consumption;
+                    decimal mymoney = 0;
                     for (int i = 0; i < count; i++)
                     {
                         //添加消费明细
                         CW_ConsumeDetail c = new CW_ConsumeDetail();
                         c.ID_Project = projects[0].ID_Project;
                         c.ID_Consumption = ID_consumption;
-                        c.ID_PayRecord = 0;
+                        c.ID_PayRecord = null;
                         c.State_ComsumeDetail = true;
                         c.money = projects[0].Price;
+                        mymoney += projects[0].Price; 
                         m.CW_ConsumeDetail.Add(c);
                         op.Add(projects[0]);
 
@@ -502,7 +506,9 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
                     CW_Consumption cc = m.CW_Consumption.Where(c => c.ID_Consumption == ID_consumption && c.Effective == true).SingleOrDefault();
 
-                    cc.Prict = m.CW_Consumption.Where(c => c.ID_RoomStage == ID_Room && c.Effective == true).Single().Prict > 0 ? m.CW_Consumption.Where(c => c.ID_RoomStage == ID_Room && c.Effective == true).Single().Prict : op.Where(c => c.presenter == "否").Select(p => p.Price).ToList().Sum();
+
+                    cc.Prict = mymoney;
+                    //cc.Prict = m.CW_Consumption.Where(c => c.ID_RoomStage == ID_Room && c.Effective == true).Single().Prict > 0 ? m.CW_Consumption.Where(c => c.ID_RoomStage == ID_Room && c.Effective == true).Single().Prict : op.Where(c => c.presenter == "否").Select(p => p.Price).ToList().Sum();
                     //消费总金额
                     // DGTC_accruing_amounts.Header = op.Where(c => c.presenter == "否").Select(p => p.Price).ToList().Sum();
 

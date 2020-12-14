@@ -100,7 +100,6 @@ namespace WPF_MvvMTest.View
                 });
             }
 
-
             WPF_MvvMTest.View.Windows.W_Print_DataDetail w = 
                 new Windows.W_Print_DataDetail("FlowDocument.xaml", pd, new OrderDocumentRenderer());
             w.Owner = this;

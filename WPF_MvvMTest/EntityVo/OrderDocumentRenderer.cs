@@ -71,6 +71,8 @@ namespace WPF_MvvMTest.EntityVo
                 //将行元素添加到表格流元素中
                 group.Rows.Add(row);
             }
+            
+
         }
     }
 }

@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:WPF_MvvMTest.View.FoodAndBeverageManagement.Windows"
         mc:Ignorable="d"
         Title="结账买单" 
-         Background="#FFE3EEFD" 
+        Background="#FFE3EEFD" 
         Loaded="Window_Loaded"
+        
         Height="550"
-        Width="800">
+        Width="850">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*" />
@@ -42,79 +43,80 @@
             <!--下半部分-->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--客人账号-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--客人内容-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--主房台-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--内容-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--房台名称-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--房台名称内容-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--房台单号-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
             <!--房台单号内容-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="73*"/>
             <!--市别-->
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="2*"/>
             <!--市别内容-->
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="房台信息" Foreground="#177cb0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="房台信息" Foreground="#177cb0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="17,3,16,3"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Width="30" Height="30" VerticalAlignment="Center"  HorizontalAlignment="Center" />
 
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="客人账号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="Tb_The_guest_account" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="客人账号:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,3"/>
+        <Label Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Name="Tb_The_guest_account"  />
 
-        <TextBlock Grid.Row="3" Grid.Column="5" Text="主房台号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="主房台号:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,3"/>
+        <TextBlock Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Tb_The_main_room_number" />
 
-        <TextBlock Grid.Row="3" Grid.Column="9" Text="房台名称:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="11" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="9" Text="房台名称:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,3"/>
+        <TextBlock Grid.Row="3" Grid.Column="11" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Tb_Room_table_name" />
 
-        <TextBlock Grid.Row="3" Grid.Column="13" Text="房台单号:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="13" Text="房台单号:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,3"/>
+        <TextBlock Grid.Row="3" Grid.Column="15" HorizontalAlignment="Center" Text="" VerticalAlignment="Center" Name="Tb_Room_with_a_single_number" />
 
-        <TextBlock Grid.Row="3" Grid.Column="17" Text="市别:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="3" Grid.Column="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="3" Grid.Column="18" Text="市别:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="19,3,27,3"/>
+        <TextBlock Grid.Row="3" Grid.Column="20" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <TextBlock Grid.Row="5" Grid.Column="1" Text="开台时间:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="开台时间:" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="15,0,15,3"/>
+        <TextBlock Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3"     Name="Tb_Founding_time" />
 
-        <TextBlock Grid.Row="5" Grid.Column="7" Text="买单时间:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="3"/>
+        <TextBlock Grid.Row="5" Grid.Column="7" Text="买单时间:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,4,15,3"/>
+        <TextBlock Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Tb_The_check_time" />
 
-        <TextBlock Grid.Row="5" Grid.Column="13" Text="时长:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="5" Grid.Column="15" />
+        <TextBlock Grid.Row="5" Grid.Column="13" Text="时长:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="27,4,27,3"/>
+        <TextBlock Grid.Row="5" Grid.Column="15" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Tb_duration"  />
 
-        <TextBlock Grid.Row="5" Grid.Column="17" Text="房台状态:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="5" Grid.Column="19" />
+        <TextBlock Grid.Row="5" Grid.Column="18" Text="房台状态:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,4,15,3"/>
+        <TextBlock Grid.Row="5" Grid.Column="20" Name="Tb_condition"  HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <TextBlock Grid.Row="7" Grid.Column="1" Text="备注信息:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="13" />
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="备注信息:" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="15,0,15,3"/>
+        <TextBlock Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="13" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Tb_postscript"  />
 
-        <TextBlock Grid.Row="7" Grid.Column="17" Text="折扣：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="7" Grid.Column="19" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="7" Grid.Column="18" Text="折扣：" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15,3,22,3"/>
+        <TextBlock Grid.Row="7" Grid.Column="20" VerticalAlignment="Center" HorizontalAlignment="Center" Name="Tb_discount" />
 
-        <TextBlock Grid.Row="9" Grid.Column="1" Text="财务信息" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#177cb0"/>
+        <TextBlock Grid.Row="9" Grid.Column="1" Text="财务信息" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#177cb0" />
 
-        <TextBlock Grid.Row="11" Grid.Column="1" Text="累计消费：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="11"  Grid.Column="3"  Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center" >
+        <TextBlock Grid.Row="11" Grid.Column="1" Text="累计消费：" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox x:Name="Tb_accruing_amounts" Grid.Row="11"  Grid.Column="3"  Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center"  >
 
             <TextBox.Style>
                 <Style>
@@ -130,8 +132,8 @@
 
         </TextBox>
 
-        <TextBlock Grid.Row="11" Grid.Column="5" Text="已收定金：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="11" Grid.Column="7" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="11" Grid.Column="5" Text="已收定金：" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="11,4,10,3"/>
+        <TextBox Grid.Row="11" Name="Tb_received_the_deposit" Grid.Column="7" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,2,6,1">
             <TextBox.Style>
                 <Style>
 
@@ -145,24 +147,8 @@
             </TextBox.Resources>
         </TextBox>
 
-        <TextBlock Grid.Row="11" Grid.Column="9" Text="余额：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="11" Grid.Column="11" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox.Style>
-                <Style>
-
-                </Style>
-            </TextBox.Style>
-            <TextBox.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="2"/>
-                    <Setter Property="BorderBrush" Value="#c1d0dc"/>
-                </Style>
-            </TextBox.Resources>
-
-        </TextBox>
-
-        <TextBlock Grid.Row="15" Grid.Column="1" Text="结账备注：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="15" Width="620"  Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="11" Grid.Column="9" Text="余额：" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="23,0,22,3"/>
+        <TextBox Grid.Row="11"  Name="Tb_balance" Grid.Column="11" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,2,6,1">
             <TextBox.Style>
                 <Style>
 
@@ -177,9 +163,29 @@
 
         </TextBox>
 
+        <TextBlock Grid.Row="13" Grid.Column="9" Text="结账方式：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <ComboBox  Grid.Row="13" Grid.Column="11" Height="20" x:Name="Cb_payment_method" IsEnabled="False" Style="{StaticResource  BaseStyle}"/>
 
-        <TextBlock Grid.Row="13" Grid.Column="1" Text="宾客支付：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="13" Grid.Column="3" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <TextBlock Grid.Row="15" Grid.Column="1" Text="结账备注：" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,3"/>
+        <TextBox Grid.Row="15" Name="Tb_comment" Grid.Column="3" Grid.ColumnSpan="16" Width="620"  Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="25,1,24,1">
+            <TextBox.Style>
+                <Style>
+
+                </Style>
+            </TextBox.Style>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="2"/>
+                    <Setter Property="BorderBrush" Value="#c1d0dc"/>
+                </Style>
+            </TextBox.Resources>
+
+        </TextBox>
+
+
+        <TextBlock Grid.Row="13" Grid.Column="1" Text="宾客支付："  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,4,10,3"/>
+        <TextBox x:Name="Tb_guests_pay"  Grid.Row="13" Grid.Column="3" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5,1,6,0">
             <TextBox.Style>
                 <Style>
 
@@ -193,8 +199,8 @@
             </TextBox.Resources>
         </TextBox>
 
-        <TextBlock Grid.Row="13" Grid.Column="5" Text="余额：" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="13" Grid.Column="7" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Grid.Row="13" Grid.Column="5" Width="70" Height="20" Text="  待付余额：" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBox Grid.Row="13" Name="Tb_to_pay_the_balance" Grid.Column="7" Width="70" Height="20" Background="#99CCFF" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5,1,6,0" SelectionChanged="TextBox_SelectionChanged">
             <TextBox.Style>
                 <Style>
 
@@ -208,7 +214,7 @@
             </TextBox.Resources>
         </TextBox>
 
-        <Button Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="人民币结账" Click="Button_Click">
+        <Button Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="人民币结账" Click="Button_Click" Margin="33,2,32,1">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -219,7 +225,7 @@
             </Button.Template>
         </Button>
 
-        <Button Grid.Row="11" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="打印账单" Click="Button_Click">
+        <Button Grid.Row="11" Grid.Column="18" Grid.ColumnSpan="3" Height="20" Width="100" Content="打印账单" Click="Button_Click" Margin="25,2,32,1">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -230,7 +236,7 @@
             </Button.Template>
         </Button>
 
-        <Button Grid.Row="13" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="多种方式结账" Click="Button_Click">
+        <Button Grid.Row="13" Grid.Column="13" Grid.ColumnSpan="3" Height="20" Width="100" Content="多种方式结账" Click="Button_Click" Margin="33,0,32,2" VerticalAlignment="Bottom">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -241,7 +247,7 @@
             </Button.Template>
         </Button>
 
-        <Button Grid.Row="13" Grid.Column="17" Grid.ColumnSpan="3" Height="20" Width="100" Content="消费入账" Click="Button_Click">
+        <Button Grid.Row="13" Grid.Column="18" Grid.ColumnSpan="3" Height="20" Width="100" Content="消费入账" Click="Button_Click" Margin="25,1,32,2">
             <Button.Template>
                 <ControlTemplate>
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="2,2,2,2">
@@ -252,11 +258,13 @@
             </Button.Template>
         </Button>
         <TabControl Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="3"  Background="Transparent">
-            <TabItem Header="结账房台">
-                <TreeView x:Name="treeView" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,-10,0,0"
+            <TabItem Header="结账房台" Background="Red">
+                <TreeView SelectedItemChanged="treeView_SelectedItemChanged" Width="150" x:Name="treeView" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,3,0,0"
            ItemsSource="{Binding ItemTreeDataList}" BorderThickness="0">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
+
+
                             <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
                             <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
                             <Setter Property="Foreground" Value="Blue"/>
@@ -266,12 +274,16 @@
                                     <Setter Property="FontWeight" Value="Bold" />
                                 </Trigger>
                             </Style.Triggers>
+
+
                         </Style>
+
+
                     </TreeView.ItemContainerStyle>
 
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                            <TextBlock x:Name="treeViewItemTB" Text="{Binding itemName}" Tag="{Binding itemId}"/>
+                        <HierarchicalDataTemplate >
+                            <TextBlock x:Name="treeViewItemTB" Text="{Binding name}" Tag="{Binding id}"/>
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
@@ -279,7 +291,7 @@
 
         </TabControl>
 
-        <TabControl Grid.Row="17" Grid.Column="5" Grid.ColumnSpan="15">
+        <TabControl Grid.Row="17" Grid.Column="5" Grid.ColumnSpan="16">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -346,8 +358,6 @@
                       AlternationCount="2" RowHeaderWidth="0" CanUserAddRows="False"  
                       ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <DataGrid.Columns>
-
-
 
                         <DataGridTextColumn Visibility="Collapsed" Binding="{Binding  ID_Fangtai}"/>
                         <DataGridTextColumn Visibility="Collapsed" Binding="{Binding  ID_Project}"/>

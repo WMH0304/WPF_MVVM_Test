@@ -385,24 +385,30 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                 foreach (var item in RightOc)
                 {
                     hsid += item.ID_RoomStage + ",";
-                    
-                   
+
+
+                    //账单表
+                    CW_Bill b = new CW_Bill();
+                    //b.ID_Bill = c.ID_Consumption;
+                    b.Number_Bill = Tb_odd.Text.Trim();
+                    m.CW_Bill.Add(b);
+                    m.SaveChanges();
+                  
 
                     //消费表
                     CW_Consumption c = new CW_Consumption();
                     c.ID_RoomStage = item.ID_RoomStage;
+                    /// c.ID_Bill = b.ID_Bill;
+                    //c.ID_Bill = m.CW_Bill.AsEnumerable().Last().ID_Bill;//查询表格中最后一条数据
+                    c.ID_Bill = m.CW_Bill.Where(t => t.Number_Bill == Tb_odd.Text.Trim()
+                    && t.State_Bill == null).Single().ID_Bill;
                     c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
                     c.Effective = true;
                     m.CW_Consumption.Add(c);
                     m.SaveChanges();
 
-                    //账单表
-                    CW_Bill b = new CW_Bill();
-                    b.ID_Bill = c.ID_Consumption;
-                    b.Number_Bill = Tb_odd.Text.Trim();
-                    m.CW_Bill.Add(b);
-                    m.SaveChanges();
-
+                    
+                    //房台
                     SYS_RoomStage r = m.SYS_RoomStage.Where(d => d.ID_RoomStage == item.ID_RoomStage).FirstOrDefault();
                     r.State_RoomStage = "已用";
                     r.ID_Guest = item.ID_Guest;
@@ -414,6 +420,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
 
                 };
                 var ID_VIP = m.VIP_Table.Where(c => c.Accounts == Tb_account.Text.Trim()).FirstOrDefault().ID_VIP;
+                //预约
                 YW_OpenStage o = new YW_OpenStage();
                 o.Number_People = int.Parse(Tb_number_of_people.Text.Trim());//人数
                 o.Number_OpenStage = Tb_odd.Text.Trim();
@@ -447,18 +454,22 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                     var date = m.CW_Consumption.Where(c => c.ID_RoomStage == item.ID_RoomStage && c.Effective == true).FirstOrDefault();
                     if (date.Equals(null))
                     {
+                        CW_Bill b = new CW_Bill();
+                      //  b.ID_Bill = c.ID_Consumption;
+                        b.Number_Bill = Tb_odd.Text.Trim();
+                        m.CW_Bill.Add(b);
+                        m.SaveChanges();
+
                         CW_Consumption c = new CW_Consumption();
                         c.ID_RoomStage = item.ID_RoomStage;
                         c.Discount = Convert.ToDecimal(Tb_discount.Text.Trim());
+                        c.ID_Bill = m.CW_Bill.Where(t => t.Number_Bill == Tb_odd.Text.Trim()
+                   && t.State_Bill == null).Single().ID_Bill;
                         c.Effective = true;
                         m.CW_Consumption.Add(c);
                         m.SaveChanges();
 
-                        CW_Bill b = new CW_Bill();
-                        b.ID_Bill = c.ID_Consumption;
-                        b.Number_Bill = Tb_odd.Text.Trim();
-                        m.CW_Bill.Add(b);
-                        m.SaveChanges();
+                        
                     }
                     //修改房台信息
                     SYS_RoomStage r = m.SYS_RoomStage.Where(c => c.ID_RoomStage == item.ID_RoomStage && c.State_RoomStage.Trim() == "预定").SingleOrDefault();

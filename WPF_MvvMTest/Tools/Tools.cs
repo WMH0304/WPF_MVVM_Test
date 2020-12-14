@@ -48,7 +48,7 @@ namespace WPF_MvvMTest.Tools
         /// <returns></returns>
         public static bool IsInteger(string str)
         {
-            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(@"^([0-9]{1,}[.][0-9]*)$");
+            System.Text.RegularExpressions.Regex reg1 = new System.Text.RegularExpressions.Regex(/*@"^([0-9]{1,}[.][0-9]*)$"*/ @"^[0-9]*$");
             return reg1.IsMatch(str);
         }
 

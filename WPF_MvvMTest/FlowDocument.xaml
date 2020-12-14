@@ -3,7 +3,7 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              ColumnWidth="400" FontSize="14" FontFamily="Georgia">
+              ColumnWidth="800" FontSize="14" FontFamily="Georgia">
     <FlowDocument.Resources>
         <Style TargetType="Table" x:Key="BorderedTable">
             <Setter Property="CellSpacing" Value="0"></Setter>
@@ -27,7 +27,6 @@
             <TableColumn Width="250"></TableColumn>
         </Table.Columns>
         <TableRowGroup>
-            
             <TableRow>
                 <TableCell>
                     <Paragraph>
@@ -97,6 +96,139 @@
                 </TableCell>
             </TableRow>
             
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        时长
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding sc}"></Run>
+                    </Paragraph>
+                </TableCell>
+
+                <TableCell>
+                    <Paragraph>
+                        折扣
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding zhekou}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        备注
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding beizhu}"></Run>
+                    </Paragraph>
+                </TableCell>
+
+                <TableCell>
+                    <Paragraph>
+                       累计金额
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding leijijine}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        已收定金
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding yishoudingj}"></Run>
+                    </Paragraph>
+                </TableCell>
+
+                <TableCell>
+                    <Paragraph>
+                        余额
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding yve}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+            
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        宾客支付
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding bkzf}"></Run>
+                    </Paragraph>
+                </TableCell>
+
+                <TableCell>
+                    <Paragraph>
+                       待付金额
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding dfje}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        结账方式
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding jzfs}"></Run>
+                    </Paragraph>
+                </TableCell>
+
+                <TableCell>
+                    <Paragraph>
+                        结账备注
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding jzbz}"></Run>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell>
+                    <Paragraph>
+                        房台单号
+                    </Paragraph>
+                </TableCell>
+                <TableCell>
+                    <Paragraph>
+                        <Run Text="{Binding ftdh}"/>
+                    </Paragraph>
+                </TableCell>
+            </TableRow>
+
+
         </TableRowGroup>
     </Table>
     
@@ -112,6 +244,7 @@
             <TableColumn  Width="100"></TableColumn>
             <TableColumn  Width="100"></TableColumn>
         </Table.Columns>
+        
         <TableRowGroup Name="rowsDetails">
             <TableRow FontWeight="Bold">
                 <TableCell Style="{StaticResource BorderedCell}">
@@ -143,13 +276,15 @@
                 <TableCell Style="{StaticResource BorderedCell}">
                     <Paragraph>支付方式</Paragraph>
                 </TableCell>
+                
+                
 
             </TableRow>
         </TableRowGroup>
     </Table>
     <Paragraph FontSize="16">
         <Run>总共费用：</Run>
-        <Run Text="{Binding TotalPrice, Mode=OneWay}"></Run>
+        <Run Text="{Binding leijijine, Mode=OneWay}"></Run>
     </Paragraph>
 
 </FlowDocument>

@@ -71,7 +71,6 @@ namespace WPF_MvvMTest.View.Windows
             return doc;
         }
 
-
         /// <summary>
         /// 打印内存块
         /// </summary>
@@ -91,7 +90,6 @@ namespace WPF_MvvMTest.View.Windows
             XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
 
             writer.Write(((IDocumentPaginatorSource)m_doc).DocumentPaginator);
-
 
             //获取这个基于内存的xps document的fixed document
             docViewer.Document = xpsDocument.GetFixedDocumentSequence();

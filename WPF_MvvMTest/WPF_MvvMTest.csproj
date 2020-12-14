@@ -199,6 +199,9 @@
     <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml.cs">
       <DependentUpon>FABM_Pay_the_bill.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_printer.xaml.cs">
+      <DependentUpon>FABM_printer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FoodAndBeverageManagement\Windows\FABM_Room_table_reservation.xaml.cs">
       <DependentUpon>FABM_Room_table_reservation.xaml</DependentUpon>
     </Compile>
@@ -355,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FoodAndBeverageManagement\Windows\FABM_printer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
