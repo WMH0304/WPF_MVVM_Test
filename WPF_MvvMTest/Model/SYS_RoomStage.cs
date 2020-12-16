@@ -22,5 +22,6 @@ namespace WPF_MvvMTest.Model
         public string State_RoomStage { get; set; }
         public string Describe { get; set; }
         public int JionSign { get; set; }
+        public string room_type { get; set; }
     }
 }

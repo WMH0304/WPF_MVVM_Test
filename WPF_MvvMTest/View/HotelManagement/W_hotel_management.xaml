@@ -1,0 +1,209 @@
+﻿<Window x:Class="WPF_MvvMTest.View.HotelManagement.W_hotel_management"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest.View.HotelManagement"
+        mc:Ignorable="d"
+        Title="酒店管理"
+        Height="900"
+        Background="Gray"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="909*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="实时房态"></Button>
+            <Button Grid.Column="3" Content="客人预定"></Button>
+            <Button Grid.Column="5" Content="客人登记"></Button>
+            <Button Grid.Column="7" Content="客人续住"></Button>
+            <Button Grid.Column="9" Content="消费入单"></Button>
+            <Button Grid.Column="11" Content="账务处理"></Button>
+            <Button Grid.Column="13" Content="客人查询"></Button>
+            <Button Grid.Column="15" Content="房台修改"></Button>
+            <Button Grid.Column="17" Content="未来房态"></Button>
+            <Button Grid.Column="19" Content="门锁处理"></Button>
+            <Button Grid.Column="21" Content="电话查询"></Button>
+            <Button Grid.Column="23" Content="推出系统"></Button>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5"/>
+                
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="实时房态图" VerticalAlignment="Center" FontSize="27" FontFamily="楷体" Foreground="SkyBlue"/>
+                <WrapPanel Grid.Row="1" Background="Wheat">
+
+                    <WrapPanel Name="Wp_Room_table_diagram_display">
+                        
+                    </WrapPanel>
+
+                    <Button Width="100" Height="100" Margin="15" Background="#39b54a" Name="btAddButton">
+                        <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
+                    </Button>
+                </WrapPanel>
+                
+                
+            </Grid>
+            
+            <Grid Grid.Column="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                     <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock   Text="当前客房" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="Blue"/>
+                <TextBox  Grid.Row="2" Style="{StaticResource input-sm}"/>
+                <StackPanel Grid.Row="4" Orientation="Horizontal">
+                    <ComboBox Style="{StaticResource BaseStyle}" Width="100"/>
+                    <Label Width="10"/>
+                    <ComboBox Style="{StaticResource BaseStyle}" Width="120"/>
+                </StackPanel>
+                <StackPanel Grid.Row="6" Orientation="Horizontal">
+                    <TextBlock Text="   全部" Foreground="White" Background="Red" VerticalAlignment="Center" FontSize="25" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Red" VerticalAlignment="Center" FontSize ="25"/>
+                </StackPanel>
+                <StackPanel Grid.Row="8" Orientation="Horizontal">
+                    <TextBlock Text="  空净房" Foreground="White" Background="Green" VerticalAlignment="Center" FontSize="25" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Green" VerticalAlignment="Center" FontSize ="25"/>
+                </StackPanel>
+                <StackPanel Grid.Row="10" Orientation="Horizontal">
+                    <TextBlock Text="   住房" Foreground="White" Background="SkyBlue" VerticalAlignment="Center" FontSize="25" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="SkyBlue" VerticalAlignment="Center" FontSize ="25"/>
+                </StackPanel>
+                <StackPanel Grid.Row="12" Orientation="Horizontal">
+                    <TextBlock Text="   脏房" Foreground="White" Background="Purple" VerticalAlignment="Center" FontSize="25" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Purple" VerticalAlignment="Center" FontSize ="25"/>
+                </StackPanel>
+                <StackPanel Grid.Row="14" Orientation="Horizontal">
+                    <TextBlock Text="  维修房" Foreground="White" Background="Blue" VerticalAlignment="Center" FontSize="25" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Blue" VerticalAlignment="Center" FontSize ="25"/>
+                </StackPanel>
+                <StackPanel Grid.Row="16" Orientation="Horizontal">
+                    <TextBlock Text="  钟点房" Background="AliceBlue"   VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="AliceBlue" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="18" Orientation="Horizontal">
+                    <TextBlock Text="  自用房" Background="AntiqueWhite"  VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="AntiqueWhite" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="20" Orientation="Horizontal">
+                    <TextBlock Text="    团队" Background="Aqua"  VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Aqua" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="22" Orientation="Horizontal">
+                    <TextBlock Text="  预定房" Background="Aquamarine" VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Aquamarine" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="24" Orientation="Horizontal">
+                    <TextBlock Text="  保密房" Background="Azure" VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Azure" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="26" Orientation="Horizontal">
+                    <TextBlock Text="  午休房" Background="Beige" VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Beige" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="28" Orientation="Horizontal">
+                    <TextBlock Text="  需打扫" Background="Bisque" VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="Bisque" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+                <StackPanel Grid.Row="30" Orientation="Horizontal">
+                    <TextBlock Text="  预离房" Background="BlueViolet" VerticalAlignment="Center" FontSize="20" Width="100"/>
+                    <Label Width="30"/>
+                    <TextBlock Text="62间" Foreground="BlueViolet" VerticalAlignment="Center" FontSize ="20"/>
+                </StackPanel>
+
+            </Grid>
+            
+        </Grid>
+        
+        
+        
+    </Grid>
+</Window>

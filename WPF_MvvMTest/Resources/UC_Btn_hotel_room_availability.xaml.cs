@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_MvvMTest.EntityVo;
-namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
+
+namespace WPF_MvvMTest.Resources
 {
     /// <summary>
-    /// FABM_printer.xaml 的交互逻辑
+    /// UC_Btn_hotel_room_availability.xaml 的交互逻辑
     /// </summary>
-    public partial class FABM_printer : Window
+    public partial class UC_Btn_hotel_room_availability : Button
     {
-        public FABM_printer(List<PrintfData> printfs,List<Consumer> consumers)
+        public UC_Btn_hotel_room_availability()
         {
             InitializeComponent();
         }

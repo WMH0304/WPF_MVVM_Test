@@ -7,7 +7,7 @@
              Height="100" 
              Width="100"
              Margin="10"
-        Background="Green"
+             Background="Green"
              Name="BtDynamic"
                
                 MouseEnter="BtDynamic_MouseEnter"
@@ -16,14 +16,14 @@
                 Click="BtDynamic_Click"
         >
    
-        <StackPanel Orientation="Vertical" Width="100" Height="70">
+        <StackPanel Orientation="Vertical" Width="81" Height="70">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="开始时间" FontSize="10" Name="Tb_startDate" Margin="0,0,10,0"/>
-           
-            <TextBlock Text="结束时间" FontSize="10" Name="Tb_overDate"/>
+            <TextBlock Text="开始时间" FontSize="8" FontFamily="楷体" Name="Tb_startDate" Margin="0,0,10,0"/>
+
+            <TextBlock Text="结束时间" FontSize="8" FontFamily="楷体"  Name="Tb_overDate"/>
         </StackPanel>
-        <TextBlock Text="房号" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_num" Margin="10"></TextBlock>
-        <TextBlock Text="房类型" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_class"></TextBlock>
+        <TextBlock Text="房号" FontFamily="楷体" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_num" Margin="10"></TextBlock>
+        <TextBlock Text="房类型" FontFamily="楷体" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_class"></TextBlock>
 
        
 

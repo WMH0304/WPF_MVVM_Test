@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WPF_MvvMTest"
           
-           
+           StartupUri="view\hotelmanagement\windows\hm_the_guest_book.xaml"
 
 
 
 
-       StartupUri="Login.xaml"
+
+
+
+
+     
             >
+    <!--StartupUri="View\Hotelmanagement\W_hotel_management.xaml"-->
+    <!--StartupUri="Login.xaml"-->
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml"-->
     <!--StartupUri="测试窗口.xaml"-->
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_founding_consumption.xaml"-->
@@ -24,9 +30,18 @@
     <!--StartupUri="View\Windows\W_ConsumerFinance.xaml"-->
     <!--StartupUri="/View/Windows/W_RoomTableReservation.xaml"-->
     <Application.Resources>
+
+
+      
+
+
+
+
         <ResourceDictionary>
             <!--获取 ResourceDictionary 字典的集合，这些字典构成了合并的字典中的各种资源字典。-->
 
+            
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\GGZY.xaml"/>
                 <!--封装好的公共样式-->
@@ -47,6 +62,8 @@
                 <ResourceDictionary Source="Styles\Window.xaml"/>
                 <ResourceDictionary Source="Styles\Tabcontrol.xaml"/>
                 <ResourceDictionary Source="Styles\MenuItem.xaml"/>
+
+               
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary> 
         

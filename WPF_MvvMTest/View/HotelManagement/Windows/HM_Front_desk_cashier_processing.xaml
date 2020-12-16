@@ -1,0 +1,355 @@
+﻿<Window x:Class="WPF_MvvMTest.View.HotelManagement.Windows.HM_Front_desk_cashier_processing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_MvvMTest.View.HotelManagement.Windows"
+        mc:Ignorable="d"
+        Title="前台收银处理" 
+        Background="Gray"
+         Height="712" 
+        Width="825">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="345*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="345*"/>
+            <ColumnDefinition Width="5"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="1" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="30*"/>
+            </Grid.RowDefinitions>
+            <TextBlock VerticalAlignment="Center"   Foreground="#177cb0">项目清单</TextBlock>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="编码/简写" VerticalAlignment="Center"/>
+                <TextBox x:Name="Tb_logogram" Height="30" Width="90" Margin="5,0,0,0"   SelectionChanged="Tb_logogram_SelectionChanged"/>
+                <TextBlock Text="消费房台" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <Label Name="Lb_Consumer_housing_units"  Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text=" 消费数量" VerticalAlignment="Center"/>
+                <TextBox x:Name="Tb_Consumption_quantity" Height="30" Width="90" Margin="6,0,0,0"/>
+                <Button Click="Bt_addition_Click" x:Name="Bt_addition"  Height="20" Content="添加"  Width="50" FontSize="12" VerticalAlignment="Center" Margin="20,0,0,0" >
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="7,7,7,7">
+                                <Border.Background>White</Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Label Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <TabControl Grid.Row="3">
+
+                <TabItem Header="全部" Name="Ti_all">
+                    <DataGrid 
+                        x:Name="DG_all"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                        
+                              >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+
+                <TabItem Header="名茶">
+                    <DataGrid 
+                        x:Name="DG_The_famous_tea"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                        
+                              >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="酒水">
+                    <DataGrid
+                              x:Name="Dg_drinks"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                        SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                            >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="海鲜">
+                    <DataGrid
+                              x:Name="Dg_seafood"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                            >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="服务类">
+                    <DataGrid
+                        x:Name="Dg_service_class"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                            >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="饭类">
+                    <DataGrid
+                        Name="Dg_meal"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                            >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn  Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+                <TabItem Header="点心类">
+                    <DataGrid
+                        x:Name="Dg_Snacks_class"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
+                            >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn  Header="编号" Binding="{Binding Jc_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+
+            </TabControl>
+        </Grid>
+
+        <Grid Grid.Column="3" Grid.Row="1"  RenderTransformOrigin="0.501,0.44" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="29*"/>
+
+                <RowDefinition Height="562*"/>
+
+                <RowDefinition Height="70*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="Tb_odd_numbers" Text="单号" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+            <Grid    Grid.Row="1">
+                <StackPanel>
+                    <DataGrid 
+                              Margin="0,5,0,0"
+                              Name="Dg_right_data"
+                              Visibility="Visible"  
+                              IsReadOnly="False" 
+                              AutoGenerateColumns="False" 
+                              CanUserResizeColumns="False" 
+                              CanUserReorderColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserAddRows="False"  
+                              SelectionMode="Single" 
+                              AlternationCount="2" 
+                              RowHeaderWidth="0" 
+                              Background="Transparent"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                        SelectedCellsChanged="Dg_right_data_SelectedCellsChanged"
+                              >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn  Header="项目id" Visibility="Hidden" Binding="{Binding ID_Project}"/>
+                            <DataGridTextColumn  Header="消费明细id" Visibility="Hidden" Binding="{Binding ID_ConsumeDetail}"/>
+                            <DataGridTextColumn  Header="房台id"  Visibility="Hidden" Width="auto" Binding="{Binding ID_Fangtai}"/>
+                            <DataGridTextColumn  Header="房台id"  Width="auto" Binding="{Binding ID_Fangtai}"/>
+
+                            <DataGridTextColumn  Header="项目名称" Binding="{Binding MC_Project}" Width="auto"/>
+                            <DataGridTextColumn  Header="单价" Binding="{Binding Price}" Width="auto"/>
+                            <DataGridTextColumn  Header="单位" Binding="{Binding Unit}" Width="auto"/>
+                            <DataGridTextColumn  Header="金额" Binding="{Binding Price}" Width="auto"/>
+
+                            <DataGridTextColumn  Header="赠送否" Binding="{Binding presenter}" Width="auto"/>
+                            <DataGridTextColumn  Header="时间" Binding="{Binding Time,StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Width="auto"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid >
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn  Header="累计消费："  Width="2*"/>
+
+                            <DataGridTextColumn x:Name="DGTC_accruing_amounts"  Header="213134"  Width="2*">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Foreground" Value="Red"/>
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                            </DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+
+
+
+            <Grid Grid.Row="3" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="16*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="16*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="5"/>
+
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Grid.Row="1" Height="28" Width="90" Content="消费转单" Name="Bt_Consumer_single_back"  Click="Bt_addition_Click" Grid.ColumnSpan="3"/>
+                <Button Grid.Column="5" Grid.Row="1" Height="28" Width="90" Content="结账退房" Name="Bt_Presented"  Grid.ColumnSpan="3" Click="Bt_addition_Click"/>
+
+                <Button Grid.Column="1" Grid.Row="3" Height="28" Width="90" Content="消费退单" Name="Bt_Single_item_at_a_discount"  Grid.ColumnSpan="3" Click="Bt_addition_Click"/>
+                <Button Grid.Column="5" Grid.Row="3" Height="28" Width="90" Content="关闭窗口" Name="Bt_close_the_window"  Grid.ColumnSpan="3" Click="Bt_addition_Click"/>
+            </Grid>
+        </Grid>
+
+
+
+
+    </Grid>
+</Window>

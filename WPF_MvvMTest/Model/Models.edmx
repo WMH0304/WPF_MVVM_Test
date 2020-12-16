@@ -184,6 +184,7 @@
           <Property Name="State_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Describe" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="JionSign" Type="int" Nullable="false" />
+          <Property Name="room_type" Type="nchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -477,6 +478,7 @@
           <Property Name="State_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="JionSign" Type="Int32" Nullable="false" />
+          <Property Name="room_type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -788,6 +790,7 @@
           <EntitySetMapping Name="SYS_RoomStage">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_RoomStage">
               <MappingFragment StoreEntitySet="SYS_RoomStage">
+                <ScalarProperty Name="room_type" ColumnName="room_type" />
                 <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
                 <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
                 <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
