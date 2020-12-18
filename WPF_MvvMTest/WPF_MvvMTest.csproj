@@ -168,6 +168,9 @@
     <Compile Include="Model\SYS_RoomStage.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\SYS_Room_status_type.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\SYS_System.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

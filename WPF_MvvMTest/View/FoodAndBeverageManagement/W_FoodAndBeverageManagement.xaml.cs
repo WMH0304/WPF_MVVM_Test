@@ -85,7 +85,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement
                        MC_RoomStage = tr.MC_RoomStage,
                        State_RoomStage = tr.State_RoomStage,
                        Describe = tr.Describe,
-                       JionSign = tr.JionSign,
+                       JionSign = (int)tr.JionSign,
                        
                    }).AsParallel().ToList();
         }

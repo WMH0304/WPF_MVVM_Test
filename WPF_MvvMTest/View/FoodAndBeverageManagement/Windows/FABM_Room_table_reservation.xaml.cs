@@ -438,7 +438,7 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
                       MC_RoomStage = tr.MC_RoomStage,
                       State_RoomStage = tr.State_RoomStage,
                       Describe = tr.Describe,
-                      JionSign = tr.JionSign,
+                      JionSign = (int)tr.JionSign,
                   }).AsParallel().ToList();
 
             foreach (var item in Rs)

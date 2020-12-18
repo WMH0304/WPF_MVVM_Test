@@ -21,6 +21,8 @@ namespace WPF_MvvMTest.EntityVo
 
         public int ?ID_Guest { get; set; }
 
+        public string room_status_type { get; set; }
+        public int? ID_room_status_type { get; set; }
    public string Due_to_no { get; set; }
 
 

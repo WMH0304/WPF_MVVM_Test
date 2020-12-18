@@ -12,16 +12,9 @@ namespace WPF_MvvMTest.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class SYS_RoomStage
+    public partial class SYS_Room_status_type
     {
-        public int ID_RoomStage { get; set; }
-        public Nullable<int> ID_Guest { get; set; }
-        public int ID_Class { get; set; }
-        public string Number_RoomStage { get; set; }
-        public string MC_RoomStage { get; set; }
-        public string State_RoomStage { get; set; }
-        public string Describe { get; set; }
-        public Nullable<int> JionSign { get; set; }
-        public Nullable<int> ID_room_type { get; set; }
+        public int ID_room_status_type { get; set; }
+        public string name_room_status_type { get; set; }
     }
 }

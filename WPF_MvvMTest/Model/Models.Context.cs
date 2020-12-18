@@ -48,5 +48,6 @@ namespace WPF_MvvMTest.Model
         public virtual DbSet<YW_Subscribe> YW_Subscribe { get; set; }
         public virtual DbSet<YW_OpenStage> YW_OpenStage { get; set; }
         public virtual DbSet<CW_ConsumeDetail> CW_ConsumeDetail { get; set; }
+        public virtual DbSet<SYS_Room_status_type> SYS_Room_status_type { get; set; }
     }
 }

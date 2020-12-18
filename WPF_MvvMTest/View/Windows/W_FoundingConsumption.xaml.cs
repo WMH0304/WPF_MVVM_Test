@@ -453,7 +453,7 @@ namespace WPF_MvvMTest.View.Windows
                                        MC_RoomStage = tb.MC_RoomStage,
                                        State_RoomStage = tb.State_RoomStage,
                                        Describe = tb.Describe,
-                                       JionSign = tb.JionSign,
+                                       JionSign = (int)tb.JionSign,
                                    });
                 }
 

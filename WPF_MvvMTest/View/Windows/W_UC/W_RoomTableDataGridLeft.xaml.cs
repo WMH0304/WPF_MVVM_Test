@@ -84,7 +84,7 @@ namespace WPF_MvvMTest.View.Windows.W_UC
                                      
                                       ID_Class = tb.ID_Class,
                                       Describe = tb.Describe,
-                                      JionSign = tb.JionSign,
+                                      JionSign = (int)tb.JionSign,
                                     Number_RoomStage = tb.Number_RoomStage,//房号
                                     MC_RoomStage = tb.MC_RoomStage,
                                     State_RoomStage = tb.State_RoomStage == "已用" ? "" : "否"

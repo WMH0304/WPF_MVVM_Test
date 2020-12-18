@@ -76,17 +76,18 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="实时房态图" VerticalAlignment="Center" FontSize="27" FontFamily="楷体" Foreground="SkyBlue"/>
-                <WrapPanel Grid.Row="1" Background="Wheat">
+                <ScrollViewer  Grid.Row="1"  Background="Wheat" VerticalScrollBarVisibility="Auto" >
+                    <WrapPanel Background="Wheat"  >
+                        <WrapPanel Name="Wp_Room_table_diagram_display" >
 
-                    <WrapPanel Name="Wp_Room_table_diagram_display">
-                        
+                        </WrapPanel>
+
+                        <Button Width="100" Height="100" Margin="5" Background="#39b54a" Name="btAddButton">
+                            <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
+                        </Button>
                     </WrapPanel>
 
-                    <Button Width="100" Height="100" Margin="15" Background="#39b54a" Name="btAddButton">
-                        <Image Source="D:\练手的项目\WPFMvvM\WPF_MvvMTest\WPF_MvvMTest\Image\加号.png"/>
-                    </Button>
-                </WrapPanel>
-                
+                </ScrollViewer>
                 
             </Grid>
             
@@ -129,9 +130,9 @@
                 <TextBlock   Text="当前客房" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="Blue"/>
                 <TextBox  Grid.Row="2" Style="{StaticResource input-sm}"/>
                 <StackPanel Grid.Row="4" Orientation="Horizontal">
-                    <ComboBox Style="{StaticResource BaseStyle}" Width="100"/>
+                    <ComboBox Name="Cb_"  Width="100"/>
                     <Label Width="10"/>
-                    <ComboBox Style="{StaticResource BaseStyle}" Width="120"/>
+                    <ComboBox  Width="120"/>
                 </StackPanel>
                 <StackPanel Grid.Row="6" Orientation="Horizontal">
                     <TextBlock Text="   全部" Foreground="White" Background="Red" VerticalAlignment="Center" FontSize="25" Width="100"/>

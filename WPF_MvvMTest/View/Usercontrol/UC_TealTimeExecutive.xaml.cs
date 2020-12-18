@@ -106,7 +106,7 @@ namespace WPF_MvvMTest.View.Usercontrol
                 MC_RoomStage = tbR.MC_RoomStage,
                 State_RoomStage = tbR.State_RoomStage,
                 Describe = tbR.Describe,
-                JionSign = tbR.JionSign,
+                JionSign = (int)tbR.JionSign,
                 MC_Class = tbC.MC_Class,  
                 Jc_Class = tbC.Jc_Class,
                 Code_Class = tbC.Code_Class,

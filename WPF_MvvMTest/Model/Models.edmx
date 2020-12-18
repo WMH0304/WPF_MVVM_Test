@@ -172,6 +172,13 @@
           <Property Name="Address" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="13" Nullable="false" />
         </EntityType>
+        <EntityType Name="SYS_Room_status_type">
+          <Key>
+            <PropertyRef Name="ID_room_status_type" />
+          </Key>
+          <Property Name="ID_room_status_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_room_status_type" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="SYS_RoomStage">
           <Key>
             <PropertyRef Name="ID_RoomStage" />
@@ -182,9 +189,9 @@
           <Property Name="Number_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="MC_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="State_RoomStage" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Describe" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="JionSign" Type="int" Nullable="false" />
-          <Property Name="room_type" Type="nchar" MaxLength="20" />
+          <Property Name="Describe" Type="nvarchar" MaxLength="100" />
+          <Property Name="JionSign" Type="int" />
+          <Property Name="ID_room_type" Type="int" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -297,6 +304,7 @@
           <EntitySet Name="PJ_ProjectDetail" EntityType="Self.PJ_ProjectDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_Class" EntityType="Self.SYS_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_Guest" EntityType="Self.SYS_Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_Room_status_type" EntityType="Self.SYS_Room_status_type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RoomStage" EntityType="Self.SYS_RoomStage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_System" EntityType="Self.SYS_System" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Jurisdiction" EntityType="Self.User_Jurisdiction" Schema="dbo" store:Type="Tables" />
@@ -476,9 +484,9 @@
           <Property Name="Number_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="MC_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="State_RoomStage" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="JionSign" Type="Int32" Nullable="false" />
-          <Property Name="room_type" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JionSign" Type="Int32" />
+          <Property Name="ID_room_type" Type="Int32" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -580,6 +588,7 @@
           <EntitySet Name="YW_Subscribe" EntityType="Self.YW_Subscribe" />
           <EntitySet Name="YW_OpenStage" EntityType="EasternStar_WPF_MVVMModel.YW_OpenStage" />
           <EntitySet Name="CW_ConsumeDetail" EntityType="EasternStar_WPF_MVVMModel.CW_ConsumeDetail" />
+          <EntitySet Name="SYS_Room_status_type" EntityType="EasternStar_WPF_MVVMModel.SYS_Room_status_type" />
         </EntityContainer>
         <EntityType Name="YW_OpenStage">
           <Key>
@@ -612,6 +621,13 @@
           <Property Name="ID_PayRecord" Type="Int32" />
           <Property Name="presenter" Type="Boolean" />
           <Property Name="money" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="SYS_Room_status_type">
+          <Key>
+            <PropertyRef Name="ID_room_status_type" />
+          </Key>
+          <Property Name="ID_room_status_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_room_status_type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -790,7 +806,7 @@
           <EntitySetMapping Name="SYS_RoomStage">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_RoomStage">
               <MappingFragment StoreEntitySet="SYS_RoomStage">
-                <ScalarProperty Name="room_type" ColumnName="room_type" />
+                <ScalarProperty Name="ID_room_type" ColumnName="ID_room_type" />
                 <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />
                 <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
                 <ScalarProperty Name="ID_Class" ColumnName="ID_Class" />
@@ -916,6 +932,14 @@
                 <ScalarProperty Name="ID_Consumption" ColumnName="ID_Consumption" />
                 <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
                 <ScalarProperty Name="ID_ComsumeDetail" ColumnName="ID_ComsumeDetail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_Room_status_type">
+            <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_Room_status_type">
+              <MappingFragment StoreEntitySet="SYS_Room_status_type">
+                <ScalarProperty Name="name_room_status_type" ColumnName="name_room_status_type" />
+                <ScalarProperty Name="ID_room_status_type" ColumnName="ID_room_status_type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

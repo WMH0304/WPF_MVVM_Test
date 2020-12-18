@@ -7,6 +7,7 @@
              Height="100" 
              Width="100"
              Margin="10"
+        
              Background="Green"
              Name="BtDynamic"
                
