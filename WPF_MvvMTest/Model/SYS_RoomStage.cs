@@ -23,5 +23,6 @@ namespace WPF_MvvMTest.Model
         public string Describe { get; set; }
         public Nullable<int> JionSign { get; set; }
         public Nullable<int> ID_room_type { get; set; }
+        public Nullable<int> floor { get; set; }
     }
 }

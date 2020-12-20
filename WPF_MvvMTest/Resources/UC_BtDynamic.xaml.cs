@@ -104,7 +104,7 @@ namespace WPF_MvvMTest.Resources
                                        join tbCWB in m.CW_Bill on tbCWC.ID_Bill equals tbCWB.ID_Bill
                                        //支付记录
                                        join tbCWP in m.CW_PayRecord on tbCWB.ID_Bill equals tbCWP.ID_Bill
-                                       //客人信息
+                                       //客人信息88888888888887
                                        join tbSYSG in m.SYS_Guest on tbCWP.ID_Guest equals tbSYSG.ID_Guest
                                        //会员
                                        join tbVIPT in m.VIP_Table on tbSYSG.ID_Guest equals tbVIPT.ID_Guest

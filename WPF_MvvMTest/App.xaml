@@ -8,13 +8,14 @@
 
 
 
+StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
 
 
-  StartupUri="Login.xaml"
 
      
             >
-    <!--StartupUri="View\Hotelmanagement\W_hotel_management.xaml"-->
+    <!--StartupUri="Login.xaml"-->
+    
     
     <!--StartupUri="view\hotelmanagement\windows\hm_the_guest_book.xaml"-->
   

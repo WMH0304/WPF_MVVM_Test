@@ -29,6 +29,14 @@ namespace WPF_MvvMTest.Tools
             MessageBox.Show(str + "失败", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
+        /// <summary>
+        /// 为空提示符
+        /// </summary>
+        /// <param name="str"></param>
+        static public void is_null()
+        {
+            MessageBox.Show("关键信息不能为空，请键入","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+        }
 
 
         /// <summary>

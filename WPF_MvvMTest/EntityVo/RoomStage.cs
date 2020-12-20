@@ -17,8 +17,9 @@ namespace WPF_MvvMTest.EntityVo
         public string MC_RoomStage { get; set; }
         public string State_RoomStage { get; set; }
         public string Describe { get; set; }
-        public int JionSign { get; set; }
+        public int? JionSign { get; set; }
 
+        public int? floor { get; set; }
         public int ?ID_Guest { get; set; }
 
         public string room_status_type { get; set; }

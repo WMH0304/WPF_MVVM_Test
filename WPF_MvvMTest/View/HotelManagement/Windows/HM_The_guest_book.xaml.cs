@@ -28,14 +28,16 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
 
         }
 
+        /// <summary>
+        /// 按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtAddition_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void BtRemove_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+       
     }
 }

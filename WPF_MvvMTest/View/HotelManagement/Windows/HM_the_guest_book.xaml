@@ -38,17 +38,21 @@
 
             <Button Grid.Column="1" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xE108;" 
-                    FontSize="20" VerticalAlignment="Center"
-                    HorizontalAlignment="Center"/>
+                    FontSize="20" VerticalAlignment="Bottom"
+                    Name="Bt_The_page_to_narrow"
+                    Click="BtAddition_Click"
+                    HorizontalAlignment="Center" Margin="9,-2,10,-2"/>
 
             <Button Grid.Column="2" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xe773;" 
                     FontSize="20" VerticalAlignment="Center"
+                     Click="BtAddition_Click"
                     HorizontalAlignment="Center"/>
 
             <Button Grid.Column="3" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xE711;" 
                     FontSize="20" VerticalAlignment="Center"
+                     Click="BtAddition_Click"
                     HorizontalAlignment="Center"/>
         </Grid>
 
@@ -195,7 +199,7 @@
                               AlternationCount="2" 
                               RowHeaderWidth="0" 
                               ScrollViewer.VerticalScrollBarVisibility="Visible"
-                              SelectedCellsChanged="DgLeft_SelectedCellsChanged">
+                             >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
                                 <DataGridTextColumn Header="房号" Binding="{Binding Number_RoomStage}" Width="1*"/>
@@ -226,7 +230,7 @@
                     <Button Grid.Row="1" Name="BtAddition" Click="BtAddition_Click" 
                         Content="=> 添加" VerticalAlignment="Center" Style="{StaticResource btn-info}" 
                         HorizontalAlignment="Center" />
-                    <Button Name="BtRemove" Grid.Row="3"  VerticalAlignment="Center" Click="BtRemove_Click"
+                    <Button Name="BtRemove" Grid.Row="3"  VerticalAlignment="Center" Click="BtAddition_Click" 
                         Content="&lt;=移除"  Style="{StaticResource btn-info}" 
                         HorizontalAlignment="Center"/>
 
@@ -263,8 +267,8 @@
                 <Button Content="保存" Margin="500,0,0,0"/>
                 <Button Content="关闭" Margin="30,0,0,0"/>
             </StackPanel>
-            
-            
+
+
         </Grid>
 
 

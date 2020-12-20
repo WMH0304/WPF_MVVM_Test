@@ -224,6 +224,9 @@
     <Compile Include="View\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HotelManagement\Windows\HM_Add_room.xaml.cs">
+      <DependentUpon>HM_Add_room.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HotelManagement\Windows\HM_Check_out_room.xaml.cs">
       <DependentUpon>HM_Check_out_room.xaml</DependentUpon>
     </Compile>
@@ -399,6 +402,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HotelManagement\Windows\HM_Add_room.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
