@@ -16,10 +16,5 @@ namespace WPF_MvvMTest.Model
     {
         public int ID_room_status_type { get; set; }
         public string name_room_status_type { get; set; }
-
-        public static implicit operator List<object>(SYS_Room_status_type v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

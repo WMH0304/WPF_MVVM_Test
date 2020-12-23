@@ -99,6 +99,7 @@
     <Compile Include="EntityVo\BtMessage.cs" />
     <Compile Include="EntityVo\Consumer.cs" />
     <Compile Include="EntityVo\Consumption_Into_a_single.cs" />
+    <Compile Include="EntityVo\Delegate_values.cs" />
     <Compile Include="EntityVo\IDocumentRenderer.cs" />
     <Compile Include="EntityVo\Node.cs" />
     <Compile Include="EntityVo\OrderDocumentRenderer.cs" />

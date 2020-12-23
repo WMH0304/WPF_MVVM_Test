@@ -193,6 +193,8 @@
           <Property Name="JionSign" Type="int" />
           <Property Name="ID_room_type" Type="int" />
           <Property Name="floor" Type="int" />
+          <Property Name="preinstall" Type="money" />
+          <Property Name="practical" Type="money" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -489,6 +491,8 @@
           <Property Name="JionSign" Type="Int32" />
           <Property Name="ID_room_type" Type="Int32" />
           <Property Name="floor" Type="Int32" />
+          <Property Name="preinstall" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="practical" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="SYS_System">
           <Key>
@@ -808,6 +812,8 @@
           <EntitySetMapping Name="SYS_RoomStage">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_RoomStage">
               <MappingFragment StoreEntitySet="SYS_RoomStage">
+                <ScalarProperty Name="practical" ColumnName="practical" />
+                <ScalarProperty Name="preinstall" ColumnName="preinstall" />
                 <ScalarProperty Name="floor" ColumnName="floor" />
                 <ScalarProperty Name="ID_room_type" ColumnName="ID_room_type" />
                 <ScalarProperty Name="ID_RoomStage" ColumnName="ID_RoomStage" />

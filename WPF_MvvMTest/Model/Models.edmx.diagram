@@ -28,7 +28,7 @@
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.YW_Subscribe" Width="1.5" PointX="14.375" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.YW_OpenStage" Width="1.5" PointX="14.375" PointY="4.625" />
         <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.CW_ConsumeDetail" Width="1.5" PointX="2.625" PointY="13" />
-        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_Room_status_type" Width="1.5" PointX="10" PointY="11.125" />
+        <EntityTypeShape EntityType="EasternStar_WPF_MVVMModel.SYS_Room_status_type" Width="1.5" PointX="10.125" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

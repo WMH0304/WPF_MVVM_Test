@@ -24,8 +24,12 @@ namespace WPF_MvvMTest.EntityVo
 
         public string room_status_type { get; set; }
         public int? ID_room_status_type { get; set; }
-   public string Due_to_no { get; set; }
+        public string Due_to_no { get; set; }
 
+        public decimal? preinstall { get; set; }
+
+        public decimal? practical { get; set; }
+  
 
         public void NotifyPropertyChanged(string propertyName)
         {

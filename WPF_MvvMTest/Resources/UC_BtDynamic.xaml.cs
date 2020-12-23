@@ -69,14 +69,9 @@ namespace WPF_MvvMTest.Resources
                     //         }).ToList() ;
                      GetButtons(GB);
                     
-                    
                     break;
                 }
-            }
-
-         
-        
-         
+            }   
         }
 
         //鼠标移入事件
@@ -110,7 +105,7 @@ namespace WPF_MvvMTest.Resources
                                        join tbVIPT in m.VIP_Table on tbSYSG.ID_Guest equals tbVIPT.ID_Guest
                                        //开台
                                        join tbYWOS in m.YW_OpenStage on tbVIPT.ID_VIP equals tbYWOS.ID_VIP
-                                       where tbR.ID_RoomStage == ID_RoomStage
+                                       where tbR.ID_RoomStage == ID_RoomStage && tbR.State_RoomStage.Trim() =="已用"
                                              select new  BtMessage{
 
                                            MC_Guest     =    tbSYSG.MC_Guest,//名称

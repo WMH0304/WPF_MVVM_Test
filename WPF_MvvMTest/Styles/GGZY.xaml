@@ -233,7 +233,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Border x:Name="Back" Background="#F7FDF7" BorderThickness="1" BorderBrush="Transparent">
-                        <Path Name="PathFill" Fill="#59CA4F" Width="8" Height="6" StrokeThickness="0" Data="M5,0 L10,10 L0,10 z" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
+                        <Path Name="PathFill" Fill="Black" Width="8" Height="6" StrokeThickness="0" Data="M5,0 L10,10 L0,10 z" RenderTransformOrigin="0.5,0.5" Stretch="Fill">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform/>
@@ -248,7 +248,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="PathFill" Property="Fill" Value="White"></Setter>
                             <Setter TargetName="Back" Property="Background" Value="#59CA4F"></Setter>
-                            <Setter TargetName="Back" Property="BorderBrush" Value="#59CA4F"></Setter>
+                            <Setter TargetName="Back" Property="BorderBrush" Value="gray"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -267,7 +267,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ComboBoxItem">
-                                <Border Name="Back" Background="Transparent"  BorderThickness="0,0,0,0" BorderBrush="#81D779" >
+                                <Border Name="Back" Background="Transparent"  BorderThickness="0,0,0,0" BorderBrush="White" >
                                     <ContentPresenter ContentSource="{Binding Source}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"></ContentPresenter>
                                 </Border>
                                 <ControlTemplate.Triggers>
@@ -293,10 +293,10 @@
                             <ColumnDefinition Width="0.3*" MaxWidth="30"/>
                         </Grid.ColumnDefinitions>
                         <TextBox  Grid.Column="0" IsReadOnly="{TemplateBinding IsReadOnly}" Text="{TemplateBinding Text}"></TextBox>
-                        <Border  Grid.Column="0" BorderThickness="1,1,0,1" BorderBrush="#81D779" CornerRadius="1,0,0,1">
+                        <Border  Grid.Column="0" BorderThickness="1,1,0,1" BorderBrush="White" CornerRadius="1,0,0,1">
 
                         </Border>
-                        <Border Grid.Column="1" BorderThickness="0,1,1,1" BorderBrush="#81D779" CornerRadius="0,1,1,0">
+                        <Border Grid.Column="1" BorderThickness="0,1,1,1" BorderBrush="White" CornerRadius="0,1,1,0">
                             <ToggleButton Style="{StaticResource ComboxStyleBtn}" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"></ToggleButton>
                         </Border>
                         <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide">

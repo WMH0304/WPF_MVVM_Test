@@ -9,6 +9,8 @@
              Background="Green"
              Foreground="Black"
              Margin="5"
+        Click="Button_Click"
+           MouseEnter="Button_MouseEnter"
              Height="100"  Style="{StaticResource btn-warning}">
 
 

@@ -13,6 +13,7 @@
         Height="800"         
         Loaded="Window_Loaded"
             WindowStyle="None"
+         Name="My_win"
         Width="880">
 
 
@@ -46,14 +47,16 @@
             <Button Grid.Column="2" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xe773;" 
                     FontSize="20" VerticalAlignment="Center"
+                    Name="Bt_Page_maximization"
                      Click="BtAddition_Click"
                     HorizontalAlignment="Center"/>
 
             <Button Grid.Column="3" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xE711;" 
-                    FontSize="20" VerticalAlignment="Center"
+                    FontSize="20" VerticalAlignment="Bottom"
+                    Name="Bt_close"
                      Click="BtAddition_Click"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center" Margin="9,-2,10,-2"/>
         </Grid>
 
 
@@ -69,7 +72,7 @@
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Grid>
+            <Grid x:Name="Gr_con">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5"/>
                     <RowDefinition/>
@@ -110,71 +113,82 @@
                     <ColumnDefinition Width="5"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="账号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBlock Grid.Row="1" Grid.Column="3"  Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" Name="Tb_account_number"  Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
                 <TextBlock Grid.Row="1" Grid.Column="5" Text="房号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBlock Grid.Row="1" Grid.Column="7" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                <TextBlock Grid.Row="1" Grid.Column="7" Name="Tb_room_number" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
                 <TextBlock Grid.Row="1" Grid.Column="9"  Text="房类:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBlock Grid.Row="1" Grid.Column="11"  Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Name="Tb_the_room"  Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
                 <TextBlock Grid.Row="1" Grid.Column="13" Text="预设房价:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBlock Grid.Row="1" Grid.Column="15" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
+                <TextBlock Grid.Row="1" Grid.Column="15" Name="Tb_the_preset_prices" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="主客姓名:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ComboBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="主客姓名:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体" />
+                <ComboBox Style="{StaticResource ComboBoxStyle}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Name="Cb_The_customers_name" SelectionChanged="Cb_The_customers_name_SelectionChanged" />
                 <TextBlock Grid.Row="3" Grid.Column="5" Text="性别：" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体" Margin="0,14" Width="41"/>
-                <ComboBox Grid.Row="3" Grid.Column="5" HorizontalAlignment="Right" Width="54"/>
+                <ComboBox Grid.Row="3" Grid.Column="5" x:Name="Cb_gender" HorizontalAlignment="Right" Width="54">
+                    <ComboBoxItem>男</ComboBoxItem>
+                    <ComboBoxItem>女</ComboBoxItem>
+                </ComboBox>
                 <TextBlock Grid.Row="3" Grid.Column="7" Text="人数：" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体" Margin="0,14" Width="41"/>
-                <TextBox Grid.Row="3" Grid.Column="7" HorizontalAlignment="Right" Width="54"/>
+                <TextBox  x:Name="Tb_number_of_people" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Right" Width="54"/>
                 <TextBlock Grid.Row="3" Grid.Column="9" Text="折扣："   VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="3" Grid.Column="9" HorizontalAlignment="Right" Width="54"/>
+                <TextBox x:Name="Tb_discount" Grid.Row="3" Grid.Column="9" HorizontalAlignment="Right" Width="54"/>
                 <TextBlock Grid.Row="3" Grid.Column="11" Text="实际房价:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBox Grid.Row="3" Grid.Column="13" VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Row="5" Grid.Column="1" Text="证件类型:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ComboBox Grid.Row="5" Grid.Column="3"/>
+                <ComboBox Grid.Row="5" Grid.Column="3" x:Name="Cb_certificate_type">
+                    <ComboBoxItem>身份证</ComboBoxItem>
+                    <ComboBoxItem>驾驶证</ComboBoxItem>
+                    <ComboBoxItem>写bug证</ComboBoxItem>
+                    <ComboBoxItem>填坑证</ComboBoxItem>
+                </ComboBox>
                 <TextBlock Grid.Row="5" Grid.Column="5" Text="证件号码:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="5" Grid.Column="5" HorizontalAlignment="Right" Grid.ColumnSpan="4" FontSize="12" Width="150"/>
+                <TextBox Grid.Row="5" Grid.Column="5" x:Name="Tb_ID_Number" HorizontalAlignment="Right" Grid.ColumnSpan="4" FontSize="12" Width="150"/>
                 <TextBlock Grid.Row="5" Grid.Column="9" HorizontalAlignment="Left" Text="地址：" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="5" Grid.Column="9" Grid.ColumnSpan="7" HorizontalAlignment="Right" Width="388"/>
+                <TextBox Grid.Row="5" Name="Tb_site" Grid.Column="9" Grid.ColumnSpan="7" HorizontalAlignment="Right" Width="388"/>
 
                 <TextBlock Grid.Row="7" Grid.Column="1" Text="抵店日期:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ssd:DateTimePicker  Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="30"/>
+                <DatePicker  Name="Dp_the_date_of_arrival" Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="30"  />
+
+
                 <TextBlock Grid.Row="7" Grid.Column="7" HorizontalAlignment="Left" Text="天数:" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ssd:WatermarkTextBox Grid.Row="7" Grid.Column="7" HorizontalAlignment="Right"  Width="60" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
+                <ssd:WatermarkTextBox Grid.Row="7" Name="Tb_number_of_days" Grid.Column="7" HorizontalAlignment="Right"  Width="60" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <!--<ssd:ColorPicker Grid.Row="7" Grid.Column="9"></ssd:ColorPicker>-->
                 <!--<ssd:ButtonSpinner Grid.Row="7" Grid.Column="9"  VerticalAlignment="Center" Height="30" Spin="ButtonSpinner_Spin"   />-->
                 <TextBlock Grid.Row="7" Grid.Column="9" Text="离店日期:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ssd:DateTimePicker  Grid.Row="7" Grid.Column="11" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="30"/>
+                <!--<ssd:DateTimePicker    Grid.Row="7" Grid.Column="11" VerticalAlignment="Center" Grid.ColumnSpan="4" Height="30" />-->
+                <DatePicker  Name="Dp_departure_time"   Grid.Row="7" Grid.Column="11" VerticalAlignment="Center" FontSize="15" Grid.ColumnSpan="4" Height="30"  CalendarClosed="DatePicker_CalendarClosed"/>
 
                 <TextBlock Grid.Row="9" Grid.Column="1" Text="客人类型:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox Click="Cb_individual_traveler_Click" x:Name="Cb_individual_traveler" Tag="散客" Grid.Row="9" Grid.Column="3" VerticalAlignment="Center"  Margin="15,0,0,0"/>
                 <TextBlock Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="散客" FontSize="15" FontFamily="楷体"  />
-                <CheckBox Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right" Tag="午休房" Name="Cb_lunch_room"/>
                 <TextBlock Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Text="午休房" VerticalAlignment="Center" FontSize="15" FontFamily="楷体" />
-                <CheckBox Grid.Row="9" Grid.Column="5" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_hour_room" Grid.Row="9" Grid.Column="5" Tag="钟点房" HorizontalAlignment="Center" Margin="10,0,0,0"/>
                 <TextBlock Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="钟点房" VerticalAlignment="Bottom" FontSize="15" FontFamily="楷体" Margin="0,0,0,15"/>
-                <CheckBox Grid.Row="9" Grid.Column="7" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Click="Cb_individual_traveler_Click" Tag="自用房"  x:Name="Cb_Since_the_housing" Grid.Row="9" Grid.Column="7" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="9" Grid.Column="7" Text="自用房" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Grid.Row="9" Grid.Column="7" HorizontalAlignment="Right"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_team" Grid.Row="9" Tag="团队" Grid.Column="7" HorizontalAlignment="Right"/>
                 <TextBlock Grid.Row="9" Grid.Column="9" HorizontalAlignment="Left" Text="团队" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBlock Grid.Row="9" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Left" Text="是否保密" FontSize="15" FontFamily="楷体" Foreground="#ff0aef" />
-                <CheckBox Grid.Row="9" Grid.Column="11" HorizontalAlignment="Center" Margin="50,0,0,0"/>
+                <TextBlock x:Name="Tb_confidentiality" Grid.Row="9" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Left" Text="是否保密" FontSize="15" FontFamily="楷体" Foreground="#ff0aef" />
+                <CheckBox  x:Name="Cb_Ifasecret" Grid.Row="9" Grid.Column="11" HorizontalAlignment="Center" Margin="50,0,0,0" />
                 <TextBlock Grid.Row="9" Grid.Column="13" Text="初收押金:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="9" Grid.Column="15"/>
+                <TextBox x:Name="Tb_The_first_deposit" Grid.Row="9" Grid.Column="15"/>
 
                 <TextBlock Grid.Row="11" Grid.Column="1" Text="协议单位:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ComboBox Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3"/>
+                <ComboBox Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3" Name="Cb_bargaining_unit" SelectionChanged="Cb_The_customers_name_SelectionChanged"/>
                 <TextBlock Grid.Row="11" Grid.Column="7" Text="贵宾卡号:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="11" Grid.Column="7" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Right" Grid.ColumnSpan="4" Width="140"/>
+                <TextBox x:Name="Tb_The_VIP_card_number" Grid.Row="11" Grid.Column="7" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Right" Grid.ColumnSpan="4" Width="140"/>
                 <TextBlock Grid.Row="11" Grid.Column="11"  Text="押金单号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" />
+                <TextBox x:Name="Tb_Deposit_receipt_no" Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" />
 
                 <TextBlock Grid.Row="13" Grid.Column="1" Text="是否留言:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <CheckBox Click="Cb_whether_need_Click" x:Name="Cb_whether_need" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="13" Grid.Column="5" Text="留言内容：" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="9" />
+                <TextBox IsEnabled="False" x:Name="Tb_message_contents" Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="9" />
 
                 <TextBlock Grid.Row="15" Grid.Column="1" Text="备注信息:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="13" />
+                <TextBox x:Name="Tb_note" Grid.Row="15" Grid.Column="3" Grid.ColumnSpan="13" />
             </Grid>
 
             <Grid Grid.Row="1">
@@ -199,12 +213,13 @@
                               AlternationCount="2" 
                               RowHeaderWidth="0" 
                               ScrollViewer.VerticalScrollBarVisibility="Visible"
+                           SelectionChanged ="DgLeft_SelectionChanged"
                              >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
                                 <DataGridTextColumn Header="房号" Binding="{Binding Number_RoomStage}" Width="1*"/>
                                 <DataGridTextColumn  Header="类型" Binding="{Binding MC_RoomStage}" Width="1*"/>
-                                <DataGridTextColumn  Header="房价" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                                <DataGridTextColumn  Header="房价" Binding="{Binding preinstall}" Width="1*"/>
                                 <DataGridTemplateColumn Width="1*" Header="预定否">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -254,7 +269,7 @@
                                 <DataGridTextColumn Header="房台ID" Visibility="Hidden" Binding="{Binding ID_RoomStage}"/>
                                 <DataGridTextColumn Header="房号" Binding="{Binding Number_RoomStage}" Width="1*"/>
                                 <DataGridTextColumn  Header="房类" Binding="{Binding MC_RoomStage}" Width="1*"/>
-                                <DataGridTextColumn  Header="房价" Binding="{Binding MC_RoomStage}" Width="1*"/>
+                                <DataGridTextColumn  Header="房价" Binding="{Binding preinstall}" Width="1*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </TabItem>
@@ -264,8 +279,8 @@
             <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="状态:" VerticalAlignment="Center" FontSize="30" FontFamily="楷体"/>
                 <TextBlock Text="客人预定" Foreground="Red"  VerticalAlignment="Center" FontSize="30" FontFamily="楷体"/>
-                <Button Content="保存" Margin="500,0,0,0"/>
-                <Button Content="关闭" Margin="30,0,0,0"/>
+                <Button x:Name="Bt_save" Content="保存" Click="BtAddition_Click" Margin="500,0,0,0"/>
+                <Button x:Name="Bt_closes" Content="关闭"  Click="BtAddition_Click" Margin="30,0,0,0"/>
             </StackPanel>
 
 

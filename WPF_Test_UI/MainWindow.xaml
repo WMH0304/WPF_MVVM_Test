@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF_Test_UI"
          xmlns:ui="http://schemas.modernwpf.com/2019"
          ui:WindowHelper.UseModernWindowStyle="True"
+        xmlns:cc ="clr-namespa"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -13,12 +14,78 @@
             <RowDefinition Height="139*"/>
             <RowDefinition Height="280*"/>
         </Grid.RowDefinitions>
-        <ui:SimpleStackPanel Margin="12" Spacing="24" Grid.RowSpan="2">
-            <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
+        <StackPanel Margin="12" >
+            <!--<TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}" />
             <Button Content="I am a button" />
-            <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
+            <Button Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />-->
+            <!--<DatePicker>
+                <DatePicker.Style>
+                    <Style TargetType="{x:Type DatePicker}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DatePicker}">
+                                    <Grid Background="Red" Height="50">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        
+                                        
+                                        
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Style>
+                
+            </DatePicker>-->
+
+            <TextBox>
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Background" Value="Red"/>
+                        <Setter Property="Height" Value="100"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <Border Background="Red" x:Name="Bd_" CornerRadius="10" BorderBrush="Black">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="8*"/>
+                                                    <ColumnDefinition Width="3*"/>
+                                                </Grid.ColumnDefinitions>
+                                              
+                                                
+                                            </Grid>
+                                            
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
             
-        </ui:SimpleStackPanel>
+        </StackPanel>
        
     </Grid>
 </Window>

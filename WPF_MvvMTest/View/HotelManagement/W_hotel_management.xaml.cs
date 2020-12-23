@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -136,6 +137,11 @@ namespace WPF_MvvMTest.View.HotelManagement
             Bt_fill(sr);
         }
 
+
+        public  void ss()
+        {
+
+        }
         /// <summary>
         /// 房台按钮填充
         /// </summary>
@@ -150,10 +156,18 @@ namespace WPF_MvvMTest.View.HotelManagement
             foreach (var item in stages)
             {
                 UC_Btn_hotel_room_availability uBt = new UC_Btn_hotel_room_availability();
-
+                uBt.Name = "Bt_" + item.ID_RoomStage;
+                uBt.Tag = item.ID_RoomStage;
                 uBt.Tb_room_id.Text = item.ID_RoomStage.ToString().Trim();
                 uBt.TbRoom_class.Text = item.MC_RoomStage.Trim().ToString();
                 uBt.TbRoom_num.Text = item.Number_RoomStage.Trim().ToString();
+
+                //List<UC_Btn_hotel_room_availability> ls = new List<UC_Btn_hotel_room_availability>();
+                //ls.Add(uBt);
+
+                #region MyRegion
+
+                #endregion
                 switch (item.ID_room_status_type)
                 {
                     case 1:
@@ -259,12 +273,7 @@ namespace WPF_MvvMTest.View.HotelManagement
             string con = bt.Content.ToString().Trim();
             string nm = bt.Name.ToString().Trim();
 
-            if (nm == "Bt_The_page_to_narrow")
-            {
-                //页面缩减
-                this.
-            }
-
+       
             if (con == "实时房态")
             {
                 Window_Loaded(null, null);
@@ -285,7 +294,11 @@ namespace WPF_MvvMTest.View.HotelManagement
 
             if (nm == "Bt_the_guest_book")
             {
-
+                if (STATIC_cache.ID_RoomStage==0)
+                {
+                    MessageBox.Show("请选中需要预定的房间","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    return;
+                }
                 //客人预定
                 Windows.HM_The_guest_book tb = new HM_The_guest_book();
                 tb.ShowDialog();

@@ -12,7 +12,6 @@ namespace WPF_MvvMTest.Tools
     /// </summary>
    static class Tools
     {
-       
 
 
         /// <summary>

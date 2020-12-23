@@ -5,17 +5,7 @@
              xmlns:ui ="http://schemas.modernwpf.com/2019"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--file:///D:/练手的项目/WPFMvvM/WPF_MvvMTest/MigrationBackup/aa151eeb/WPF_Test_UI/NuGetUpgradeLog.html-->
-        <!--
-         packages.Config 文件位置
-        D:\练手的项目\WPFMvvM\WPF_MvvMTest\MigrationBackup\aa151eeb\WPF_Test_UI
-Help me rollback to packages.config-->
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ui:ThemeResources />
-                <ui:XamlControlsResources />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+      
        
     </Application.Resources>
 </Application>
