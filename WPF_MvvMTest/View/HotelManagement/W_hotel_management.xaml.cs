@@ -101,7 +101,7 @@ namespace WPF_MvvMTest.View.HotelManagement
                       ID_room_status_type = trst.ID_room_status_type,
                       room_status_type = trst.name_room_status_type.Trim(),
                       Number_RoomStage = tr.Number_RoomStage.Trim(),
-                      State_RoomStage = tr.Number_RoomStage.Trim(),
+                      State_RoomStage = tr.State_RoomStage.Trim(),
                       Describe = tr.Describe.Trim(),
                       MC_RoomStage = tr.MC_RoomStage.Trim(),
                       floor = tr.floor,
@@ -137,11 +137,6 @@ namespace WPF_MvvMTest.View.HotelManagement
             Bt_fill(sr);
         }
 
-
-        public  void ss()
-        {
-
-        }
         /// <summary>
         /// 房台按钮填充
         /// </summary>
@@ -161,7 +156,14 @@ namespace WPF_MvvMTest.View.HotelManagement
                 uBt.Tb_room_id.Text = item.ID_RoomStage.ToString().Trim();
                 uBt.TbRoom_class.Text = item.MC_RoomStage.Trim().ToString();
                 uBt.TbRoom_num.Text = item.Number_RoomStage.Trim().ToString();
-
+                if (item.State_RoomStage.Trim() =="已用")
+                {
+                    uBt.Tb_resere.Visibility = Visibility.Visible;
+                }
+                if (item.State_RoomStage.Trim() == "预定")
+                {
+                    uBt.Tb_reserve.Visibility = Visibility.Visible;
+                }
                 //List<UC_Btn_hotel_room_availability> ls = new List<UC_Btn_hotel_room_availability>();
                 //ls.Add(uBt);
 
@@ -294,16 +296,31 @@ namespace WPF_MvvMTest.View.HotelManagement
 
             if (nm == "Bt_the_guest_book")
             {
+                //客人预定
                 if (STATIC_cache.ID_RoomStage==0)
                 {
                     MessageBox.Show("请选中需要预定的房间","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
                     return;
                 }
-                //客人预定
-                Windows.HM_The_guest_book tb = new HM_The_guest_book();
+               
+                Windows.HM_The_guest_book tb = new HM_The_guest_book(nm);
+                tb.refresh += new Refresh(push);
                 tb.ShowDialog();
             }
 
+            if (nm == "Bt_The_guest_registration")
+            {
+                //客人登记
+                if (STATIC_cache.ID_RoomStage == 0)
+                {
+                    MessageBox.Show("请选中需要预定的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                Windows.HM_The_guest_book tb = new HM_The_guest_book(nm);
+                tb.refresh += new Refresh(push);
+                tb.ShowDialog();
+
+            }
         }
 
         /// <summary>

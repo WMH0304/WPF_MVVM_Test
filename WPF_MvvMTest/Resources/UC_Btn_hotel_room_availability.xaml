@@ -18,9 +18,21 @@
     
     <StackPanel Orientation="Vertical">
 
+        <Grid Width="80" Height="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                
+                <ColumnDefinition/>
+                
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="预定" Name="Tb_reserve" Foreground="Black" Visibility="Hidden" FontFamily="楷体" FontSize="15"/>
+
+            <TextBlock Grid.Column="1" Text="已用" Name="Tb_resere" Visibility="Hidden"  Foreground="Black"  FontFamily="楷体" FontSize="15"/>
+        </Grid>
         <TextBlock x:Name="Tb_room_id" Visibility="Collapsed"/>
         <TextBlock FontSize="20" Text="房号" FontFamily="楷体" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_num" Margin="10"></TextBlock>
         <TextBlock FontSize="20" Text="房类型" FontFamily="楷体" VerticalAlignment="Center" HorizontalAlignment="Center" Name="TbRoom_class"></TextBlock>
+       
 
     </StackPanel>
 

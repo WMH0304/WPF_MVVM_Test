@@ -5,27 +5,47 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-
 using WPF_MvvMTest.EntityVo;
 using WPF_MvvMTest.Model;
 
+
 namespace WPF_MvvMTest.View.HotelManagement.Windows
 {
+
+
     /// <summary>
     /// HM_The_guest_book.xaml 的交互逻辑
     /// </summary>
     public partial class HM_The_guest_book : Window
     {
+
+        public event Refresh refresh;
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
 
-        public HM_The_guest_book()
+
+
+
+        public HM_The_guest_book(string base_name)
         {
+            if (base_name == "Bt_the_guest_book")
+            {
+                //顾客预定
+                whether = true;
+            }
+
+            if (base_name == "Bt_The_guest_registration")
+            {
+                //客人登记
+                whether = false;
+            }
+
             InitializeComponent();
 
         }
 
-        int ID_RoomStage,ID_Guest, ID_VIP, ID_AgreementUser;
+        int ID_RoomStage, ID_Guest, ID_VIP, ID_AgreementUser;
         string ck_tag;
+        bool whether;
 
         /// <summary>
         /// 左边表格
@@ -55,6 +75,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
 
 
             #region 下拉框
+
             //主客姓名
             Cb_The_customers_name.ItemsSource = m.SYS_Guest.ToList();
             Cb_The_customers_name.DisplayMemberPath = "MC_Guest";
@@ -72,8 +93,13 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             Tb_the_room.Text = s.MC_RoomStage;
             Tb_the_preset_prices.Text = s.preinstall.ToString();
 
-
             #endregion
+
+            //客人登记回填
+            if (!whether)
+            {
+
+            }
 
 
 
@@ -117,7 +143,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 else
                 {
                     left.Add(item);
-                 
+
                 }
             }
 
@@ -189,12 +215,16 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// </summary>
         public void Save()
         {
-            Integrity();
+            if (!Integrity())
+            {
+                return;
+            }
 
             //修改房台状态
             SYS_RoomStage sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).SingleOrDefault();
-            sr.State_RoomStage = "已用";
+            sr.State_RoomStage = "预定";
             sr.ID_Guest = ID_Guest;
+            sr.ID_room_type = int.Parse(ck_tag);
             m.Entry(sr).State = System.Data.Entity.EntityState.Modified;
 
             //添加预定信息
@@ -210,19 +240,61 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             sb.State_Secrecy = true;
             sb.Remark = Tb_note.Text.Trim();
             sb.Type_CheckIn = ck_tag;
-            // sb.HouseStageID = 
-            string  _ID_houseID = string.Empty;
+
+            string _ID_houseID = string.Empty;
             foreach (var item in right)
             {
-                _ID_houseID += item.ID_RoomStage +",";
+                _ID_houseID += item.ID_RoomStage + ",";
             }
-
-
-
+            sb.HouseStageID = _ID_houseID;
             m.YW_Subscribe.Add(sb);
+
+            m.SaveChanges();
+
+
+            //int _IDsub = m.YW_Subscribe.Where(c => c.Number_Subscribe == sb.Number_Subscribe).Single().ID_Subscribe;\\
+            // int _IDsub = m.YW_Subscribe.Select(c => sb).Single().ID_Subscribe;
+
+            int _IDsub = m.YW_Subscribe.Where(c => c.Number_Subscribe == sb.Number_Subscribe && c.State_Secrecy == true).Single().ID_Subscribe;
+
+
+
+            //   m.YW_Subscribe.Add().ID_Subscribe;
 
             //添加账单信息 预定押金的
             CW_Bill cb = new CW_Bill();
+            cb.Price = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+            cb.SuOp_ID = _IDsub;
+            cb.Number_Bill = Tb_Deposit_receipt_no.Text.Trim();
+            cb.State_Bill = "未结账";
+            m.CW_Bill.Add(cb);
+            m.SaveChanges();
+
+            int _IDbill = m.CW_Bill.Where(c => c.Number_Bill == cb.Number_Bill).Single().ID_Bill;
+
+            //添加消费记录
+            CW_Consumption cp = new CW_Consumption();
+            cp.ID_Bill = _IDbill;
+            cp.ID_RoomStage = ID_RoomStage;
+            cp.ID_ProjectDetail = 0;
+            cp.Prict = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+            cp.Discount = 1;
+            cp.Effective = true;
+            m.CW_Consumption.Add(cp);
+
+            if (m.SaveChanges() > 0)
+            {
+                //Tools.Common_means.operate_successfully("房台预定");
+
+                MessageBoxResult result = MessageBox.Show("房台预定成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.OK)
+                {
+                    this.Close();
+                    refresh();
+                }
+            }
+
+
 
 
 
@@ -232,7 +304,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// <summary>
         /// 检测页面数据是否完整
         /// </summary>
-        public void Integrity()
+        public bool Integrity()
         {
             /*
              FrameworkElement 是继承了 UIElement  的wpf 核心类
@@ -249,7 +321,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                     if (tb.Text == string.Empty)
                     {
                         MessageBox.Show("请输入完整信息", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
+                        return false;
                     }
                 }
 
@@ -259,7 +331,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                     if (cb.Text == string.Empty)
                     {
                         MessageBox.Show("请输入完整下拉框信息", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
+                        return false;
                     }
                 }
 
@@ -269,10 +341,12 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                     if (dp.Text == string.Empty)
                     {
                         MessageBox.Show("请输入完整日期", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        return;
+                        return false;
                     }
                 }
+
             }
+            return true;
         }
 
         /// <summary>
@@ -280,27 +354,27 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// </summary>
         public void Append_or_remove(string str)
         {
-         
-            if (str!=string.Empty &&str == "BtAddition")
+
+            if (str != string.Empty && str == "BtAddition")
             {
                 //添加按钮
                 left.Remove(temporary[0]);
                 right.Add(temporary[0]);
             }
 
-            if (str !=string.Empty &&str == "BtRemove")
+            if (str != string.Empty && str == "BtRemove")
             {
                 // 移除按钮
                 left.Add(temporary[0]);
                 right.Remove(temporary[0]);
             }
 
-            if (str ==String.Empty)
+            if (str == String.Empty)
             {
-                MessageBox.Show("请选择要添加或者移除的按钮，然后进行操作","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("请选择要添加或者移除的按钮，然后进行操作", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
-            left.OrderBy(c=>c.Number_RoomStage);
+            left.OrderBy(c => c.Number_RoomStage);
             right.OrderBy(c => c.Number_RoomStage);
 
         }
@@ -340,14 +414,14 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 ID_VIP = vt.ID_VIP;
 
                 int num = m.YW_Subscribe.Count() + 1;
-                Tb_Deposit_receipt_no.Text = "JDYD"+DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + num.ToString();
+                Tb_Deposit_receipt_no.Text = "JDYD" + DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + num.ToString();
             }
 
             //协议单位
-            if (cb_name =="Cb_bargaining_unit")
+            if (cb_name == "Cb_bargaining_unit")
             {
                 AG_AgreementUser ag = Cb_bargaining_unit.SelectedItem as AG_AgreementUser;
-                ID_AgreementUser= ag.ID_AgreementUser;
+                ID_AgreementUser = ag.ID_AgreementUser;
 
             }
 
@@ -369,7 +443,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             }
             // DateTime.Compare((DateTime)Dp_departure_time.SelectedDate, (DateTime)Dp_the_date_of_arrival.SelectedDate) > 0 ? Tb_number_of_days.Text = DateTime.Compare((DateTime)Dp_departure_time.SelectedDate, (DateTime)Dp_the_date_of_arrival.SelectedDate).ToString() : MessageBox.Show("抵店日期必须小于或等于离店日期","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
 
-            int days = DateTime.Compare((DateTime)Dp_departure_time.SelectedDate, (DateTime)Dp_the_date_of_arrival.SelectedDate);
+            int days = Dp_departure_time.SelectedDate.Value.Day - Dp_the_date_of_arrival.SelectedDate.Value.Day;
             if (days > 0)
             {
                 Tb_number_of_days.Text = days.ToString();
@@ -382,9 +456,6 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             {
                 MessageBox.Show("抵店日期必须小于或等于离店日期", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-
-
         }
 
         /// <summary>
@@ -395,9 +466,9 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         private void DgLeft_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataGrid data = sender as DataGrid;
-            
-            string name = data.Name.Trim() ;
-            if (name == "DgLeft" && data.CurrentItem!=null)
+
+            string name = data.Name.Trim();
+            if (name == "DgLeft" && data.CurrentItem != null)
             {
                 RoomStage room = DgLeft.CurrentItem as RoomStage;
                 temporary.Clear();
@@ -410,7 +481,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 temporary.Add(room);
             }
 
-     
+
 
         }
 
@@ -432,7 +503,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                     if (item.Name != box_name)
                     {
                         CheckBox box_test = item as CheckBox;
-                        box_test.IsChecked = false; 
+                        box_test.IsChecked = false;
                     }
                 }
 

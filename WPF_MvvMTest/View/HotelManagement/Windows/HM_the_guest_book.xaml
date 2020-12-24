@@ -160,15 +160,15 @@
                 <DatePicker  Name="Dp_departure_time"   Grid.Row="7" Grid.Column="11" VerticalAlignment="Center" FontSize="15" Grid.ColumnSpan="4" Height="30"  CalendarClosed="DatePicker_CalendarClosed"/>
 
                 <TextBlock Grid.Row="9" Grid.Column="1" Text="客人类型:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Click="Cb_individual_traveler_Click" x:Name="Cb_individual_traveler" Tag="散客" Grid.Row="9" Grid.Column="3" VerticalAlignment="Center"  Margin="15,0,0,0"/>
+                <CheckBox Click="Cb_individual_traveler_Click" x:Name="Cb_individual_traveler" Tag="2" Grid.Row="9" Grid.Column="3" VerticalAlignment="Center"  Margin="15,2,0,3" HorizontalAlignment="Left" Width="89"/>
                 <TextBlock Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="散客" FontSize="15" FontFamily="楷体"  />
-                <CheckBox Click="Cb_individual_traveler_Click"  Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right" Tag="午休房" Name="Cb_lunch_room"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right" Tag="10" Name="Cb_lunch_room"/>
                 <TextBlock Grid.Row="9" Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Left" Text="午休房" VerticalAlignment="Center" FontSize="15" FontFamily="楷体" />
-                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_hour_room" Grid.Row="9" Grid.Column="5" Tag="钟点房" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_hour_room" Grid.Row="9" Grid.Column="5" Tag="5" HorizontalAlignment="Center" Margin="10,0,0,0"/>
                 <TextBlock Grid.Row="9" Grid.Column="5" Grid.ColumnSpan="2" HorizontalAlignment="Right" Text="钟点房" VerticalAlignment="Bottom" FontSize="15" FontFamily="楷体" Margin="0,0,0,15"/>
-                <CheckBox Click="Cb_individual_traveler_Click" Tag="自用房"  x:Name="Cb_Since_the_housing" Grid.Row="9" Grid.Column="7" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <CheckBox Click="Cb_individual_traveler_Click" Tag="6"  x:Name="Cb_Since_the_housing" Grid.Row="9" Grid.Column="7" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="9" Grid.Column="7" Text="自用房" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_team" Grid.Row="9" Tag="团队" Grid.Column="7" HorizontalAlignment="Right"/>
+                <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_team" Grid.Row="9" Tag="7" Grid.Column="7" HorizontalAlignment="Right"/>
                 <TextBlock Grid.Row="9" Grid.Column="9" HorizontalAlignment="Left" Text="团队" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBlock x:Name="Tb_confidentiality" Grid.Row="9" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Left" Text="是否保密" FontSize="15" FontFamily="楷体" Foreground="#ff0aef" />
                 <CheckBox  x:Name="Cb_Ifasecret" Grid.Row="9" Grid.Column="11" HorizontalAlignment="Center" Margin="50,0,0,0" />
