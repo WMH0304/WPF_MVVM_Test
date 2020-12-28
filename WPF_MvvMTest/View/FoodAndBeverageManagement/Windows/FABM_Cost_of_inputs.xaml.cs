@@ -538,13 +538,13 @@ namespace WPF_MvvMTest.View.FoodAndBeverageManagement.Windows
         /// <summary>
         /// 更改消费金额
         /// </summary>
-        private void sum_of_consumption()
-        {
-            //CW_Consumption cc = m.CW_Consumption.Where(c => c.ID_Consumption == ID_consumption && c.Effective == true).SingleOrDefault();
-            //decimal tot = m.PJ_ProjectDetail.Where(c => c.ID_Project ==).Single().Price;
-            //cc.Prict = cc.Prict - tot > 0 ? tot : 0;
-            //m.Entry(cc).State = System.Data.Entity.EntityState.Modified;
-        }
+        //private void sum_of_consumption()
+        //{
+        //    //CW_Consumption cc = m.CW_Consumption.Where(c => c.ID_Consumption == ID_consumption && c.Effective == true).SingleOrDefault();
+        //    //decimal tot = m.PJ_ProjectDetail.Where(c => c.ID_Project ==).Single().Price;
+        //    //cc.Prict = cc.Prict - tot > 0 ? tot : 0;
+        //    //m.Entry(cc).State = System.Data.Entity.EntityState.Modified;
+        //}
 
         /// <summary>
         /// 删除消费

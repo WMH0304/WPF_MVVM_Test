@@ -22,5 +22,6 @@ namespace WPF_MvvMTest.Model
         public string Address { get; set; }
         public string Phone { get; set; }
         public Nullable<int> ID_AgreementUser { get; set; }
+        public Nullable<bool> sex { get; set; }
     }
 }

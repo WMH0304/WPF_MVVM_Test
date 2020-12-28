@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +9,7 @@ using WPF_MvvMTest.View.HotelManagement.Windows;
 
 namespace WPF_MvvMTest.View.HotelManagement
 {
-  
+
 
     /// <summary>
     /// W_hotel_management.xaml 的交互逻辑
@@ -25,7 +24,7 @@ namespace WPF_MvvMTest.View.HotelManagement
 
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
 
-      
+
 
         List<RoomStage> sr;
 
@@ -41,9 +40,9 @@ namespace WPF_MvvMTest.View.HotelManagement
                        where tr.ID_Class == 3
                        select new
                        {
-                          vare = tr.floor,
+                           vare = tr.floor,
                        }).Distinct().ToList();
-         
+
             List<string> vs = new List<string>();
             foreach (var item in vis)
             {
@@ -51,7 +50,7 @@ namespace WPF_MvvMTest.View.HotelManagement
                 //vs.Add(item.ToString().Trim().Substring(10,2) +"楼");
                 vs.Add(item.vare + "楼");
             }
-          
+
             Cb_floor.ItemsSource = vs;
 
             /*******************/
@@ -156,7 +155,7 @@ namespace WPF_MvvMTest.View.HotelManagement
                 uBt.Tb_room_id.Text = item.ID_RoomStage.ToString().Trim();
                 uBt.TbRoom_class.Text = item.MC_RoomStage.Trim().ToString();
                 uBt.TbRoom_num.Text = item.Number_RoomStage.Trim().ToString();
-                if (item.State_RoomStage.Trim() =="已用")
+                if (item.State_RoomStage.Trim() == "已用")
                 {
                     uBt.Tb_resere.Visibility = Visibility.Visible;
                 }
@@ -274,8 +273,8 @@ namespace WPF_MvvMTest.View.HotelManagement
             Button bt = (Button)sender;
             string con = bt.Content.ToString().Trim();
             string nm = bt.Name.ToString().Trim();
+            string _room_sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == STATIC_cache.ID_RoomStage).Single().State_RoomStage;
 
-       
             if (con == "实时房态")
             {
                 Window_Loaded(null, null);
@@ -290,19 +289,25 @@ namespace WPF_MvvMTest.View.HotelManagement
             {
                 //房台新增按钮
                 Windows.HM_Add_room d = new Windows.HM_Add_room();
-                d.btq +=  new Bt(push);
+                d.btq += new Bt(push);
                 d.ShowDialog();
             }
 
             if (nm == "Bt_the_guest_book")
             {
                 //客人预定
-                if (STATIC_cache.ID_RoomStage==0)
+                if (STATIC_cache.ID_RoomStage == 0)
                 {
-                    MessageBox.Show("请选中需要预定的房间","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    MessageBox.Show("请选中需要预定的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-               
+
+                if (_room_sr != "未用")
+                {
+                    MessageBox.Show("该房台正在使用，请选择其他房台", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 Windows.HM_The_guest_book tb = new HM_The_guest_book(nm);
                 tb.refresh += new Refresh(push);
                 tb.ShowDialog();
@@ -311,16 +316,52 @@ namespace WPF_MvvMTest.View.HotelManagement
             if (nm == "Bt_The_guest_registration")
             {
                 //客人登记
-                if (STATIC_cache.ID_RoomStage == 0)
+                if (STATIC_cache.ID_RoomStage == 0 || _room_sr == "已用")
                 {
                     MessageBox.Show("请选中需要预定的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
+
                 Windows.HM_The_guest_book tb = new HM_The_guest_book(nm);
                 tb.refresh += new Refresh(push);
                 tb.ShowDialog();
 
             }
+
+            if (nm == "Bt_guest_delay")
+            {
+                //客人续住
+
+                if (STATIC_cache.ID_RoomStage == 0 || _room_sr.Trim() != "已用")
+                {
+                    MessageBox.Show("请选中需要续住的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                Windows.HM_The_guest_book tb = new HM_The_guest_book(nm);
+                tb.refresh += new Refresh(push);
+                tb.ShowDialog();
+            }
+
+            if (nm == "Bt_consume_entrance")
+            {
+                //消费入单
+                if (STATIC_cache.ID_RoomStage == 0 || _room_sr.Trim() != "已用")
+                {
+                    MessageBox.Show("请选中需要消费入单的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                List<SYS_RoomStage> rs = m.SYS_RoomStage.Where(c => c.ID_RoomStage == STATIC_cache.ID_RoomStage).ToList();
+                if (rs == null)
+                {
+                    MessageBox.Show("房台信息丢失请找大海", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                HM_Front_desk_cashier_processing fdcp = new HM_Front_desk_cashier_processing(rs);
+                fdcp.Resh += new Refresh(push);
+                fdcp.ShowDialog();
+            }
+
         }
 
         /// <summary>
@@ -329,8 +370,8 @@ namespace WPF_MvvMTest.View.HotelManagement
         public void push()
         {
 
-            Window_Loaded(null,null);
-            
+            Window_Loaded(null, null);
+
         }
 
     }

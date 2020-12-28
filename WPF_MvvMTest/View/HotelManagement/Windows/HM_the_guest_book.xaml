@@ -35,7 +35,7 @@
                 <ColumnDefinition Width="60*" />
                 <ColumnDefinition Width="60*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="客人预定-主房台号" Foreground="Red" FontSize="20" FontFamily="楷体" VerticalAlignment="Center"/>
+            <TextBlock x:Name="Tb_room_name" Text="客人预定-主房台号" Foreground="Red" FontSize="20" FontFamily="楷体" VerticalAlignment="Center"/>
 
             <Button Grid.Column="1" FontFamily="Segoe MDL2 Assets" 
                     Background="Transparent" Content="&#xE108;" 
@@ -133,7 +133,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="9" Text="折扣："   VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
                 <TextBox x:Name="Tb_discount" Grid.Row="3" Grid.Column="9" HorizontalAlignment="Right" Width="54"/>
                 <TextBlock Grid.Row="3" Grid.Column="11" Text="实际房价:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="3" Grid.Column="13" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="3" Grid.Column="13" VerticalAlignment="Center" Name="Tb_actual_controller"/>
 
                 <TextBlock Grid.Row="5" Grid.Column="1" Text="证件类型:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <ComboBox Grid.Row="5" Grid.Column="3" x:Name="Cb_certificate_type">
@@ -145,7 +145,7 @@
                 <TextBlock Grid.Row="5" Grid.Column="5" Text="证件号码:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
                 <TextBox Grid.Row="5" Grid.Column="5" x:Name="Tb_ID_Number" HorizontalAlignment="Right" Grid.ColumnSpan="4" FontSize="12" Width="150"/>
                 <TextBlock Grid.Row="5" Grid.Column="9" HorizontalAlignment="Left" Text="地址：" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <TextBox Grid.Row="5" Name="Tb_site" Grid.Column="9" Grid.ColumnSpan="7" HorizontalAlignment="Right" Width="388"/>
+                <TextBox Grid.Row="5" Name="Tb_site" Grid.Column="9" Grid.ColumnSpan="7"  HorizontalAlignment="Right" Width="388"/>
 
                 <TextBlock Grid.Row="7" Grid.Column="1" Text="抵店日期:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <DatePicker  Name="Dp_the_date_of_arrival" Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" Grid.ColumnSpan="3" Height="30"  />
@@ -171,19 +171,19 @@
                 <CheckBox Click="Cb_individual_traveler_Click"  x:Name="Cb_team" Grid.Row="9" Tag="7" Grid.Column="7" HorizontalAlignment="Right"/>
                 <TextBlock Grid.Row="9" Grid.Column="9" HorizontalAlignment="Left" Text="团队" VerticalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBlock x:Name="Tb_confidentiality" Grid.Row="9" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Left" Text="是否保密" FontSize="15" FontFamily="楷体" Foreground="#ff0aef" />
-                <CheckBox  x:Name="Cb_Ifasecret" Grid.Row="9" Grid.Column="11" HorizontalAlignment="Center" Margin="50,0,0,0" />
+                <CheckBox  x:Name="Cb_Ifasecret" Grid.Row="9" Grid.Column="11" Tag="0"  HorizontalAlignment="Center" Margin="50,0,0,0" />
                 <TextBlock Grid.Row="9" Grid.Column="13" Text="初收押金:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBox x:Name="Tb_The_first_deposit" Grid.Row="9" Grid.Column="15"/>
 
                 <TextBlock Grid.Row="11" Grid.Column="1" Text="协议单位:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <ComboBox Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3" Name="Cb_bargaining_unit" SelectionChanged="Cb_The_customers_name_SelectionChanged"/>
+                <ComboBox Grid.Row="11"  Grid.Column="3" Grid.ColumnSpan="3" Foreground="Black" x:Name="Cb_bargaining_unit_l" Style="{StaticResource ComboBoxStyle}" />
                 <TextBlock Grid.Row="11" Grid.Column="7" Text="贵宾卡号:" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" FontFamily="楷体"/>
                 <TextBox x:Name="Tb_The_VIP_card_number" Grid.Row="11" Grid.Column="7" Margin="10,0,0,0" FontSize="15" HorizontalAlignment="Right" Grid.ColumnSpan="4" Width="140"/>
                 <TextBlock Grid.Row="11" Grid.Column="11"  Text="押金单号:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBox x:Name="Tb_Deposit_receipt_no" Grid.Row="11" Grid.Column="13" Grid.ColumnSpan="3" />
 
                 <TextBlock Grid.Row="13" Grid.Column="1" Text="是否留言:" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
-                <CheckBox Click="Cb_whether_need_Click" x:Name="Cb_whether_need" Grid.Row="13" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <CheckBox Click="Cb_whether_need_Click" x:Name="Cb_whether_need" Grid.Row="13" Tag="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Grid.Row="13" Grid.Column="5" Text="留言内容：" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" FontFamily="楷体"/>
                 <TextBox IsEnabled="False" x:Name="Tb_message_contents" Grid.Row="13" Grid.Column="7" Grid.ColumnSpan="9" />
 
@@ -276,12 +276,31 @@
                 </TabControl>
             </Grid>
 
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <TextBlock Text="状态:" VerticalAlignment="Center" FontSize="30" FontFamily="楷体"/>
-                <TextBlock Text="客人预定" Foreground="Red"  VerticalAlignment="Center" FontSize="30" FontFamily="楷体"/>
-                <Button x:Name="Bt_save" Content="保存" Click="BtAddition_Click" Margin="500,0,0,0"/>
-                <Button x:Name="Bt_closes" Content="关闭"  Click="BtAddition_Click" Margin="30,0,0,0"/>
-            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal">
+               
+                
+               
+            </StackPanel>-->
+
+            <Grid  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="78*" />
+                    <ColumnDefinition Width="270*" />
+                    <ColumnDefinition Width="195*" />
+                    <ColumnDefinition Width="138*" />
+                    <ColumnDefinition Width="141*" />
+                    <ColumnDefinition Width="25*" />
+
+
+
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Text="状态:" VerticalAlignment="Center" FontSize="30" FontFamily="楷体" Height="34" Margin="0,6,0,5"/>
+                <TextBlock Grid.Column="2" Grid.ColumnSpan="1" Text="客人预定" Foreground="Red" Name="Tb_away_goal" VerticalAlignment="Center" FontSize="30" FontFamily="楷体"/>
+                <Button Grid.Column="4"   x:Name="Bt_save" Width="100" Content="保存" Click="BtAddition_Click" />
+                <Button Grid.Column="5"  x:Name="Bt_closes" Content="关闭" Width="100" Click="BtAddition_Click" Margin="30,0,0,0"/>
+            </Grid>
 
 
         </Grid>

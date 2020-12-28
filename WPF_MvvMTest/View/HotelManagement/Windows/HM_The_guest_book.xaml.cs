@@ -5,14 +5,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+//using System.Windows.Forms;
 using WPF_MvvMTest.EntityVo;
 using WPF_MvvMTest.Model;
 
 
 namespace WPF_MvvMTest.View.HotelManagement.Windows
 {
-
-
     /// <summary>
     /// HM_The_guest_book.xaml 的交互逻辑
     /// </summary>
@@ -30,13 +29,20 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             if (base_name == "Bt_the_guest_book")
             {
                 //顾客预定
-                whether = true;
+                base_names = base_name;
             }
 
             if (base_name == "Bt_The_guest_registration")
             {
                 //客人登记
-                whether = false;
+                base_names = base_name;
+            }
+
+            if (base_name == "Bt_guest_delay")
+            {
+                //客人续住 
+                // whether = false;
+                base_names = base_name;
             }
 
             InitializeComponent();
@@ -44,8 +50,8 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         }
 
         int ID_RoomStage, ID_Guest, ID_VIP, ID_AgreementUser;
-        string ck_tag;
-        bool whether;
+        string ck_tag, base_names;
+
 
         /// <summary>
         /// 左边表格
@@ -77,14 +83,16 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             #region 下拉框
 
             //主客姓名
-            Cb_The_customers_name.ItemsSource = m.SYS_Guest.ToList();
+
             Cb_The_customers_name.DisplayMemberPath = "MC_Guest";
             Cb_The_customers_name.SelectedValuePath = "ID_Guest";
+            Cb_The_customers_name.ItemsSource = m.SYS_Guest.ToList();
 
             //协议单位
-            Cb_bargaining_unit.ItemsSource = m.AG_AgreementUser.ToList();
-            Cb_bargaining_unit.DisplayMemberPath = "MC_AgreementUser";
-            Cb_The_customers_name.SelectedValuePath = "ID_AgreementUser";
+
+            Cb_bargaining_unit_l.DisplayMemberPath = "MC_AgreementUser";
+            Cb_bargaining_unit_l.SelectedValuePath = "ID_AgreementUser";
+            Cb_bargaining_unit_l.ItemsSource = m.AG_AgreementUser.ToList();
 
             ID_RoomStage = STATIC_cache.ID_RoomStage;
 
@@ -96,11 +104,182 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             #endregion
 
             //客人登记回填
-            if (!whether)
+            if (base_names == "Bt_The_guest_registration")
             {
+                //当客人已经预定时
+                List<SYS_RoomStage> rs = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).ToList();
+                if (rs[0].State_RoomStage.Trim() == "预定")
+                {
+                    var con = from tr in m.SYS_RoomStage
+                              join tv in m.VIP_Table on tr.ID_Guest equals tv.ID_Guest
+                              join tg in m.SYS_Guest on tr.ID_Guest equals tg.ID_Guest
+                              join trst in m.SYS_Room_status_type on tr.ID_room_type equals trst.ID_room_status_type
+                              join ts in m.YW_Subscribe on tr.ID_Guest equals ts.ID_Guest
+                              join tb in m.CW_Bill on ts.ID_Subscribe equals tb.SuOp_ID
+                              join tc in m.CW_Consumption on tr.ID_RoomStage equals tc.ID_RoomStage
+                              join ta in m.AG_AgreementUser on ts.ID_AgreementUser equals ta.ID_AgreementUser
+                              where tr.ID_RoomStage == ID_RoomStage
+                              select new
+                              {
+
+                                  tv.Accounts,//账号
+                                  tr.Number_RoomStage,//房号
+                                  tr.preinstall,//预设房价
+                                  tr.practical,//实际房价
+                                  tg.MC_Guest,
+                                  tg.sex,
+                                  ts.Number_People,
+                                  ts.Number_Subscribe,
+                                  ts.Remark,
+                                  tg.证件类型,
+                                  tg.证件号码,
+                                  tg.Address,
+                                  ts.Time_Predict,
+                                  ts.Time_Leave,
+                                  trst.name_room_status_type,
+                                  trst.ID_room_status_type,
+                                  ts.Money_Pledge,
+                                  tb.Number_Bill,
+                                  ta.MC_AgreementUser,
+                              };
+
+                    Tb_account_number.Text = con.Select(c => c.Accounts).FirstOrDefault().ToString().Trim();
+                    Cb_The_customers_name.Text = con.Select(c => c.MC_Guest).FirstOrDefault().Trim();
+                    Cb_gender.Text = con.Select(c => c.sex).FirstOrDefault() is true ? "男" : "女";
+                    Tb_number_of_people.Text = con.Select(c => c.Number_People).FirstOrDefault().ToString();
+                    Tb_actual_controller.Text = con.Select(c => c.practical).FirstOrDefault().ToString();
+                    Cb_certificate_type.Text = con.Select(c => c.证件类型).FirstOrDefault().Trim();
+                    Tb_ID_Number.Text = con.Select(c => c.证件号码).FirstOrDefault().Trim();
+                    Tb_site.Text = con.Select(c => c.Address).FirstOrDefault().Trim();
+                    Dp_the_date_of_arrival.SelectedDate = con.Select(c => c.Time_Predict).FirstOrDefault();
+                    Dp_departure_time.SelectedDate = con.Select(c => c.Time_Leave).FirstOrDefault();
+                    int ID_rst = con.Select(c => c.ID_room_status_type).FirstOrDefault();
+                    Cb_assignment(ID_rst);
+                    Tb_The_first_deposit.Text = con.Select(c => c.Money_Pledge).FirstOrDefault().ToString();
+
+                    Cb_bargaining_unit_l.Text = con.Select(c => c.MC_AgreementUser).FirstOrDefault().ToString().Trim();
+
+                    Tb_The_VIP_card_number.Text = con.Select(c => c.Accounts).FirstOrDefault().ToString().Trim();
+                    Tb_Deposit_receipt_no.Text = con.Select(c => c.Number_Subscribe).FirstOrDefault().Trim();
+                    Tb_message_contents.IsEnabled = con.Select(c => c.Remark).FirstOrDefault().Trim() is null ? false : true;
+                    Tb_message_contents.Text = Tb_message_contents.IsEnabled ? con.Select(c => c.Remark).FirstOrDefault().Trim() : string.Empty;
+                    Tb_note.Text = con.Select(c => c.Remark).FirstOrDefault().Trim();
+
+
+                    DateTime leve = (DateTime)con.Select(c => c.Time_Leave).Single();
+                    DateTime predict = (DateTime)con.Select(c => c.Time_Predict).Single();
+                    int datys = (int)(leve - predict).TotalDays;
+
+                    Tb_number_of_days.Text = datys.ToString();
+
+
+                    Cb_The_customers_name.IsEnabled = false;
+
+                    Tb_room_name.Text = "客人预定登记";
+                    this.Tb_away_goal.Text = "客人预定登记";
+
+
+                }
+
 
             }
 
+            //客人续住
+            if (base_names == "Bt_guest_delay")
+            {
+                var con = from tr in m.SYS_RoomStage
+                          join tv in m.VIP_Table on tr.ID_Guest equals tv.ID_Guest
+                          join tg in m.SYS_Guest on tr.ID_Guest equals tg.ID_Guest
+                          join trst in m.SYS_Room_status_type on tr.ID_room_type equals trst.ID_room_status_type
+
+
+                          join to in m.YW_OpenStage on tv.ID_VIP equals to.ID_VIP
+                          join tc in m.CW_Consumption on tr.ID_RoomStage equals tc.ID_RoomStage
+                          join tb in m.CW_Bill on tc.ID_Bill equals tb.ID_Bill
+                          join ta in m.AG_AgreementUser on to.ID_AgreementUser equals ta.ID_AgreementUser
+
+                          where tr.ID_RoomStage == ID_RoomStage
+                          select new
+                          {
+
+                              tv.Accounts,//账号
+                              tr.Number_RoomStage,//房号
+                              tr.preinstall,//预设房价
+                              tr.practical,//实际房价
+                              tg.MC_Guest,
+                              tg.sex,
+                              to.Number_People,
+                              to.Number_OpenStage,
+                              to.Remark,
+                              tg.证件类型,
+                              tg.证件号码,
+                              tg.Address,
+                              to.Time_Predict,
+                              to.Time_Leave,
+                              trst.name_room_status_type,
+                              trst.ID_room_status_type,
+                              to.Money_Pledge,
+                              tb.Number_Bill,
+                              ta.MC_AgreementUser,
+                              tc.Discount,
+                          };
+
+                Tb_account_number.Text = con.Select(c => c.Accounts).FirstOrDefault().ToString().Trim();
+                Cb_The_customers_name.Text = con.Select(c => c.MC_Guest).FirstOrDefault().Trim();
+                Cb_gender.Text = con.Select(c => c.sex).FirstOrDefault() is true ? "男" : "女";
+                Tb_number_of_people.Text = con.Select(c => c.Number_People).FirstOrDefault().ToString();
+                Tb_actual_controller.Text = con.Select(c => c.practical).FirstOrDefault().ToString();
+                Cb_certificate_type.Text = con.Select(c => c.证件类型).FirstOrDefault().Trim();
+                Tb_ID_Number.Text = con.Select(c => c.证件号码).FirstOrDefault().Trim();
+                Tb_site.Text = con.Select(c => c.Address).FirstOrDefault().Trim();
+                Dp_the_date_of_arrival.SelectedDate = con.Select(c => c.Time_Predict).FirstOrDefault();
+                Dp_departure_time.SelectedDate = con.Select(c => c.Time_Leave).FirstOrDefault();
+                int ID_rst = con.Select(c => c.ID_room_status_type).FirstOrDefault();
+                Cb_assignment(ID_rst);
+                Tb_The_first_deposit.Text = con.Select(c => c.Money_Pledge).FirstOrDefault().ToString();
+
+                Cb_bargaining_unit_l.Text = con.Select(c => c.MC_AgreementUser).FirstOrDefault().ToString().Trim();
+
+                Tb_The_VIP_card_number.Text = con.Select(c => c.Accounts).FirstOrDefault().ToString().Trim();
+                Tb_Deposit_receipt_no.Text = con.Select(c => c.Number_OpenStage).FirstOrDefault().Trim();
+                Tb_message_contents.IsEnabled = con.Select(c => c.Remark).FirstOrDefault().Trim() is null ? false : true;
+                Tb_message_contents.Text = Tb_message_contents.IsEnabled ? con.Select(c => c.Remark).FirstOrDefault().Trim() : string.Empty;
+                Tb_note.Text = con.Select(c => c.Remark).FirstOrDefault().Trim();
+                Tb_discount.Text = con.Select(c => c.Discount).FirstOrDefault().ToString();
+
+                Cb_The_customers_name.IsEnabled = false;
+                DateTime leve = con.Select(c => c.Time_Leave).Single();
+                DateTime predict = con.Select(c => c.Time_Predict).Single();
+                int datys = (int)(leve - predict).TotalDays;
+
+                Tb_number_of_days.Text = datys.ToString();
+
+                Tb_room_name.Text = "客人续住登记";
+                this.Tb_away_goal.Text = "客人续住登记";
+                BtAddition.IsEnabled = false;
+                BtRemove.IsEnabled = false;
+
+                foreach (FrameworkElement item in Gr_con.Children)
+                {
+                    if (item is TextBox)
+                    {
+                        System.Windows.Controls.TextBox textBox = item as TextBox;
+                        textBox.IsEnabled = false;
+                    }
+
+                    if (item is ComboBox)
+                    {
+                        ComboBox comboBox = item as ComboBox;
+                        comboBox.IsEnabled = false;
+                    }
+
+                    if (item is CheckBox)
+                    {
+                        CheckBox checkBox = item as CheckBox;
+                        checkBox.IsEnabled = false;
+                    }
+                }
+            }
 
 
             Get_data();
@@ -108,13 +287,41 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             DgRight.ItemsSource = right;
         }
 
+
+
+
+        /// <summary>
+        /// 单选框回填赋值
+        /// </summary>
+        private void Cb_assignment(int tag)
+        {
+
+            foreach (FrameworkElement item in Gr_con.Children)
+            {
+                if (item is CheckBox)
+                {
+
+                    if (item.Tag.ToString() == tag.ToString())
+                    {
+                        CheckBox box_test = (CheckBox)item;
+                        // CheckBox box_test = item as  CheckBox; 
+                        box_test.IsChecked = true;
+
+                        ck_tag = item.Tag.ToString();
+                    }
+                }
+
+            }
+        }
+
+
         /// <summary>
         /// 获取表格数据
         /// </summary>
         private void Get_data()
         {
             List<RoomStage> roomStage = (from tr in m.SYS_RoomStage
-                                         where tr.ID_Class == 3 && tr.ID_room_type == 1
+                                         where tr.ID_Class == 3 && tr.State_RoomStage.Trim() == "未用"
                                          select new RoomStage
                                          {
                                              ID_RoomStage = tr.ID_RoomStage,
@@ -133,19 +340,20 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             }
             foreach (var item in roomStage)
             {
-                //item.Number_RoomStage == Tb_room_number.Text.Trim() ? right.Add(item) : left.Add(item);
-
 
                 if (item.Number_RoomStage.Trim() == Tb_room_number.Text.Trim())
                 {
                     right.Add(item);
+
                 }
                 else
                 {
                     left.Add(item);
 
                 }
+
             }
+
 
 
         }
@@ -215,89 +423,155 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// </summary>
         public void Save()
         {
+            string _name = String.Empty;
             if (!Integrity())
             {
                 return;
             }
 
-            //修改房台状态
-            SYS_RoomStage sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).SingleOrDefault();
-            sr.State_RoomStage = "预定";
-            sr.ID_Guest = ID_Guest;
-            sr.ID_room_type = int.Parse(ck_tag);
-            m.Entry(sr).State = System.Data.Entity.EntityState.Modified;
-
-            //添加预定信息
-            YW_Subscribe sb = new YW_Subscribe();
-            sb.ID_Guest = ID_Guest;
-            sb.ID_VIP = ID_VIP;
-            sb.ID_AgreementUser = ID_AgreementUser;
-            sb.Number_Subscribe = Tb_Deposit_receipt_no.Text.Trim().ToString();
-            sb.Time_Predict = DateTime.Parse(Dp_the_date_of_arrival.Text.Trim());
-            sb.Time_Leave = DateTime.Parse(Dp_departure_time.Text.Trim());
-            sb.Number_People = int.Parse(Tb_number_of_people.Text.Trim());
-            sb.Money_Pledge = decimal.Parse(Tb_The_first_deposit.Text.Trim());
-            sb.State_Secrecy = true;
-            sb.Remark = Tb_note.Text.Trim();
-            sb.Type_CheckIn = ck_tag;
-
-            string _ID_houseID = string.Empty;
-            foreach (var item in right)
+            if (base_names == "Bt_the_guest_book")
             {
-                _ID_houseID += item.ID_RoomStage + ",";
+                _name = "预定";
+                //修改房台状态
+                SYS_RoomStage sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).SingleOrDefault();
+                sr.State_RoomStage = "预定";
+                sr.ID_Guest = ID_Guest;
+                sr.ID_room_type = int.Parse(ck_tag);
+                m.Entry(sr).State = System.Data.Entity.EntityState.Modified;
+
+                //添加预定信息
+                YW_Subscribe sb = new YW_Subscribe();
+                sb.ID_Guest = ID_Guest;
+                sb.ID_VIP = ID_VIP;
+                sb.ID_AgreementUser = ID_AgreementUser;
+                sb.Number_Subscribe = Tb_Deposit_receipt_no.Text.Trim().ToString();
+                sb.Time_Predict = DateTime.Parse(Dp_the_date_of_arrival.Text.Trim());
+                sb.Time_Leave = DateTime.Parse(Dp_departure_time.Text.Trim());
+                sb.Number_People = int.Parse(Tb_number_of_people.Text.Trim());
+                sb.Money_Pledge = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                sb.State_Secrecy = true;
+                sb.Remark = Tb_note.Text.Trim();
+                sb.Type_CheckIn = ck_tag;
+
+                string _ID_houseID = string.Empty;
+                foreach (var item in right)
+                {
+                    _ID_houseID += item.ID_RoomStage + ",";
+                }
+                sb.HouseStageID = _ID_houseID;
+                m.YW_Subscribe.Add(sb);
+
+                m.SaveChanges();
+
+                int _IDsub = m.YW_Subscribe.Where(c => c.Number_Subscribe == sb.Number_Subscribe && c.State_Secrecy == true).Single().ID_Subscribe;
+
+                //添加账单信息 预定押金的
+                CW_Bill cb = new CW_Bill();
+                cb.Price = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                cb.SuOp_ID = _IDsub;
+                cb.Number_Bill = Tb_Deposit_receipt_no.Text.Trim();
+                cb.State_Bill = "未结账";
+                m.CW_Bill.Add(cb);
+                m.SaveChanges();
+
+                int _IDbill = m.CW_Bill.Where(c => c.Number_Bill == cb.Number_Bill).Single().ID_Bill;
+
+                //添加消费记录
+                CW_Consumption cp = new CW_Consumption();
+                cp.ID_Bill = _IDbill;
+                cp.ID_RoomStage = ID_RoomStage;
+                cp.ID_ProjectDetail = 0;
+                cp.Prict = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                cp.Discount = 1;
+                cp.Effective = true;
+                m.CW_Consumption.Add(cp);
+
             }
-            sb.HouseStageID = _ID_houseID;
-            m.YW_Subscribe.Add(sb);
 
-            m.SaveChanges();
+            //房台登记
+            if (base_names == "Bt_The_guest_registration")
+            {
+                _name = "登记";
+                SYS_RoomStage sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == ID_RoomStage).SingleOrDefault();
+                //有预定的情况
 
+                if (sr.State_RoomStage.Trim() == "未用")
+                {
+                    //添加账单信息 预定押金的
+                    CW_Bill cb = new CW_Bill();
+                    cb.Price = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                    cb.SuOp_ID = 0;
+                    cb.Number_Bill = Tb_Deposit_receipt_no.Text.Trim();
+                    cb.State_Bill = "未结账";
+                    m.CW_Bill.Add(cb);
+                    m.SaveChanges();
 
-            //int _IDsub = m.YW_Subscribe.Where(c => c.Number_Subscribe == sb.Number_Subscribe).Single().ID_Subscribe;\\
-            // int _IDsub = m.YW_Subscribe.Select(c => sb).Single().ID_Subscribe;
+                    int _IDbill = m.CW_Bill.Where(c => c.Number_Bill == cb.Number_Bill).Single().ID_Bill;
 
-            int _IDsub = m.YW_Subscribe.Where(c => c.Number_Subscribe == sb.Number_Subscribe && c.State_Secrecy == true).Single().ID_Subscribe;
+                    //添加消费记录
+                    CW_Consumption cp = new CW_Consumption();
+                    cp.ID_Bill = _IDbill;
+                    cp.ID_RoomStage = ID_RoomStage;
+                    cp.ID_ProjectDetail = 0;
+                    cp.Prict = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                    cp.Discount = 1;
+                    cp.Effective = true;
 
+                    m.CW_Consumption.Add(cp);
 
+                }
 
-            //   m.YW_Subscribe.Add().ID_Subscribe;
+                //修改房台状态
+                sr.State_RoomStage = "已用";
+                sr.ID_Guest = ID_Guest;
+                sr.ID_room_type = int.Parse(ck_tag);
+                m.Entry(sr).State = System.Data.Entity.EntityState.Modified;
 
-            //添加账单信息 预定押金的
-            CW_Bill cb = new CW_Bill();
-            cb.Price = decimal.Parse(Tb_The_first_deposit.Text.Trim());
-            cb.SuOp_ID = _IDsub;
-            cb.Number_Bill = Tb_Deposit_receipt_no.Text.Trim();
-            cb.State_Bill = "未结账";
-            m.CW_Bill.Add(cb);
-            m.SaveChanges();
+                YW_OpenStage os = new YW_OpenStage();
+                os.ID_VIP = ID_VIP;
+                os.ID_AgreementUser = m.AG_AgreementUser.Where(c => c.MC_AgreementUser == Cb_bargaining_unit_l.Text.Trim()).Single().ID_AgreementUser;
+                os.Number_OpenStage = Tb_Deposit_receipt_no.Text.Trim().ToString();
+                os.Time_Predict = DateTime.Parse(Dp_the_date_of_arrival.Text.Trim());
+                os.Time_Leave = DateTime.Parse(Dp_departure_time.Text.Trim());
+                os.Number_People = int.Parse(Tb_number_of_people.Text.Trim());
+                os.Money_Pledge = decimal.Parse(Tb_The_first_deposit.Text.Trim());
+                os.State_Secrecy = true;
+                os.Remark = Tb_note.Text.Trim();
+                os.Type_CheckIn = ck_tag;
+                os.Content_Message = Tb_note.Text.Trim();
 
-            int _IDbill = m.CW_Bill.Where(c => c.Number_Bill == cb.Number_Bill).Single().ID_Bill;
+                string _ID_houseID = string.Empty;
 
-            //添加消费记录
-            CW_Consumption cp = new CW_Consumption();
-            cp.ID_Bill = _IDbill;
-            cp.ID_RoomStage = ID_RoomStage;
-            cp.ID_ProjectDetail = 0;
-            cp.Prict = decimal.Parse(Tb_The_first_deposit.Text.Trim());
-            cp.Discount = 1;
-            cp.Effective = true;
-            m.CW_Consumption.Add(cp);
+                foreach (var item in right)
+                {
+                    _ID_houseID += item.ID_RoomStage + ",";
+                }
+
+                os.HouseStageID = _ID_houseID;
+                m.YW_OpenStage.Add(os);
+
+            }
+
+            //客人续住
+            if (base_names == "Bt_guest_delay")
+            {
+                _name = "续住登记";
+                YW_OpenStage os = m.YW_OpenStage.Where(c => c.Number_OpenStage.Trim() == Tb_Deposit_receipt_no.Text.Trim()).SingleOrDefault();
+                os.Time_Leave = Dp_departure_time.SelectedDate.Value;
+                m.Entry(os).State = System.Data.Entity.EntityState.Modified;
+
+            }
 
             if (m.SaveChanges() > 0)
             {
-                //Tools.Common_means.operate_successfully("房台预定");
 
-                MessageBoxResult result = MessageBox.Show("房台预定成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBoxResult result = MessageBox.Show("房台" + _name + "成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.OK)
                 {
                     this.Close();
                     refresh();
                 }
             }
-
-
-
-
-
 
         }
 
@@ -354,6 +628,17 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// </summary>
         public void Append_or_remove(string str)
         {
+            if (temporary == null)
+            {
+                MessageBox.Show("请选择要添加或者移除的按钮，然后进行操作", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (str == String.Empty)
+            {
+                MessageBox.Show("请选择要添加或者移除的按钮，然后进行操作", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             if (str != string.Empty && str == "BtAddition")
             {
@@ -369,10 +654,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 right.Remove(temporary[0]);
             }
 
-            if (str == String.Empty)
-            {
-                MessageBox.Show("请选择要添加或者移除的按钮，然后进行操作", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+
 
             left.OrderBy(c => c.Number_RoomStage);
             right.OrderBy(c => c.Number_RoomStage);
@@ -389,7 +671,6 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             // ComboBox cb = sender as ComboBox;
             ComboBox cb = (ComboBox)sender;
             string cb_name = cb.Name.Trim().ToString();
-
 
             if (cb_name == "Cb_The_customers_name")
             {
@@ -420,12 +701,10 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             //协议单位
             if (cb_name == "Cb_bargaining_unit")
             {
-                AG_AgreementUser ag = Cb_bargaining_unit.SelectedItem as AG_AgreementUser;
+                AG_AgreementUser ag = Cb_bargaining_unit_l.SelectedItem as AG_AgreementUser;
                 ID_AgreementUser = ag.ID_AgreementUser;
 
             }
-
-
 
         }
 
@@ -448,10 +727,12 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             {
                 Tb_number_of_days.Text = days.ToString();
             }
+
             if (days == 0)
             {
                 Tb_number_of_days.Text = "1";
             }
+
             if (days < 0)
             {
                 MessageBox.Show("抵店日期必须小于或等于离店日期", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -474,14 +755,13 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 temporary.Clear();
                 temporary.Add(room);
             }
+
             if (name == "DgRight" && data.CurrentItem != null)
             {
                 RoomStage room = DgRight.CurrentItem as RoomStage;
                 temporary.Clear();
                 temporary.Add(room);
             }
-
-
 
         }
 
@@ -521,7 +801,6 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             CheckBox box = sender as CheckBox;
 
             Tb_message_contents.IsEnabled = box.IsChecked == true ? true : false;
-
 
         }
     }

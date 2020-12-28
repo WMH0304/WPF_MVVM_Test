@@ -171,6 +171,7 @@
           <Property Name="证件号码" Type="char" MaxLength="20" Nullable="false" />
           <Property Name="Address" Type="nchar" MaxLength="20" Nullable="false" />
           <Property Name="Phone" Type="nchar" MaxLength="13" Nullable="false" />
+          <Property Name="sex" Type="bit" />
         </EntityType>
         <EntityType Name="SYS_Room_status_type">
           <Key>
@@ -476,6 +477,7 @@
           <Property Name="Address" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="ID_AgreementUser" Type="Int32" />
+          <Property Name="sex" Type="Boolean" />
         </EntityType>
         <EntityType Name="SYS_RoomStage">
           <Key>
@@ -798,6 +800,7 @@
           <EntitySetMapping Name="SYS_Guest">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.SYS_Guest">
               <MappingFragment StoreEntitySet="SYS_Guest">
+                <ScalarProperty Name="sex" ColumnName="sex" />
                 <ScalarProperty Name="ID_AgreementUser" ColumnName="ID_AgreementUser" />
                 <ScalarProperty Name="ID_Guest" ColumnName="ID_Guest" />
                 <ScalarProperty Name="MC_Guest" ColumnName="MC_Guest" />

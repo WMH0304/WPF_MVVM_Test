@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_MvvMTest.View.HotelManagement.Windows"
         mc:Ignorable="d"
-        Title="前台收银处理" 
+        Title="客人费用输入" 
         Background="Gray"
+        Loaded="Window_Loaded"
          Height="712" 
-        Width="825">
+        Width="900">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5"/>
