@@ -21,5 +21,6 @@ namespace WPF_MvvMTest.Model
         public Nullable<int> ID_PayRecord { get; set; }
         public Nullable<bool> presenter { get; set; }
         public Nullable<decimal> money { get; set; }
+        public Nullable<System.DateTime> time { get; set; }
     }
 }

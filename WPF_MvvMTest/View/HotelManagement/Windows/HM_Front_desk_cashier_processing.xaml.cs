@@ -31,6 +31,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
 
         List<SYS_RoomStage> mg;
+        Stack<Consumer> list_con = new Stack<Consumer>();
 
         /// <summary>
         /// 右边集合
@@ -41,6 +42,8 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// 左边集合
         /// </summary>
         ObservableCollection<Consumer> left = new ObservableCollection<Consumer>();
+
+
 
         int ID_RoomStag = -1;
 
@@ -75,7 +78,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             string tg_nm = ocn.Select(c => c.MC_Guest).SingleOrDefault();
             string tb_nb = ocn.Select(c => c.Number_Bill).SingleOrDefault();
             string tv_ac = ocn.Select(c => c.Accounts).SingleOrDefault();
-            Tb_odd_numbers.Text = "【" + tg_nm.Trim() +  "】的账号【" + tv_ac.Trim() + "】的帐单号为【" + tb_nb.Trim() + "】的消费清单";
+            Tb_odd_numbers.Text = "【" + tg_nm.Trim() + "】的账号【" + tv_ac.Trim() + "】的帐单号为【" + tb_nb.Trim() + "】的消费清单";
 
             Get_date_left();
             Get_date_right();
@@ -86,7 +89,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// </summary>
         private void Get_date_left()
         {
-            
+
             //左边表格 数据填充
             List<Consumer> p = (from tP in m.PJ_Project
                                 join tPD in m.PJ_ProjectDetail on tP.ID_Project equals tPD.ID_Project
@@ -150,7 +153,7 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         {
             //右边表格
             var consumption = m.CW_Consumption.Where(c => c.ID_RoomStage == ID_RoomStag && c.Effective == true).SingleOrDefault();
-        int  ID_consumption = consumption.ID_Consumption;
+            int ID_consumption = consumption.ID_Consumption;
 
 
             List<Consumer> consumers = (from tbcd in m.CW_ConsumeDetail
@@ -192,8 +195,101 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         /// <param name="e"></param>
         private void Bt_addition_Click(object sender, RoutedEventArgs e)
         {
+            Button tb = sender as Button;
+            string _nm = tb.Name.Trim();
+
+            if (_nm == "Bt_addition")
+            {
+                //添加按钮
+                Accretion();
+
+            }
+
+            if (_nm == "Bt_Consumer_single_back")
+            {
+                //消费转单
+
+            }
+
+            if (_nm == "Bt_Presented")
+            {
+                //结账退房
+
+            }
+
+            if (_nm == "Bt_Single_item_at_a_discount")
+            {
+                //消费退单
+
+            }
+
+            if (_nm == "Bt_close_the_window")
+            {
+                //关闭窗口
+
+            }
+
+
+
 
         }
+
+        /// <summary>
+        /// 添加按钮
+        /// </summary>
+        private void Accretion()
+        {
+            int _inum = -1;
+            //添加
+            try
+            {
+                string _snum = Tb_Consumption_quantity.Text.ToString().Trim();
+
+                _inum = int.Parse(_snum);
+                if (_inum <= 0)
+                {
+                    MessageBox.Show("请输入有效数字", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入有效数字", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (list_con  == null)
+            {
+                MessageBox.Show("请选择要录入的数据","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                return;
+            }
+
+            int _icon_id = m.CW_Consumption.Where(c => c.ID_RoomStage == ID_RoomStag && c.Effective == true).Single().ID_Consumption;
+
+            DateTime dt = DateTime.Now;
+
+            for (int i = 0; i < _inum ; i++)
+            {
+
+                CW_ConsumeDetail cd = new CW_ConsumeDetail();
+                cd.ID_Consumption = _icon_id;
+                cd.ID_Project = list_con.Peek().ID_Project;
+                cd.State_ComsumeDetail = true;
+                cd.presenter = false;
+                cd.money = list_con.Peek().Price;
+                cd.time = dt;
+                m.CW_ConsumeDetail.Add(cd);
+            }
+
+            if (m.SaveChanges() > 0)
+            {
+                MessageBoxResult mbr = MessageBox.Show("客人消费录入成功", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Window_Loaded(null, null);
+                Tb_Consumption_quantity.Text = string.Empty;
+            }
+        }
+
+
 
         /// <summary>
         /// 模糊查询
@@ -214,9 +310,8 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         {
             DataGrid dg = sender as DataGrid;
             Consumer con = dg.CurrentItem as Consumer;
-
-
-
+           
+            list_con.Push(con);
         }
 
         /// <summary>

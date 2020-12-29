@@ -59,6 +59,7 @@
           <Property Name="State_ComsumeDetail" Type="bit" />
           <Property Name="presenter" Type="bit" />
           <Property Name="money" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="time" Type="datetime" />
         </EntityType>
         <EntityType Name="CW_Consumption">
           <Key>
@@ -629,6 +630,7 @@
           <Property Name="ID_PayRecord" Type="Int32" />
           <Property Name="presenter" Type="Boolean" />
           <Property Name="money" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="time" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="SYS_Room_status_type">
           <Key>
@@ -937,6 +939,7 @@
           <EntitySetMapping Name="CW_ConsumeDetail">
             <EntityTypeMapping TypeName="EasternStar_WPF_MVVMModel.CW_ConsumeDetail">
               <MappingFragment StoreEntitySet="CW_ConsumeDetail">
+                <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="money" ColumnName="money" />
                 <ScalarProperty Name="presenter" ColumnName="presenter" />
                 <ScalarProperty Name="ID_PayRecord" ColumnName="ID_PayRecord" />
