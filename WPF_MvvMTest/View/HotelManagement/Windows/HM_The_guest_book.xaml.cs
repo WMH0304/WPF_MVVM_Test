@@ -644,7 +644,13 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             {
                 //添加按钮
                 left.Remove(temporary[0]);
-                right.Add(temporary[0]);
+
+                var right_count = right.Contains(temporary[0]);
+                if (!right_count)
+                {
+                    right.Add(temporary[0]);
+                }
+               
             }
 
             if (str != string.Empty && str == "BtRemove")

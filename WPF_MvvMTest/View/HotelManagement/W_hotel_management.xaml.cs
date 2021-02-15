@@ -273,7 +273,7 @@ namespace WPF_MvvMTest.View.HotelManagement
             Button bt = (Button)sender;
             string con = bt.Content.ToString().Trim();
             string nm = bt.Name.ToString().Trim();
-            string _room_sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == STATIC_cache.ID_RoomStage).Single().State_RoomStage;
+            string _room_sr = m.SYS_RoomStage.Where(c => c.ID_RoomStage == STATIC_cache.ID_RoomStage).Single().State_RoomStage.Trim();
 
             if (con == "实时房态")
             {

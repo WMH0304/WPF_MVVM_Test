@@ -43,7 +43,7 @@
             <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
                 <TextBlock Text=" 消费数量" VerticalAlignment="Center"/>
                 <TextBox x:Name="Tb_Consumption_quantity" Height="30" Width="90" Margin="6,0,0,0"/>
-                <Button Click="Bt_addition_Click" x:Name="Bt_addition"  Height="20" Content="添加"  Width="50" FontSize="12" VerticalAlignment="Center" Margin="20,0,0,0" >
+                <Button Click="Bt_addition_Click" x:Name="Bt_addition"  Height="20" Content="添加"  Width="50" FontSize="12" VerticalAlignment="Center" Margin="20,37,0,-19" >
                     <Button.Template>
                         <ControlTemplate>
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="7,7,7,7">
@@ -55,7 +55,7 @@
                 </Button>
                 <Label Margin="10,0,0,0" VerticalAlignment="Center"/>
             </StackPanel>
-
+            
             <TabControl Grid.Row="3">
 
                 <TabItem Header="全部" Name="Ti_all">
@@ -282,7 +282,7 @@
                               Background="Transparent"
                               ScrollViewer.VerticalScrollBarVisibility="Visible"
                               ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                        SelectedCellsChanged="Dg_right_data_SelectedCellsChanged"
+                        SelectedCellsChanged="DG_The_famous_tea_SelectedCellsChanged"
                               >
                         <DataGrid.Columns>
 

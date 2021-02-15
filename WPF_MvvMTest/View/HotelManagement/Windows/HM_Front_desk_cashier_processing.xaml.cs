@@ -31,7 +31,8 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         Model.EasternStar_WPF_MVVMEntities m = new EasternStar_WPF_MVVMEntities();
 
         List<SYS_RoomStage> mg;
-        Stack<Consumer> list_con = new Stack<Consumer>();
+        Stack<Consumer> sk_left = new Stack<Consumer>();
+        Stack<Consumer> sk_right = new Stack<Consumer>();
 
         /// <summary>
         /// 右边集合
@@ -208,7 +209,8 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             if (_nm == "Bt_Consumer_single_back")
             {
                 //消费转单
-
+                MessageBox.Show("暂不支持消费转单", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
 
             if (_nm == "Bt_Presented")
@@ -221,11 +223,14 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
             {
                 //消费退单
 
+                Consumer_single_back();
+
             }
 
             if (_nm == "Bt_close_the_window")
             {
                 //关闭窗口
+
 
             }
 
@@ -233,6 +238,30 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
 
 
         }
+
+        /// <summary>
+        /// 消费退单
+        /// </summary>
+        private void Consumer_single_back()
+        {
+            try
+            {
+                //假如为空
+                if (sk_right is null)
+                {
+                    MessageBox.Show("请在右边表格中选中需要消费退单的数据","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    return;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
         /// <summary>
         /// 添加按钮
@@ -258,9 +287,9 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
                 return;
             }
 
-            if (list_con  == null)
+            if (sk_left == null)
             {
-                MessageBox.Show("请选择要录入的数据","大海提示",MessageBoxButton.OK,MessageBoxImage.Warning);
+                MessageBox.Show("请选择要录入的数据", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -268,15 +297,15 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
 
             DateTime dt = DateTime.Now;
 
-            for (int i = 0; i < _inum ; i++)
+            for (int i = 0; i < _inum; i++)
             {
 
                 CW_ConsumeDetail cd = new CW_ConsumeDetail();
                 cd.ID_Consumption = _icon_id;
-                cd.ID_Project = list_con.Peek().ID_Project;
+                cd.ID_Project = sk_left.Peek().ID_Project;
                 cd.State_ComsumeDetail = true;
                 cd.presenter = false;
-                cd.money = list_con.Peek().Price;
+                cd.money = sk_left.Peek().Price;
                 cd.time = dt;
                 m.CW_ConsumeDetail.Add(cd);
             }
@@ -309,20 +338,25 @@ namespace WPF_MvvMTest.View.HotelManagement.Windows
         private void DG_The_famous_tea_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             DataGrid dg = sender as DataGrid;
+            string[] dg_nam = new string[] { "DG_all", "DG_The_famous_tea", "Dg_drinks", "Dg_seafood", "Dg_service_class", "Dg_meal", "Dg_Snacks_class" };
+
+            string dgname = dg.Name.Trim();
             Consumer con = dg.CurrentItem as Consumer;
-           
-            list_con.Push(con);
+
+            //如果存在于该数组中 则是左边表格的操作
+            if (dg_nam.Contains(dgname))
+            {
+                sk_left.Push(con);
+                return;
+            }
+            //右边表格操作
+            if (dgname == "Dg_right_data")
+            {
+                sk_right.Push(con);
+            }
         }
 
-        /// <summary>
-        /// 右边表格数据获取
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Dg_right_data_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
 
-        }
 
 
 

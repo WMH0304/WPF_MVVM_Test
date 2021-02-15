@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_MvvMTest", "WPF_MvvMTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Test_UI", "WPF_Test_UI\WPF_Test_UI.csproj", "{40153AB0-D790-4E84-AB08-D7764CEC1D7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web_netCore", "Web_netCore\Web_netCore.csproj", "{10CA9F1B-BB98-4FE3-A22A-23E38DE25F90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{40153AB0-D790-4E84-AB08-D7764CEC1D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40153AB0-D790-4E84-AB08-D7764CEC1D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40153AB0-D790-4E84-AB08-D7764CEC1D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CA9F1B-BB98-4FE3-A22A-23E38DE25F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CA9F1B-BB98-4FE3-A22A-23E38DE25F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CA9F1B-BB98-4FE3-A22A-23E38DE25F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CA9F1B-BB98-4FE3-A22A-23E38DE25F90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

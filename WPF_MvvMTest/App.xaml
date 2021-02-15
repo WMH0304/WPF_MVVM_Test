@@ -7,27 +7,27 @@
 
 
 
-
-StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
-
+ StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
 
 
-     
-            >
+
+
+
+    >
+
     <!--StartupUri="Login.xaml"-->
-    
-    
+
     <!--StartupUri="view\hotelmanagement\windows\hm_the_guest_book.xaml"-->
-  
+
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_Pay_the_bill.xaml"-->
     <!--StartupUri="测试窗口.xaml"-->
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_founding_consumption.xaml"-->
 
     <!--StartupUri="Login.xaml"-->
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_Room_table_reservation.xaml"-->
-    
+
     <!--StartupUri="View\FoodAndBeverageManagement\Windows\FABM_Room_table_reservation.xaml"-->
-   
+
     <!--StartupUri="MainWindow.xaml"-->
     <!--StartupUri="View\Windows\W_StatementLeave.xaml"-->
     <!--StartupUri="View\Windows\W_ConsumerFinance.xaml"-->
@@ -35,7 +35,7 @@ StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
     <Application.Resources>
 
 
-      
+
 
 
 
@@ -43,8 +43,8 @@ StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
         <ResourceDictionary>
             <!--获取 ResourceDictionary 字典的集合，这些字典构成了合并的字典中的各种资源字典。-->
 
-            
-            
+
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\GGZY.xaml"/>
                 <!--封装好的公共样式-->
@@ -66,10 +66,10 @@ StartupUri="View\Hotelmanagement\W_hotel_management.xaml"
                 <ResourceDictionary Source="Styles\Tabcontrol.xaml"/>
                 <ResourceDictionary Source="Styles\MenuItem.xaml"/>
 
-               
+
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary> 
-        
-        
+        </ResourceDictionary>
+
+
     </Application.Resources>
 </Application>
