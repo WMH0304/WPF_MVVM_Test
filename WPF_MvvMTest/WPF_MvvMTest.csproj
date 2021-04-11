@@ -106,6 +106,7 @@
     <Compile Include="EntityVo\PrintfData.cs" />
     <Compile Include="EntityVo\RoomStage.cs" />
     <Compile Include="EntityVo\STATIC_cache.cs" />
+    <Compile Include="EntityVo\The_check_form.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

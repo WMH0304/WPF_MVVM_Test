@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +7,7 @@ using WPF_MvvMTest.EntityVo;
 using WPF_MvvMTest.Model;
 using WPF_MvvMTest.Resources;
 using WPF_MvvMTest.View.HotelManagement.Windows;
+
 
 namespace WPF_MvvMTest.View.HotelManagement
 {
@@ -359,7 +361,32 @@ namespace WPF_MvvMTest.View.HotelManagement
                 }
                 HM_Front_desk_cashier_processing fdcp = new HM_Front_desk_cashier_processing(rs);
                 fdcp.Resh += new Refresh(push);
+                //fdcp.Resh -= new Refresh(push);
                 fdcp.ShowDialog();
+            }
+
+            //财务处理
+            if (nm== "Bt_financial_transaction")
+            {
+                if (STATIC_cache.ID_RoomStage ==0 || _room_sr.Trim()!="已用")
+                {
+                    MessageBox.Show("请选中需要结账消费的房间", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                List<SYS_RoomStage> rs = m.SYS_RoomStage.Where(c => c.ID_RoomStage == STATIC_cache.ID_RoomStage).ToList();
+                if (rs ==null)
+                {
+                    MessageBox.Show("房台信息丢失请找大海", "大海提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                HM_Check_out_room cr = new HM_Check_out_room(STATIC_cache.ID_RoomStage);
+
+
+               // Action<string> action; 
+                cr.ShowDialog();
+
+
             }
 
         }
@@ -371,6 +398,7 @@ namespace WPF_MvvMTest.View.HotelManagement
         {
 
             Window_Loaded(null, null);
+
 
         }
 

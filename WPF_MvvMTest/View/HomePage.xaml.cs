@@ -137,6 +137,10 @@ namespace WPF_MvvMTest.View
         private void Bt_hotel_management_Click(object sender, RoutedEventArgs e)
         {
 
+            WPF_MvvMTest.View.HotelManagement.W_hotel_management wh = new HotelManagement.W_hotel_management();
+            this.Close();
+            wh.ShowDialog();
+
         }
     }
 }
